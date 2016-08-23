@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreBluetooth
 
 class RoleSelectionViewController: HomeChildViewController {
     
@@ -22,7 +23,8 @@ class RoleSelectionViewController: HomeChildViewController {
     
     
     var state = State.None
-    
+    var bluetoothManager: CBPeripheralManager!
+
     var transitionDelegate: TransitionDelegate!
     
     override func viewDidLoad() {
@@ -31,13 +33,15 @@ class RoleSelectionViewController: HomeChildViewController {
         buttonSpacing.constant = 0
         transitionDelegate = TransitionDelegate(navigationController: navigationController!)
         navigationController?.delegate = transitionDelegate
+        
+        let options = [CBCentralManagerOptionShowPowerAlertKey: 0]
+        bluetoothManager = CBPeripheralManager(delegate: self, queue: nil, options: options)
+
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         UIView.animateWithDuration(0.1, animations: {
-//            self.buttonHost.alpha = 1
-//            self.buttonGuest.alpha = 1
             self.showTab()
         }, completion: nil)
     }
@@ -72,6 +76,34 @@ class RoleSelectionViewController: HomeChildViewController {
     }
     
 
+}
+
+extension RoleSelectionViewController: CBPeripheralManagerDelegate {
+    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
+        
+        var statusMessage = ""
+        
+        switch peripheral.state {
+        case CBPeripheralManagerState.PoweredOn:
+            statusMessage = "Bluetooth Status: Turned On"
+            
+        case CBPeripheralManagerState.PoweredOff:
+            statusMessage = "Bluetooth Status: Turned Off"
+            
+        case CBPeripheralManagerState.Resetting:
+            statusMessage = "Bluetooth Status: Resetting"
+            
+        case CBPeripheralManagerState.Unauthorized:
+            statusMessage = "Bluetooth Status: Not Authorized"
+            
+        case CBPeripheralManagerState.Unsupported:
+            statusMessage = "Bluetooth Status: Not Supported"
+            
+        default:
+            statusMessage = "Bluetooth Status: Unknown"
+        }
+        print(statusMessage)
+    }
 }
 
 extension RoleSelectionViewController: SharedViewTransition {

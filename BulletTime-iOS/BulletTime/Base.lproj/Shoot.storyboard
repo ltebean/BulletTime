@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iI3-dU-lul">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -169,7 +168,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w4h-N0-9BR" customClass="DesignableView" customModule="BulletTime" customModuleProvider="target">
                                         <rect key="frame" x="120" y="22" width="80" height="80"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="75h-2i-1mw"/>
                                             <constraint firstAttribute="height" constant="80" id="z6P-d2-Tn8"/>
@@ -379,15 +378,6 @@
                                     <constraint firstAttribute="width" secondItem="H8x-hV-js0" secondAttribute="height" multiplier="1:1" id="KNS-Th-nS6"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybC-Qo-M7V">
-                                <rect key="frame" x="141" y="499" width="38" height="30"/>
-                                <state key="normal" title="share">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonSharePressed:" destination="ig8-EP-sVl" eventType="touchUpInside" id="0me-kh-4CJ"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Share the magic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ece-JK-Ims">
                                 <rect key="frame" x="20" y="50" width="209" height="40"/>
                                 <constraints>
@@ -408,10 +398,39 @@
                                     <action selector="back:" destination="ig8-EP-sVl" eventType="touchUpInside" id="uNh-gX-5nf"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cyK-kv-RhE">
+                                <rect key="frame" x="0.0" y="444" width="320" height="124"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybC-Qo-M7V" customClass="DesignableButton" customModule="BulletTime" customModuleProvider="target">
+                                        <rect key="frame" x="131" y="32" width="60" height="60"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="OqB-sg-SBd"/>
+                                            <constraint firstAttribute="height" constant="60" id="gQc-Yl-Nl3"/>
+                                        </constraints>
+                                        <state key="normal" image="icon-share-white">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="30"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="buttonSharePressed:" destination="ig8-EP-sVl" eventType="touchUpInside" id="0me-kh-4CJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ybC-Qo-M7V" firstAttribute="centerX" secondItem="cyK-kv-RhE" secondAttribute="centerX" id="Zbh-to-EhH"/>
+                                    <constraint firstItem="ybC-Qo-M7V" firstAttribute="centerY" secondItem="cyK-kv-RhE" secondAttribute="centerY" id="kFU-5u-2Gc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ybC-Qo-M7V" firstAttribute="centerX" secondItem="Fus-xT-CBI" secondAttribute="centerX" id="0R2-b1-yuP"/>
+                            <constraint firstItem="cyK-kv-RhE" firstAttribute="leading" secondItem="Fus-xT-CBI" secondAttribute="leading" id="4Gg-ZW-iRS"/>
                             <constraint firstItem="H8x-hV-js0" firstAttribute="leading" secondItem="Fus-xT-CBI" secondAttribute="leading" id="7eU-ll-OSa"/>
                             <constraint firstItem="Ece-JK-Ims" firstAttribute="top" secondItem="Ec8-tr-eSJ" secondAttribute="bottom" constant="30" id="Dur-IE-H77"/>
                             <constraint firstItem="H8x-hV-js0" firstAttribute="centerY" secondItem="Fus-xT-CBI" secondAttribute="centerY" id="EsP-PS-zRd"/>
@@ -419,7 +438,9 @@
                             <constraint firstAttribute="trailing" secondItem="H8x-hV-js0" secondAttribute="trailing" id="NAr-Yg-khU"/>
                             <constraint firstItem="Ece-JK-Ims" firstAttribute="leading" secondItem="Fus-xT-CBI" secondAttribute="leading" constant="20" id="dwZ-VJ-wAf"/>
                             <constraint firstAttribute="trailing" secondItem="Uqy-cJ-zCO" secondAttribute="trailing" constant="5" id="fQi-na-Cp4"/>
-                            <constraint firstItem="Jvf-vg-s6o" firstAttribute="top" secondItem="ybC-Qo-M7V" secondAttribute="bottom" constant="39" id="hUJ-FH-Iz5"/>
+                            <constraint firstAttribute="trailing" secondItem="cyK-kv-RhE" secondAttribute="trailing" id="gP6-ee-XbM"/>
+                            <constraint firstItem="Jvf-vg-s6o" firstAttribute="top" secondItem="cyK-kv-RhE" secondAttribute="bottom" id="gVs-SM-cTF"/>
+                            <constraint firstItem="cyK-kv-RhE" firstAttribute="top" secondItem="H8x-hV-js0" secondAttribute="bottom" id="oeH-2E-ZY3"/>
                         </constraints>
                     </view>
                     <connections>
@@ -601,6 +622,7 @@
     <resources>
         <image name="icon-back-grey" width="17" height="10"/>
         <image name="icon-back-white" width="17" height="10"/>
+        <image name="icon-share-white" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ct5-ad-COz"/>

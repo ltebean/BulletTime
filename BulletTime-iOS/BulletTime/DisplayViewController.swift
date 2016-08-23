@@ -13,13 +13,13 @@ class DisplayViewController: UIViewController {
 
     @IBOutlet weak var playerView: PlayerView!
     var productService = ProductService.sharedInstance
-
+    var product: Product!
+    
     var images: [UIImage] = [] {
         didSet {
             playerView.reload(withImages: images)
             view.userInteractionEnabled = true
-
-//            productService.createProduct(withImages: images)
+            product = productService.createProduct(withImages: images)
         }
     }
     
@@ -38,7 +38,6 @@ class DisplayViewController: UIViewController {
     }
     
     @IBAction func buttonSharePressed(sender: AnyObject) {
-        let product = productService.createProduct(withImages: images)
         Share.shareProduct(product, inViewController: self)
     }
 }

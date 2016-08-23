@@ -28,6 +28,10 @@ class HomeChildViewController: UIViewController {
     func setTabScrollEnabled(enabled: Bool) {
         homeVC.scrollView.scrollEnabled = enabled
     }
+    
+    func refresh() {
+        
+    }
 }
 
 
@@ -40,6 +44,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var buttonMe: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var vcs = [HomeChildViewController]()
     let pageWidth = Int(UIScreen.mainScreen().bounds.width)
     
     override func viewDidLoad() {
@@ -50,9 +55,14 @@ class HomeViewController: UIViewController {
         
         for vc in childViewControllers {
             if let vc = vc as? UINavigationController {
-                (vc.topViewController as! HomeChildViewController).homeVC = self
+                let childVC = (vc.topViewController as! HomeChildViewController)
+                childVC.homeVC = self
+                vcs.append(childVC)
+
             } else {
-                (vc as! HomeChildViewController).homeVC = self
+                let childVC = (vc as! HomeChildViewController)
+                childVC.homeVC = self
+                vcs.append(childVC)
             }
         }
     }
@@ -68,6 +78,7 @@ class HomeViewController: UIViewController {
 
     @IBAction func buttonMePressed(sender: AnyObject) {
         scrollToPage(1, animated: true)
+        vcs[1].refresh()
     }
     
 

@@ -60,12 +60,20 @@ class MeViewController: HomeChildViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func refresh() {
         productList = productService.loadAll()
         tableView.reloadData()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 
+    @IBAction func buttonAboutPressed(sender: AnyObject) {
+        let vc = R.storyboard.me.settings()!
+        vc.modalTransitionStyle = .FlipHorizontal
+        presentViewController(vc, animated: true, completion: nil)
+    }
 }
 
 extension MeViewController: UITableViewDelegate, UITableViewDataSource {

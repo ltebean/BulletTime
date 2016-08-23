@@ -16,6 +16,8 @@
 		B3C0621A1D5B2BCF00F39CAC /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C062191D5B2BCF00F39CAC /* Transition.swift */; };
 		B3C0621C1D5B2C0500F39CAC /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C0621B1D5B2C0500F39CAC /* DesignableButton.swift */; };
 		B3C0621E1D5B2F0700F39CAC /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C0621D1D5B2F0700F39CAC /* UIButton.swift */; };
+		B3C58D061D6BF7DC0030F3DF /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C58D051D6BF7DC0030F3DF /* Array.swift */; };
+		B3C58D091D6C32770030F3DF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C58D081D6C32770030F3DF /* SettingsViewController.swift */; };
 		B3CDA2311D5436EC0090F65A /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CDA2301D5436EC0090F65A /* PlayerView.swift */; };
 		B3CDA2341D543A7E0090F65A /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CDA2331D543A7E0090F65A /* R.generated.swift */; };
 		B3CDA23B1D54437E0090F65A /* XibBasedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CDA2351D54437E0090F65A /* XibBasedView.swift */; };
@@ -63,6 +65,8 @@
 		B3C062191D5B2BCF00F39CAC /* Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
 		B3C0621B1D5B2C0500F39CAC /* DesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		B3C0621D1D5B2F0700F39CAC /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		B3C58D051D6BF7DC0030F3DF /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		B3C58D081D6C32770030F3DF /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B3CDA2301D5436EC0090F65A /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		B3CDA2331D543A7E0090F65A /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		B3CDA2351D54437E0090F65A /* XibBasedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibBasedView.swift; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 			children = (
 				B3E6E7081D64437000D9BB60 /* Me.storyboard */,
 				B3E6E70A1D64437F00D9BB60 /* MeViewController.swift */,
+				B3C58D081D6C32770030F3DF /* SettingsViewController.swift */,
 			);
 			name = Me;
 			sourceTree = "<group>";
@@ -268,6 +273,7 @@
 				B3E6E6F91D62FC6100D9BB60 /* Share.swift */,
 				B3E6E7001D641A4E00D9BB60 /* PanDirectionGestureRecognizer.swift */,
 				B3E6E70F1D6ACF9700D9BB60 /* DesignableView.swift */,
+				B3C58D051D6BF7DC0030F3DF /* Array.swift */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -286,6 +292,7 @@
 				FAF15A3F1D4B7EEE005C7AF2 /* Resources */,
 				3630C3EA2C3E51D1F3BADB26 /* [CP] Embed Pods Frameworks */,
 				4F747F6B1879EDD31DB415EC /* [CP] Copy Pods Resources */,
+				B3C58D071D6BF8FB0030F3DF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -394,6 +401,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		B3C58D071D6BF8FB0030F3DF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" f76e439b5fd9873bfe46a5461fc749ec526ee446 5721cf137a323472424a2a4705339158372d733d0538a90a766e395a14814f1d";
+		};
 		B3CDA2321D543A5C0090F65A /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -418,6 +438,7 @@
 				B3E6E70B1D64437F00D9BB60 /* MeViewController.swift in Sources */,
 				B3CDA23B1D54437E0090F65A /* XibBasedView.swift in Sources */,
 				FAFD2FEA1D5E0EB900DF11E1 /* DisplayViewController.swift in Sources */,
+				B3C58D061D6BF7DC0030F3DF /* Array.swift in Sources */,
 				B3CDA2311D5436EC0090F65A /* PlayerView.swift in Sources */,
 				B38EE6A61D5DA66200D20053 /* LTCircleView.swift in Sources */,
 				FAF15A471D4B7EEE005C7AF2 /* RoleSelectionViewController.swift in Sources */,
@@ -437,6 +458,7 @@
 				B3CDA2401D54437E0090F65A /* NavigationController.swift in Sources */,
 				B3CDA23D1D54437E0090F65A /* FileManager.swift in Sources */,
 				FA0D18521D4C4BC500F93AA7 /* DiscoveriesViewController.swift in Sources */,
+				B3C58D091D6C32770030F3DF /* SettingsViewController.swift in Sources */,
 				B3CDA23E1D54437E0090F65A /* UIFont.swift in Sources */,
 				B38EE6A81D61572300D20053 /* BubbleView.swift in Sources */,
 				B3E6E6F61D62D49D00D9BB60 /* FocusView.swift in Sources */,
@@ -569,6 +591,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ae818578-537f-4811-a809-3b577cd7678e";
 				SWIFT_OBJC_BRIDGING_HEADER = "BulletTime/BulletTime-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -587,6 +610,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ae818578-537f-4811-a809-3b577cd7678e";
 				SWIFT_OBJC_BRIDGING_HEADER = "BulletTime/BulletTime-Bridging-Header.h";
 			};
 			name = Release;

@@ -22,16 +22,37 @@ class LTCircleView: UIView {
     var spacingAngle: Double = 30
     var views: [UIView] = []
     
+    var imageView: UIImageView!
+    let gestures = [R.image.iconGesture1()!, R.image.iconGesture2()!, R.image.iconGesture3()!]
+    
     weak var dataSource: LTCircleViewDataSource!
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.load()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.load()
+    }
+    
+    func load() {
+        imageView = UIImageView(frame: bounds)
+        imageView.contentMode = .Center
+        imageView.image = gestures.randomItem()
+        addSubview(imageView)
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        imageView.frame = bounds
         reArrange()
     }
     
     func reloadData() {
         let totalItems = dataSource.numberOfItemsInCircleView(self)
-        for view in subviews {
+        for view in views {
             view.removeFromSuperview()
         }
         guard totalItems > 0 else {

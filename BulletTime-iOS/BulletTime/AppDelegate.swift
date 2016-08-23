@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,10 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         application.statusBarHidden = true
 
-        let documentsDirectory = NSTemporaryDirectory()
-        let url = NSURL(fileURLWithPath: documentsDirectory).URLByAppendingPathComponent("animated.gif")
-        
-//        GIF.createGIF(with: [UIImage(named:"test1")!, UIImage(named:"test2")!], frameDelay: 1, toURL: url)
+        Fabric.with([Crashlytics.self])
+
         return true
     }
 

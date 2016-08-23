@@ -58,7 +58,7 @@ struct R: Rswift.Validatable {
     private init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 6 images.
+  /// This `R.image` struct is generated, and contains static references to 12 images.
   struct image {
     /// Image `icon-back-grey`.
     static let iconBackGrey = ImageResource(bundle: _R.hostingBundle, name: "icon-back-grey")
@@ -66,8 +66,20 @@ struct R: Rswift.Validatable {
     static let iconBackWhite = ImageResource(bundle: _R.hostingBundle, name: "icon-back-white")
     /// Image `icon-delete`.
     static let iconDelete = ImageResource(bundle: _R.hostingBundle, name: "icon-delete")
+    /// Image `icon-feedback`.
+    static let iconFeedback = ImageResource(bundle: _R.hostingBundle, name: "icon-feedback")
+    /// Image `icon-gesture-1`.
+    static let iconGesture1 = ImageResource(bundle: _R.hostingBundle, name: "icon-gesture-1")
+    /// Image `icon-gesture-2`.
+    static let iconGesture2 = ImageResource(bundle: _R.hostingBundle, name: "icon-gesture-2")
+    /// Image `icon-gesture-3`.
+    static let iconGesture3 = ImageResource(bundle: _R.hostingBundle, name: "icon-gesture-3")
     /// Image `icon-share`.
     static let iconShare = ImageResource(bundle: _R.hostingBundle, name: "icon-share")
+    /// Image `icon-share-white`.
+    static let iconShareWhite = ImageResource(bundle: _R.hostingBundle, name: "icon-share-white")
+    /// Image `icon-star`.
+    static let iconStar = ImageResource(bundle: _R.hostingBundle, name: "icon-star")
     /// Image `test1`.
     static let test1 = ImageResource(bundle: _R.hostingBundle, name: "test1")
     /// Image `test2`.
@@ -88,9 +100,39 @@ struct R: Rswift.Validatable {
       return UIImage(resource: R.image.iconDelete, compatibleWithTraitCollection: traitCollection)
     }
     
+    /// `UIImage(named: "icon-feedback", bundle: ..., traitCollection: ...)`
+    static func iconFeedback(compatibleWithTraitCollection traitCollection: UITraitCollection? = nil) -> UIImage? {
+      return UIImage(resource: R.image.iconFeedback, compatibleWithTraitCollection: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon-gesture-1", bundle: ..., traitCollection: ...)`
+    static func iconGesture1(compatibleWithTraitCollection traitCollection: UITraitCollection? = nil) -> UIImage? {
+      return UIImage(resource: R.image.iconGesture1, compatibleWithTraitCollection: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon-gesture-2", bundle: ..., traitCollection: ...)`
+    static func iconGesture2(compatibleWithTraitCollection traitCollection: UITraitCollection? = nil) -> UIImage? {
+      return UIImage(resource: R.image.iconGesture2, compatibleWithTraitCollection: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon-gesture-3", bundle: ..., traitCollection: ...)`
+    static func iconGesture3(compatibleWithTraitCollection traitCollection: UITraitCollection? = nil) -> UIImage? {
+      return UIImage(resource: R.image.iconGesture3, compatibleWithTraitCollection: traitCollection)
+    }
+    
     /// `UIImage(named: "icon-share", bundle: ..., traitCollection: ...)`
     static func iconShare(compatibleWithTraitCollection traitCollection: UITraitCollection? = nil) -> UIImage? {
       return UIImage(resource: R.image.iconShare, compatibleWithTraitCollection: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon-share-white", bundle: ..., traitCollection: ...)`
+    static func iconShareWhite(compatibleWithTraitCollection traitCollection: UITraitCollection? = nil) -> UIImage? {
+      return UIImage(resource: R.image.iconShareWhite, compatibleWithTraitCollection: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon-star", bundle: ..., traitCollection: ...)`
+    static func iconStar(compatibleWithTraitCollection traitCollection: UITraitCollection? = nil) -> UIImage? {
+      return UIImage(resource: R.image.iconStar, compatibleWithTraitCollection: traitCollection)
     }
     
     /// `UIImage(named: "test1", bundle: ..., traitCollection: ...)`
@@ -288,10 +330,19 @@ struct _R: Rswift.Validatable {
       
       let bundle = _R.hostingBundle
       let name = "Me"
+      let settings = StoryboardViewControllerResource<SettingsViewController>(identifier: "settings")
+      
+      func settings(_: Void) -> SettingsViewController? {
+        return UIStoryboard(resource: self).instantiateViewController(settings)
+      }
       
       static func validate() throws {
-        if UIImage(named: "icon-delete") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-delete' is used in storyboard 'Me', but couldn't be loaded.") }
         if UIImage(named: "icon-share") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-share' is used in storyboard 'Me', but couldn't be loaded.") }
+        if UIImage(named: "icon-feedback") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-feedback' is used in storyboard 'Me', but couldn't be loaded.") }
+        if UIImage(named: "icon-delete") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-delete' is used in storyboard 'Me', but couldn't be loaded.") }
+        if UIImage(named: "icon-share-white") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-share-white' is used in storyboard 'Me', but couldn't be loaded.") }
+        if UIImage(named: "icon-star") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-star' is used in storyboard 'Me', but couldn't be loaded.") }
+        if _R.storyboard.me().settings() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'settings' could not be loaded from storyboard 'Me' as 'SettingsViewController'.") }
       }
       
       private init() {}
@@ -330,6 +381,7 @@ struct _R: Rswift.Validatable {
       
       static func validate() throws {
         if UIImage(named: "icon-back-grey") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-back-grey' is used in storyboard 'Shoot', but couldn't be loaded.") }
+        if UIImage(named: "icon-share-white") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-share-white' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIImage(named: "icon-back-white") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-back-white' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if _R.storyboard.shoot().central() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'central' could not be loaded from storyboard 'Shoot' as 'CentralViewController'.") }
         if _R.storyboard.shoot().discoveries() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'discoveries' could not be loaded from storyboard 'Shoot' as 'DiscoveriesViewController'.") }

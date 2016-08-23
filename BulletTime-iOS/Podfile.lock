@@ -2,6 +2,9 @@ PODS:
   - Alamofire (3.4.1)
   - AsyncSwift (1.7.3)
   - CameraEngine (0.9.3)
+  - Crashlytics (3.7.3):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.8)
   - LTSwiftDate (0.1.0)
   - LTUIKit (0.1.0)
   - R.swift (2.4.0):
@@ -19,6 +22,8 @@ DEPENDENCIES:
   - Alamofire
   - AsyncSwift
   - CameraEngine
+  - Crashlytics
+  - Fabric
   - LTSwiftDate
   - LTUIKit
   - R.swift
@@ -30,6 +35,8 @@ SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AsyncSwift: f3ad5dd077bbd1477e7573e87071a532fedaca1a
   CameraEngine: e24a801f76bfb2e5ff61b11592f82dfc1b4dafc9
+  Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
+  Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   LTSwiftDate: 7f456e301ea7426a3d0e4afac85a3fd82f3a171f
   LTUIKit: a2ea10f50d780c81e8f1defd9f646b874ae2da6f
   R.swift: 0ef9c42dc6c94ac44a3c78a7639c73f855a8e159
@@ -39,6 +46,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: fc0bde7f01c99f63554e331924458b74edfc5fd1
+PODFILE CHECKSUM: 637f0317fc40aef7247c13c22de7b8868a38a36c
 
 COCOAPODS: 1.0.1
