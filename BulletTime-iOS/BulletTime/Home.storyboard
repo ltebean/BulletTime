@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sFF-mi-98s">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="lineto-circular-black.ttf">
+            <string>Circular-Black</string>
+            <string>Circular-Black</string>
+        </mutableArray>
+    </customFonts>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="uTm-3r-ozI">
+            <objects>
+                <viewController id="sFF-mi-98s" customClass="HomeViewController" customModule="BulletTime" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fTt-eE-7Qd"/>
+                        <viewControllerLayoutGuide type="bottom" id="lZ9-d0-MnC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ho3-hR-3A3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YpH-3R-vyX">
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sdz-kx-baj">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                        <connections>
+                                            <segue destination="yz4-tm-wjb" kind="embed" identifier="me" id="w8c-Gk-E71"/>
+                                        </connections>
+                                    </containerView>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFw-is-PYe">
+                                        <rect key="frame" x="320" y="0.0" width="320" height="548"/>
+                                        <connections>
+                                            <segue destination="EdJ-ap-wak" kind="embed" identifier="shoot" id="fQD-wH-5Qd"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Sdz-kx-baj" firstAttribute="top" secondItem="YpH-3R-vyX" secondAttribute="top" id="7FM-mo-583"/>
+                                    <constraint firstAttribute="bottom" secondItem="Sdz-kx-baj" secondAttribute="bottom" id="ETj-Tt-CgK"/>
+                                    <constraint firstAttribute="trailing" secondItem="xFw-is-PYe" secondAttribute="trailing" id="JkR-7T-2o7"/>
+                                    <constraint firstItem="xFw-is-PYe" firstAttribute="leading" secondItem="Sdz-kx-baj" secondAttribute="trailing" id="dSx-ih-i9X"/>
+                                    <constraint firstItem="xFw-is-PYe" firstAttribute="top" secondItem="Sdz-kx-baj" secondAttribute="top" id="tUz-pG-wmE"/>
+                                    <constraint firstItem="xFw-is-PYe" firstAttribute="bottom" secondItem="Sdz-kx-baj" secondAttribute="bottom" id="tcj-k0-ByS"/>
+                                    <constraint firstItem="Sdz-kx-baj" firstAttribute="centerY" secondItem="YpH-3R-vyX" secondAttribute="centerY" id="uZk-cx-RsE"/>
+                                    <constraint firstItem="xFw-is-PYe" firstAttribute="width" secondItem="Sdz-kx-baj" secondAttribute="width" id="xh1-E5-qpq"/>
+                                    <constraint firstItem="Sdz-kx-baj" firstAttribute="leading" secondItem="YpH-3R-vyX" secondAttribute="leading" id="ztn-VT-8pQ"/>
+                                </constraints>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMN-vq-92R">
+                                <rect key="frame" x="168" y="0.0" width="152" height="60"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="irP-XQ-sai">
+                                        <rect key="frame" x="0.0" y="0.0" width="76" height="60"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdZ-R9-FpO">
+                                        <rect key="frame" x="76" y="0.0" width="76" height="60"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="18"/>
+                                        <state key="normal" title="Me">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonMePressed:" destination="sFF-mi-98s" eventType="touchUpInside" id="MDr-L1-uCK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmj-pr-lhO">
+                                        <rect key="frame" x="0.0" y="0.0" width="76" height="60"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="18"/>
+                                        <state key="normal" title="Shoot">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonShootPressed:" destination="sFF-mi-98s" eventType="touchUpInside" id="DGt-7y-A3B"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="jmj-pr-lhO" firstAttribute="leading" secondItem="yMN-vq-92R" secondAttribute="leading" id="3JS-cx-n8w"/>
+                                    <constraint firstItem="irP-XQ-sai" firstAttribute="leading" secondItem="yMN-vq-92R" secondAttribute="leading" id="3xS-aL-a1g"/>
+                                    <constraint firstAttribute="bottom" secondItem="jmj-pr-lhO" secondAttribute="bottom" id="5lt-Jw-d8L"/>
+                                    <constraint firstAttribute="width" constant="152" id="ERm-Ax-0Xo"/>
+                                    <constraint firstItem="jmj-pr-lhO" firstAttribute="top" secondItem="yMN-vq-92R" secondAttribute="top" id="Glf-oA-x3d"/>
+                                    <constraint firstItem="MdZ-R9-FpO" firstAttribute="width" secondItem="jmj-pr-lhO" secondAttribute="width" id="Gru-Pc-4k0"/>
+                                    <constraint firstItem="irP-XQ-sai" firstAttribute="width" secondItem="MdZ-R9-FpO" secondAttribute="width" id="JMU-cQ-Kke"/>
+                                    <constraint firstAttribute="bottom" secondItem="MdZ-R9-FpO" secondAttribute="bottom" id="O9I-do-nm9"/>
+                                    <constraint firstAttribute="height" constant="60" id="YRy-Mz-q9t"/>
+                                    <constraint firstAttribute="trailing" secondItem="MdZ-R9-FpO" secondAttribute="trailing" id="byC-wa-304"/>
+                                    <constraint firstItem="irP-XQ-sai" firstAttribute="top" secondItem="yMN-vq-92R" secondAttribute="top" id="cH1-Ri-lwg"/>
+                                    <constraint firstItem="MdZ-R9-FpO" firstAttribute="top" secondItem="yMN-vq-92R" secondAttribute="top" id="o3o-B5-2lm"/>
+                                    <constraint firstItem="MdZ-R9-FpO" firstAttribute="leading" secondItem="jmj-pr-lhO" secondAttribute="trailing" id="tIR-VV-A67"/>
+                                    <constraint firstAttribute="bottom" secondItem="irP-XQ-sai" secondAttribute="bottom" id="wTm-iz-099"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="YpH-3R-vyX" secondAttribute="trailing" id="3DQ-vq-2J4"/>
+                            <constraint firstItem="lZ9-d0-MnC" firstAttribute="top" secondItem="YpH-3R-vyX" secondAttribute="bottom" id="CuJ-QN-5KL"/>
+                            <constraint firstItem="YpH-3R-vyX" firstAttribute="top" secondItem="fTt-eE-7Qd" secondAttribute="bottom" id="N6f-XU-zkc"/>
+                            <constraint firstItem="yMN-vq-92R" firstAttribute="top" secondItem="Ho3-hR-3A3" secondAttribute="top" id="ZsT-Zp-xNI"/>
+                            <constraint firstItem="YpH-3R-vyX" firstAttribute="leading" secondItem="Ho3-hR-3A3" secondAttribute="leading" id="eTV-yr-WyA"/>
+                            <constraint firstAttribute="trailing" secondItem="yMN-vq-92R" secondAttribute="trailing" id="noc-Lg-I6c"/>
+                            <constraint firstItem="Sdz-kx-baj" firstAttribute="width" secondItem="Ho3-hR-3A3" secondAttribute="width" id="wuE-fq-Cyx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonMe" destination="MdZ-R9-FpO" id="W58-BM-7Me"/>
+                        <outlet property="buttonShoot" destination="jmj-pr-lhO" id="ate-Rj-HqK"/>
+                        <outlet property="scrollView" destination="YpH-3R-vyX" id="pit-SQ-nHL"/>
+                        <outlet property="tab" destination="yMN-vq-92R" id="sWJ-DO-yfb"/>
+                        <outlet property="tabBackgroundLeft" destination="3xS-aL-a1g" id="0Xg-0c-gSu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kNZ-0s-D2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="78" y="444"/>
+        </scene>
+        <!--Shoot-->
+        <scene sceneID="aLn-d2-oX8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Shoot" id="yz4-tm-wjb" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fAa-RD-tlT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="483" y="293"/>
+        </scene>
+        <!--Me-->
+        <scene sceneID="KrI-fl-0ca">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Me" id="EdJ-ap-wak" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TDa-gZ-lAL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="474.5" y="590"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,44 @@
+PODS:
+  - Alamofire (3.4.1)
+  - AsyncSwift (1.7.3)
+  - CameraEngine (0.9.3)
+  - LTSwiftDate (0.1.0)
+  - LTUIKit (0.1.0)
+  - R.swift (2.4.0):
+    - R.swift.Library (~> 2.2.0)
+  - R.swift.Library (2.2.0)
+  - Realm (1.0.2):
+    - Realm/Headers (= 1.0.2)
+  - Realm/Headers (1.0.2)
+  - RealmSwift (1.0.2):
+    - Realm (= 1.0.2)
+  - SVProgressHUD (2.0.3)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - Alamofire
+  - AsyncSwift
+  - CameraEngine
+  - LTSwiftDate
+  - LTUIKit
+  - R.swift
+  - RealmSwift (= 1.0.2)
+  - SVProgressHUD
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  AsyncSwift: f3ad5dd077bbd1477e7573e87071a532fedaca1a
+  CameraEngine: e24a801f76bfb2e5ff61b11592f82dfc1b4dafc9
+  LTSwiftDate: 7f456e301ea7426a3d0e4afac85a3fd82f3a171f
+  LTUIKit: a2ea10f50d780c81e8f1defd9f646b874ae2da6f
+  R.swift: 0ef9c42dc6c94ac44a3c78a7639c73f855a8e159
+  R.swift.Library: 31a487b65381f37a7d203a6f1f935b43c9be35b0
+  Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
+  RealmSwift: 82f3ac5e24530143dddfde2033acc0d308f27d96
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+PODFILE CHECKSUM: fc0bde7f01c99f63554e331924458b74edfc5fd1
+
+COCOAPODS: 1.0.1
