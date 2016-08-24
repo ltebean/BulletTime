@@ -16,7 +16,7 @@ function uptoken(key) {
 }
 
 var app = express()
-app.set('view engine', 'pug')
+app.set('view engine', 'jade')
 
 app.get('/', function(req, res) {
   res.render('index', {
@@ -32,7 +32,7 @@ app.get('/p/:uuid', function(req, res) {
   })
 })
 
-app.use('/static', serveStatic('static/', {
+app.use('/static', serveStatic('static/build/', {
   setHeaders: function(res, path) {
     res.setHeader('Cache-control', 'public, max-age=0')
   }
