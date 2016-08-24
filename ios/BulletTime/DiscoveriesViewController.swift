@@ -51,7 +51,6 @@ class DiscoveriesViewController: UIViewController {
         peers = [peer]
         peers.appendContentsOf(session.connectedPeers)
         circleView.reloadData()
-        sendPeersUpdates()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -67,6 +66,7 @@ class DiscoveriesViewController: UIViewController {
     
     func peerJoined(peer: MCPeerID) {
         guard peers.indexOf(peer) == nil else {
+            sendPeersUpdates()
             return
         }
         peers.append(peer)

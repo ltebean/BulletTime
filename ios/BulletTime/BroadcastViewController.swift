@@ -48,15 +48,27 @@ class BroadcastViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        showConnecting()
+    }
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         session.delegate = sessionDelegate
         serviceAdvertiser.startAdvertisingPeer()
+        sendReadySignal()
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        serviceAdvertiser.stopAdvertisingPeer()
+//        serviceAdvertiser.stopAdvertisingPeer()
+    }
+    
+    func showConnecting() {
+        peersCount = 0
+        circleView.reloadData()
+        statusLabel.text = "Connecting..."
     }
     
     func showEmptyView() {
@@ -66,7 +78,9 @@ class BroadcastViewController: UIViewController {
     }
     
     func sendReadySignal() {
-        session.sendData(Data(command: .Ready), toPeers: [centralPeer])
+        if centralPeer != nil {
+            session.sendData(Data(command: .Ready), toPeers: [centralPeer])
+        }
     }
     
     func updatePeersInfo(withData data: JSON) {
