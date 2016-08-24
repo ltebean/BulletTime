@@ -100,9 +100,21 @@ a img {
   -moz-appearance: none;
   appearance: none;
 }
+@font-face {
+  font-family: circular-black;
+  src: url("../font/circular-black.ttf");
+}
+@font-face {
+  font-family: circular-bold;
+  src: url("../font/circular-bold.ttf");
+}
 html,
 body {
   width: 100%;
+  font-family: circular-bold;
+}
+.strong {
+  font-family: circular-black;
 }
 .hidden {
   display: none;
@@ -119,7 +131,13 @@ img {
   background-color: #fafafa;
 }
 nav.nav-bar {
+  line-height: 60px;
   height: 60px;
   margin-bottom: 30px;
   border-bottom: 1px solid #ccc;
+}
+nav.nav-bar h1 {
+  margin: auto;
+  text-align: center;
+  font-size: 25px;
 }
