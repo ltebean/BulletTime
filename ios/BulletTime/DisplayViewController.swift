@@ -39,6 +39,11 @@ class DisplayViewController: UIViewController {
     
     @IBAction func buttonSharePressed(sender: AnyObject) {
         Share.shareProduct(product, inViewController: self)
+        
+    }
+    
+    @IBAction func buttonSavePressed(sender: AnyObject) {
+        Share.saveAsVideo(product.images, inViewController: self)
     }
 }
 

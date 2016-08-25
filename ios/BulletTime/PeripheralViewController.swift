@@ -75,16 +75,16 @@ class PeripheralViewController: UIViewController {
         if navigationController?.topViewController != self {
             navigationController?.popToViewController(self, animated: false)
         }
-        cameraController.shoot { image in
-            self.displayVC = R.storyboard.shoot.display()!
-            self.navigationController?.pushViewController(self.displayVC, animated: true)
-            self.sendImageToCentral(image.cropCenterSquare())
-        }
+//        cameraController.shoot { image in
+//            self.displayVC = R.storyboard.shoot.display()!
+//            self.navigationController?.pushViewController(self.displayVC, animated: true)
+//            self.sendImageToCentral(image.cropCenterSquare())
+//        }
 
 
-//        displayVC = R.storyboard.shoot.display()!
-//        navigationController?.pushViewController(displayVC, animated: true)
-//        self.sendImageToCentral(R.image.test1()!.cropCenterSquare())
+        displayVC = R.storyboard.shoot.display()!
+        navigationController?.pushViewController(displayVC, animated: true)
+        self.sendImageToCentral(R.image.test1()!.cropCenterSquare())
     }
     
     func sendImageToCentral(image: UIImage) {

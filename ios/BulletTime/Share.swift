@@ -10,6 +10,7 @@ import UIKit
 import MobileCoreServices
 import Alamofire
 import SVProgressHUD
+import Photos
 
 class ShareItem: NSObject, UIActivityItemSource {
     
@@ -28,7 +29,7 @@ class ShareItem: NSObject, UIActivityItemSource {
     }
     
     func activityViewController(activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: String?) -> String {
-        return CFBridgingRetain(kUTTypeGIF) as! String
+        return CFBridgingRetain(kUTTypeMPEG4) as! String
     }
 }
 
@@ -79,5 +80,30 @@ class Share: NSObject {
     private static func shareURL(url: NSURL, inViewController vc: UIViewController) {
         let activityVC = UIActivityViewController(activityItems:[url], applicationActivities: nil)
         vc.presentViewController(activityVC, animated: true, completion: nil)
+    }
+    
+    static func saveAsVideo(images: [UIImage], inViewController vc: UIViewController) {
+        SVProgressHUD.show()
+        vc.view.userInteractionEnabled = false
+
+        let settings = CEMovieMaker.videoSettingsWithCodec(AVVideoCodecH264, withWidth: 600, andHeight: 600)
+        let maker = CEMovieMaker(settings: settings)
+        var finalImages = [UIImage]()
+        for _ in 1...6 {
+            finalImages.appendContentsOf(images)
+        }
+        maker.createMovieFromImages(finalImages, withCompletion: { url in
+            PHPhotoLibrary.sharedPhotoLibrary().performChanges({
+                PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(url)
+            }) { saved, error in
+                vc.view.userInteractionEnabled = false
+                if saved {
+                    SVProgressHUD.showSuccessWithStatus("Exported to album")
+                } else {
+                    SVProgressHUD.showErrorWithStatus("Error")
+                }
+            }
+        })
+
     }
 }

@@ -50,7 +50,7 @@ typedef UIImage*(^CEMovieMakerUIImageExtractor)(NSObject* inputObject);
                                           [NSNumber numberWithInt:kCVPixelFormatType_32ARGB], kCVPixelBufferPixelFormatTypeKey, nil];
         
         _bufferAdapter = [[AVAssetWriterInputPixelBufferAdaptor alloc] initWithAssetWriterInput:self.writerInput sourcePixelBufferAttributes:bufferAttributes];
-        _frameTime = CMTimeMake(1, 10);
+        _frameTime = CMTimeMake(1, 3);
     }
     return self;
 }
@@ -134,9 +134,8 @@ typedef UIImage*(^CEMovieMakerUIImageExtractor)(NSObject* inputObject);
     
     CVPixelBufferRef pxbuffer = NULL;
     
-    CGFloat frameWidth = [[self.videoSettings objectForKey:AVVideoWidthKey] floatValue];
-    CGFloat frameHeight = [[self.videoSettings objectForKey:AVVideoHeightKey] floatValue];
-    
+    CGFloat frameWidth = CGImageGetWidth(image);
+    CGFloat frameHeight = CGImageGetHeight(image);
     
     CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault,
                                           frameWidth,
@@ -157,15 +156,15 @@ typedef UIImage*(^CEMovieMakerUIImageExtractor)(NSObject* inputObject);
                                                  frameWidth,
                                                  frameHeight,
                                                  8,
-                                                 4 * frameWidth,
+                                                 CVPixelBufferGetBytesPerRow(pxbuffer),
                                                  rgbColorSpace,
                                                  (CGBitmapInfo)kCGImageAlphaNoneSkipFirst);
     NSParameterAssert(context);
     CGContextConcatCTM(context, CGAffineTransformIdentity);
     CGContextDrawImage(context, CGRectMake(0,
                                            0,
-                                           CGImageGetWidth(image),
-                                           CGImageGetHeight(image)),
+                                           frameWidth,
+                                           frameHeight),
                        image);
     CGColorSpaceRelease(rgbColorSpace);
     CGContextRelease(context);
@@ -173,14 +172,12 @@ typedef UIImage*(^CEMovieMakerUIImageExtractor)(NSObject* inputObject);
     CVPixelBufferUnlockBaseAddress(pxbuffer, 0);
     
     return pxbuffer;
+
+    
 }
 
 + (NSDictionary *)videoSettingsWithCodec:(NSString *)codec withWidth:(CGFloat)width andHeight:(CGFloat)height
 {
-    
-    if ((int)width % 16 != 0 ) {
-        NSLog(@"Warning: video settings width must be divisible by 16.");
-    }
     
     NSDictionary *videoSettings = @{AVVideoCodecKey : AVVideoCodecH264,
                                     AVVideoWidthKey : [NSNumber numberWithInt:(int)width],
