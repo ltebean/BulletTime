@@ -44,7 +44,7 @@ class Share: NSObject {
         } catch {
             
         }
-        GIF.createGIF(with: product.images, frameDelay: 0.2, toURL: url)
+        GIF.createGIF(with: product.images, frameDelay: Config.frameInterval, toURL: url)
         let uuid = product.uuid.dataUsingEncoding(NSUTF8StringEncoding)!
         let shareURL = NSURL(string: "\(Config.serverURL)/p/\(product.uuid)")!
         Alamofire.upload(

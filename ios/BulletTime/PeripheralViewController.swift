@@ -21,6 +21,7 @@ class PeripheralViewController: UIViewController {
     var displayVC: DisplayViewController!
 
     @IBOutlet weak var sharedView: UIButton!
+    @IBOutlet weak var centralPreviewView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,11 @@ class PeripheralViewController: UIViewController {
             if command == .Shoot {
                 self?.shoot()
             }
+            else if command == .Preview {
+                let image = UIImage.imageFromBase64String(data.value!.stringValue)
+                self?.showCentralPreview(image)
+            }
+
             else if command == .Result {
                 let images = data.value!.arrayValue.map({
                     UIImage.imageFromBase64String($0.stringValue)
@@ -42,6 +48,7 @@ class PeripheralViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        centralPreviewView.alpha = 0
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -54,6 +61,12 @@ class PeripheralViewController: UIViewController {
         }
     }
     
+    func showCentralPreview(image: UIImage) {
+        centralPreviewView.image = image
+        centralPreviewView.alpha = 0.4
+
+    }
+    
     func showResult(images: [UIImage]) {
         displayVC.images = images
     }
@@ -62,14 +75,16 @@ class PeripheralViewController: UIViewController {
         if navigationController?.topViewController != self {
             navigationController?.popToViewController(self, animated: false)
         }
-//        cameraController.shoot { image in
-//            self.next()
-//            self.sendImageToCentral(image)
-//        }
+        cameraController.shoot { image in
+            self.displayVC = R.storyboard.shoot.display()!
+            self.navigationController?.pushViewController(self.displayVC, animated: true)
+            self.sendImageToCentral(image.cropCenterSquare())
+        }
 
-        displayVC = R.storyboard.shoot.display()!
-        navigationController?.pushViewController(displayVC, animated: true)
-        self.sendImageToCentral(R.image.test1()!.cropCenterSquare())
+
+//        displayVC = R.storyboard.shoot.display()!
+//        navigationController?.pushViewController(displayVC, animated: true)
+//        self.sendImageToCentral(R.image.test1()!.cropCenterSquare())
     }
     
     func sendImageToCentral(image: UIImage) {
@@ -77,6 +92,9 @@ class PeripheralViewController: UIViewController {
         session.sendData(data, toPeers: [centralPeer])
     }
     
+    @IBAction func buttonHidePreviewPressed(sender: AnyObject) {
+        centralPreviewView.hidden = !centralPreviewView.hidden
+    }
     
     @IBAction func back(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)

@@ -26,6 +26,10 @@ class CentralViewController: UIViewController {
     var imageReceived: [MCPeerID: UIImage] = [:]
     var imageTaken: UIImage?
     let sessionDelegate = SessionDelegate()
+    var lastSyncTime = NSDate().timeIntervalSince1970
+    
+    let ciContext = CIContext()
+    
     
     @IBOutlet weak var sharedView: UIButton!
 
@@ -45,10 +49,23 @@ class CentralViewController: UIViewController {
         imageTaken = nil
         imageReceived = [:]
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "camera" {
             cameraController = segue.destinationViewController as! CameraViewController
+//            cameraController.cameraEngine.blockCompletionBuffer = { [weak self] buffer in
+//                self?.sendPreviewToPeers(buffer)
+//            }
         }
     }
     
@@ -77,6 +94,21 @@ class CentralViewController: UIViewController {
             self.displayVC.images = images
         }
     }
+    
+    func sendPreviewToPeers(buffer: CMSampleBuffer) {
+        let time = NSDate().timeIntervalSince1970
+        if time - lastSyncTime < 0.2 {
+            return
+        }
+        
+        let image = sampleBufferToImage(buffer).cropCenterSquare().resize(toSize: 300)
+        let finalImage = UIImage(CGImage: image.CGImage!,
+                                 scale: 1.0 ,
+                                 orientation: UIImageOrientation.Right)
+        let data = Data(command: .Preview, value: JSON(finalImage.toBase64String()))
+        session.sendData(data, toPeers: self.peers, withMode: .Unreliable)
+        lastSyncTime = time
+    }
 
     
     @IBAction func shootButtonPressed(sender: AnyObject) {
@@ -102,6 +134,21 @@ class CentralViewController: UIViewController {
         displayVC = R.storyboard.shoot.display()!
         navigationController?.pushViewController(displayVC, animated: true)
     }
+    
+    private func sampleBufferToImage(sampleBuffer: CMSampleBuffer!) -> UIImage {
+        let pixelBuffer:CVImageBufferRef = CMSampleBufferGetImageBuffer(sampleBuffer)!
+        
+        let ciImage = CIImage(CVPixelBuffer: pixelBuffer)
+        
+        let pixelBufferWidth = CGFloat(CVPixelBufferGetWidth(pixelBuffer))
+        let pixelBufferHeight = CGFloat(CVPixelBufferGetHeight(pixelBuffer))
+        let imageRect:CGRect = CGRectMake(0,0,pixelBufferWidth, pixelBufferHeight)
+        let cgimage = ciContext.createCGImage(ciImage, fromRect: imageRect)
+
+        let image = UIImage(CGImage: cgimage)
+        return image
+    }
+
 }
 
 

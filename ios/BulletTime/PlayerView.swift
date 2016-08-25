@@ -61,7 +61,7 @@ class PlayerView: UIView {
         if timer != nil {
             timer.invalidate()
         }
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.3, target: self, selector: #selector(PlayerView.tick(_:)), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(Config.frameInterval, target: self, selector: #selector(PlayerView.tick(_:)), userInfo: nil, repeats: true)
     }
     
     func tick(timer: NSTimer) {

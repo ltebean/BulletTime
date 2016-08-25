@@ -121,6 +121,7 @@ extension MeViewController: ProductCellDelegate {
         guard let index = productList.indexOf(product) else {
             return
         }
+        productService.deleteProduct(product)
         productList.removeAtIndex(index)
         tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection:0)], withRowAnimation: .Automatic)
     }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		53E5C034DC7CA4F8CBC6B943 /* Pods_BulletTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D89BE0E55BE3BEC11215AE2 /* Pods_BulletTime.framework */; };
+		B32A04341D6E90EF00C0E3FF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A04331D6E90EF00C0E3FF /* UIView.swift */; };
 		B33274B01D51B7F3000B10E4 /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33274AF1D51B7F3000B10E4 /* Gif.swift */; };
 		B38EE6A61D5DA66200D20053 /* LTCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38EE6A51D5DA66200D20053 /* LTCircleView.swift */; };
 		B38EE6A81D61572300D20053 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38EE6A71D61572300D20053 /* BubbleView.swift */; };
@@ -57,6 +58,7 @@
 		3D89BE0E55BE3BEC11215AE2 /* Pods_BulletTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BulletTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81549AA4778E1E8DC69816E2 /* Pods-BulletTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime.release.xcconfig"; sourceTree = "<group>"; };
 		8F7BF55BE5701690D5AC542B /* Pods-BulletTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime.debug.xcconfig"; sourceTree = "<group>"; };
+		B32A04331D6E90EF00C0E3FF /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B33274AF1D51B7F3000B10E4 /* Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gif.swift; sourceTree = "<group>"; };
 		B38EE6A51D5DA66200D20053 /* LTCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTCircleView.swift; sourceTree = "<group>"; };
 		B38EE6A71D61572300D20053 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				B3E6E7001D641A4E00D9BB60 /* PanDirectionGestureRecognizer.swift */,
 				B3E6E70F1D6ACF9700D9BB60 /* DesignableView.swift */,
 				B3C58D051D6BF7DC0030F3DF /* Array.swift */,
+				B32A04331D6E90EF00C0E3FF /* UIView.swift */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				B3CDA23C1D54437E0090F65A /* InteractiveModalViewTransition.swift in Sources */,
 				B3E6E7101D6ACF9700D9BB60 /* DesignableView.swift in Sources */,
 				B3E6E6FA1D62FC6100D9BB60 /* Share.swift in Sources */,
+				B32A04341D6E90EF00C0E3FF /* UIView.swift in Sources */,
 				B33274B01D51B7F3000B10E4 /* Gif.swift in Sources */,
 				B3E6E7071D64430B00D9BB60 /* HomeViewController.swift in Sources */,
 				FAF15A5B1D4B860E005C7AF2 /* UIImage.swift in Sources */,
@@ -587,7 +591,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BulletTime/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -606,7 +610,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BulletTime/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";

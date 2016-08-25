@@ -13,6 +13,7 @@ enum Command: Int {
     case Ready
     case PeersUpdates
     case Shoot
+    case Preview
     case Image
     case Result
 }
@@ -39,7 +40,7 @@ struct Data {
 
 extension MCSession {
     
-    func sendData(data: Data, toPeers peers:[MCPeerID]) {
+    func sendData(data: Data, toPeers peers:[MCPeerID], withMode: MCSessionSendDataMode = .Reliable) {
         var json = JSON([
             "c": data.command.rawValue
         ])

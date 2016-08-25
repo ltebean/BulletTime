@@ -26,8 +26,11 @@ class CameraViewController: UIViewController {
         cameraLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         previewView.layer.insertSublayer(cameraLayer, atIndex: 0)
         previewView.layer.masksToBounds = true
+        
+        
     }
-
+    
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         cameraEngine.sessionPresset = .Photo

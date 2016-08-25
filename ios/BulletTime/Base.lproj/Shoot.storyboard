@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iI3-dU-lul">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iI3-dU-lul">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -16,6 +16,7 @@
             <string>Circular-Black</string>
         </mutableArray>
         <mutableArray key="lineto-circular-bold.ttf">
+            <string>Circular-Bold</string>
             <string>Circular-Bold</string>
             <string>Circular-Bold</string>
         </mutableArray>
@@ -575,21 +576,41 @@
                                     <action selector="back:" destination="fps-vk-6Hi" eventType="touchUpInside" id="VLI-Q7-2rD"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixY-sD-eS9">
+                                <rect key="frame" x="0.0" y="124" width="320" height="320"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ld-0C-OZH">
+                                <rect key="frame" x="90" y="474" width="141" height="31"/>
+                                <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="15"/>
+                                <state key="normal" title="Toggle host preview">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonHidePreviewPressed:" destination="fps-vk-6Hi" eventType="touchUpInside" id="z8S-80-28F"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ixY-sD-eS9" firstAttribute="trailing" secondItem="eFK-c2-EXo" secondAttribute="trailing" id="1RU-NM-LgE"/>
                             <constraint firstItem="l7t-hU-yFV" firstAttribute="centerY" secondItem="yKh-dB-XqV" secondAttribute="centerY" id="7fN-WK-Q1i"/>
+                            <constraint firstItem="ixY-sD-eS9" firstAttribute="leading" secondItem="eFK-c2-EXo" secondAttribute="leading" id="DpB-E9-L5I"/>
                             <constraint firstItem="yKh-dB-XqV" firstAttribute="top" secondItem="6fv-03-gd8" secondAttribute="top" constant="15" id="E7Q-oL-IjH"/>
                             <constraint firstAttribute="trailing" secondItem="yKh-dB-XqV" secondAttribute="trailing" id="MUm-aG-bEJ"/>
                             <constraint firstItem="eFK-c2-EXo" firstAttribute="centerY" secondItem="6fv-03-gd8" secondAttribute="centerY" id="OFS-Xh-EHe"/>
                             <constraint firstItem="eFK-c2-EXo" firstAttribute="leading" secondItem="6fv-03-gd8" secondAttribute="leading" id="Q7h-nV-Ru3"/>
                             <constraint firstAttribute="trailing" secondItem="l7t-hU-yFV" secondAttribute="trailing" constant="5" id="Rvh-AO-ErO"/>
+                            <constraint firstItem="ixY-sD-eS9" firstAttribute="bottom" secondItem="eFK-c2-EXo" secondAttribute="bottom" id="UCG-21-Vdm"/>
+                            <constraint firstItem="3Ld-0C-OZH" firstAttribute="centerX" secondItem="6fv-03-gd8" secondAttribute="centerX" id="WB7-GM-f3k"/>
+                            <constraint firstItem="ixY-sD-eS9" firstAttribute="top" secondItem="eFK-c2-EXo" secondAttribute="top" id="WkK-da-lPf"/>
                             <constraint firstItem="eFK-c2-EXo" firstAttribute="width" secondItem="eFK-c2-EXo" secondAttribute="height" multiplier="1:1" id="bgi-va-uCo"/>
+                            <constraint firstItem="3Ld-0C-OZH" firstAttribute="top" secondItem="ixY-sD-eS9" secondAttribute="bottom" constant="30" id="osi-mL-qWK"/>
                             <constraint firstAttribute="trailing" secondItem="eFK-c2-EXo" secondAttribute="trailing" id="pJG-dI-TTi"/>
                             <constraint firstItem="yKh-dB-XqV" firstAttribute="leading" secondItem="6fv-03-gd8" secondAttribute="leading" id="rAb-IV-aNL"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="centralPreviewView" destination="ixY-sD-eS9" id="M75-gd-Z9f"/>
                         <outlet property="sharedView" destination="yKh-dB-XqV" id="wFk-Xj-Zjf"/>
                     </connections>
                 </viewController>
@@ -625,6 +646,6 @@
         <image name="icon-share-white" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ct5-ad-COz"/>
+        <segue reference="ZA5-jK-Gtt"/>
     </inferredMetricsTieBreakers>
 </document>

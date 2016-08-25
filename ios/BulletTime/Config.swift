@@ -12,4 +12,6 @@ struct Config {
     
 //    static let serverURL = "http://192.168.100.43:3001"
     static let serverURL = "http://106.187.100.229:3001"
+    
+    static let frameInterval = 0.3
 }
