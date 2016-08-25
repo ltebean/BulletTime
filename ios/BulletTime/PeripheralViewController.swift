@@ -92,9 +92,6 @@ class PeripheralViewController: UIViewController {
         session.sendData(data, toPeers: [centralPeer])
     }
     
-    @IBAction func buttonHidePreviewPressed(sender: AnyObject) {
-        centralPreviewView.hidden = !centralPreviewView.hidden
-    }
     
     @IBAction func back(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
