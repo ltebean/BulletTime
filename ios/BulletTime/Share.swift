@@ -96,7 +96,7 @@ class Share: NSObject {
             PHPhotoLibrary.sharedPhotoLibrary().performChanges({
                 PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(url)
             }) { saved, error in
-                vc.view.userInteractionEnabled = false
+                vc.view.userInteractionEnabled = true
                 if saved {
                     SVProgressHUD.showSuccessWithStatus("Exported to album")
                 } else {
