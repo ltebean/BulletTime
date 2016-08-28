@@ -27,7 +27,7 @@ class CentralViewController: UIViewController {
     var imageTaken: UIImage?
     let sessionDelegate = SessionDelegate()
     var lastSyncTime = NSDate().timeIntervalSince1970
-    
+    var recording = false
     let ciContext = CIContext()
     
     
@@ -35,13 +35,6 @@ class CentralViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sessionDelegate.dataReceived = { [weak self] data, peer in
-            let command = data.command
-            if command == .Image {
-                let image = UIImage.imageFromBase64String(data.value!.stringValue)
-                self?.imageReceived(image, fromPeer: peer)
-            }
-        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -63,67 +56,48 @@ class CentralViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "camera" {
             cameraController = segue.destinationViewController as! CameraViewController
-//            cameraController.cameraEngine.blockCompletionBuffer = { [weak self] buffer in
-//                self?.sendPreviewToPeers(buffer)
-//            }
-        }
-    }
-    
-    func imageReceived(image: UIImage, fromPeer peer: MCPeerID) {
-        imageReceived[peer] = image
-        mergeImagesIfFinshed()
-    }
-    
-    func mergeImagesIfFinshed() {
-        guard let imageTaken = imageTaken else {
-            return
-        }
-        guard imageReceived.count == peers.count else {
-            return
-        }
-        var images = [imageTaken]
-        for peer in peers {
-            if let image = imageReceived[peer] {
-                images.append(image)
-            }
-        }
-        
-        let data = Data(command: .Result, value: JSON(images.map({ $0.toBase64String() })))
-        session.sendData(data, toPeers: peers)
-        Async.main(after: 0.6) {
-            self.displayVC.images = images
-        }
-    }
-    
-    func sendPreviewToPeers(buffer: CMSampleBuffer) {
-        let time = NSDate().timeIntervalSince1970
-        if time - lastSyncTime < 0.2 {
-            return
-        }
-        
-        let image = sampleBufferToImage(buffer).cropCenterSquare().resize(toSize: 300)
-        let finalImage = UIImage(CGImage: image.CGImage!,
-                                 scale: 1.0 ,
-                                 orientation: UIImageOrientation.Right)
-        let data = Data(command: .Preview, value: JSON(finalImage.toBase64String()))
-        session.sendData(data, toPeers: self.peers, withMode: .Unreliable)
-        lastSyncTime = time
-    }
+            cameraController.completion = ({ [weak self] url, error in
+           
+                self?.goToEditor(url)
+            })
 
+        }
+    }
     
+        
     @IBAction func shootButtonPressed(sender: AnyObject) {
-        let data = Data(command: .Shoot)
-        session.sendData(data, toPeers: peers)
-        cameraController.shoot { [weak self] image in
-            guard let this = self else {
-                return
-            }
-            this.imageTaken = image
-            this.displayVC = R.storyboard.shoot.display()!
-            this.navigationController?.pushViewController(this.displayVC, animated: true)
-            this.mergeImagesIfFinshed()
+        if !recording {
+            let data = Data(command: .StartRecording)
+            session.sendData(data, toPeers: peers)
+            cameraController.startRecording()
+            recording = true
+        } else {
+            let data = Data(command: .StopRecording)
+            session.sendData(data, toPeers: peers)
+            cameraController.stopRecording()
         }
-
+        
+//        let data = Data(command: .Shoot)
+//        session.sendData(data, toPeers: peers)
+//        cameraController.shoot { [weak self] image in
+//            guard let this = self else {
+//                return
+//            }
+//            this.imageTaken = image
+//            this.displayVC = R.storyboard.shoot.display()!
+//            this.navigationController?.pushViewController(this.displayVC, animated: true)
+//            this.mergeImagesIfFinshed()
+//        }
+    }
+    
+    func goToEditor(url: NSURL) {
+        let vc = R.storyboard.shoot.editor()!
+        vc.peer = peer
+        vc.peers = peers
+        vc.session = session
+        vc.videoURL = url
+        vc.videoEndTime = cameraController.endTime
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func back(sender: AnyObject) {

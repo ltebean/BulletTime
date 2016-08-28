@@ -12,10 +12,11 @@ import SwiftyJSON
 enum Command: Int {
     case Ready
     case PeersUpdates
-    case Shoot
-    case Preview
-    case Image
-    case Result
+    case StartRecording
+    case StopRecording
+    case UseFrame
+    case PeerImage
+    case FinalResult
 }
 
 struct Data {

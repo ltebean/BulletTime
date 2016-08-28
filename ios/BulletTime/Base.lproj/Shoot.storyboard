@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iI3-dU-lul">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iI3-dU-lul">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -360,6 +360,61 @@
             </objects>
             <point key="canvasLocation" x="1435" y="403"/>
         </scene>
+        <!--Editor View Controller-->
+        <scene sceneID="TFY-u5-CwI">
+            <objects>
+                <viewController storyboardIdentifier="editor" id="4DP-q4-uh8" customClass="EditorViewController" customModule="BulletTime" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vp5-OS-sr8"/>
+                        <viewControllerLayoutGuide type="bottom" id="QbG-ve-cfs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HIS-ex-O0c">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qBx-9P-zJ9">
+                                <rect key="frame" x="0.0" y="124" width="320" height="320"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qBx-9P-zJ9" secondAttribute="height" multiplier="1:1" id="JPb-7S-ZQt"/>
+                                </constraints>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2vw-bl-suL">
+                                <rect key="frame" x="18" y="464" width="284" height="31"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="4DP-q4-uh8" eventType="valueChanged" id="Nnc-DK-5Jt"/>
+                                </connections>
+                            </slider>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gc8-Z7-FCD">
+                                <rect key="frame" x="145" y="518" width="30" height="30"/>
+                                <state key="normal" title="next"/>
+                                <connections>
+                                    <action selector="next:" destination="4DP-q4-uh8" eventType="touchUpInside" id="EIs-ec-CCr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qBx-9P-zJ9" firstAttribute="centerX" secondItem="HIS-ex-O0c" secondAttribute="centerX" id="8Mg-vY-jL3"/>
+                            <constraint firstItem="Gc8-Z7-FCD" firstAttribute="top" secondItem="2vw-bl-suL" secondAttribute="bottom" constant="24" id="92W-Jt-HFw"/>
+                            <constraint firstItem="2vw-bl-suL" firstAttribute="top" secondItem="qBx-9P-zJ9" secondAttribute="bottom" constant="20" id="IIi-YK-luj"/>
+                            <constraint firstItem="qBx-9P-zJ9" firstAttribute="centerY" secondItem="HIS-ex-O0c" secondAttribute="centerY" id="JnU-QE-e8w"/>
+                            <constraint firstItem="qBx-9P-zJ9" firstAttribute="leading" secondItem="HIS-ex-O0c" secondAttribute="leading" id="PWe-PQ-VyG"/>
+                            <constraint firstItem="2vw-bl-suL" firstAttribute="leading" secondItem="HIS-ex-O0c" secondAttribute="leading" constant="20" id="b1x-EE-RFk"/>
+                            <constraint firstItem="Gc8-Z7-FCD" firstAttribute="centerX" secondItem="HIS-ex-O0c" secondAttribute="centerX" id="bZm-Gu-8k5"/>
+                            <constraint firstAttribute="trailing" secondItem="qBx-9P-zJ9" secondAttribute="trailing" id="fhF-Bm-OMy"/>
+                            <constraint firstAttribute="trailing" secondItem="2vw-bl-suL" secondAttribute="trailing" constant="20" id="pjR-Ox-M8D"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="playerView" destination="qBx-9P-zJ9" id="jFb-av-gSJ"/>
+                        <outlet property="slider" destination="2vw-bl-suL" id="Db2-bo-Qhy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rKH-eR-yXM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1851" y="403"/>
+        </scene>
         <!--Display View Controller-->
         <scene sceneID="TrN-fj-1wB">
             <objects>
@@ -463,7 +518,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vRQ-Oz-Xrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1864" y="403"/>
+            <point key="canvasLocation" x="2269" y="403"/>
         </scene>
         <!--Broadcast View Controller-->
         <scene sceneID="f8P-6Z-lQ3">

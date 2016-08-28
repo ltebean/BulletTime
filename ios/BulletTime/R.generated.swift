@@ -363,6 +363,7 @@ struct _R: Rswift.Validatable {
       let central = StoryboardViewControllerResource<CentralViewController>(identifier: "central")
       let discoveries = StoryboardViewControllerResource<DiscoveriesViewController>(identifier: "discoveries")
       let display = StoryboardViewControllerResource<DisplayViewController>(identifier: "display")
+      let editor = StoryboardViewControllerResource<EditorViewController>(identifier: "editor")
       let name = "Shoot"
       let peripheral = StoryboardViewControllerResource<PeripheralViewController>(identifier: "peripheral")
       
@@ -382,6 +383,10 @@ struct _R: Rswift.Validatable {
         return UIStoryboard(resource: self).instantiateViewController(display)
       }
       
+      func editor(_: Void) -> EditorViewController? {
+        return UIStoryboard(resource: self).instantiateViewController(editor)
+      }
+      
       func peripheral(_: Void) -> PeripheralViewController? {
         return UIStoryboard(resource: self).instantiateViewController(peripheral)
       }
@@ -393,6 +398,7 @@ struct _R: Rswift.Validatable {
         if UIImage(named: "icon-share-white") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-share-white' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if _R.storyboard.shoot().central() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'central' could not be loaded from storyboard 'Shoot' as 'CentralViewController'.") }
         if _R.storyboard.shoot().discoveries() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'discoveries' could not be loaded from storyboard 'Shoot' as 'DiscoveriesViewController'.") }
+        if _R.storyboard.shoot().editor() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'editor' could not be loaded from storyboard 'Shoot' as 'EditorViewController'.") }
         if _R.storyboard.shoot().display() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'display' could not be loaded from storyboard 'Shoot' as 'DisplayViewController'.") }
         if _R.storyboard.shoot().broadcast() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'broadcast' could not be loaded from storyboard 'Shoot' as 'BroadcastViewController'.") }
         if _R.storyboard.shoot().peripheral() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'peripheral' could not be loaded from storyboard 'Shoot' as 'PeripheralViewController'.") }

@@ -44,6 +44,8 @@
 		FA0D18521D4C4BC500F93AA7 /* DiscoveriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D18511D4C4BC500F93AA7 /* DiscoveriesViewController.swift */; };
 		FA7F84801D5EBCFA00B0996B /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F847F1D5EBCFA00B0996B /* SessionDelegate.swift */; };
 		FA7F84841D5EC2F000B0996B /* BroadcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F84831D5EC2F000B0996B /* BroadcastViewController.swift */; };
+		FA7F84861D72890300B0996B /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F84851D72890300B0996B /* EditorViewController.swift */; };
+		FAED1EBC1D72995E00E02926 /* AVCaptureDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAED1EBB1D72995E00E02926 /* AVCaptureDevice.swift */; };
 		FAF15A451D4B7EEE005C7AF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF15A441D4B7EEE005C7AF2 /* AppDelegate.swift */; };
 		FAF15A471D4B7EEE005C7AF2 /* RoleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF15A461D4B7EEE005C7AF2 /* RoleSelectionViewController.swift */; };
 		FAF15A4A1D4B7EEE005C7AF2 /* Shoot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAF15A481D4B7EEE005C7AF2 /* Shoot.storyboard */; };
@@ -96,6 +98,8 @@
 		FA0D18511D4C4BC500F93AA7 /* DiscoveriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveriesViewController.swift; sourceTree = "<group>"; };
 		FA7F847F1D5EBCFA00B0996B /* SessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDelegate.swift; sourceTree = "<group>"; };
 		FA7F84831D5EC2F000B0996B /* BroadcastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadcastViewController.swift; sourceTree = "<group>"; };
+		FA7F84851D72890300B0996B /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		FAED1EBB1D72995E00E02926 /* AVCaptureDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVCaptureDevice.swift; sourceTree = "<group>"; };
 		FAF15A411D4B7EEE005C7AF2 /* BulletTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BulletTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF15A441D4B7EEE005C7AF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAF15A461D4B7EEE005C7AF2 /* RoleSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionViewController.swift; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 				FA0D184F1D4C3C6F00F93AA7 /* PeripheralViewController.swift */,
 				FAF15A571D4B7FC1005C7AF2 /* CameraViewController.swift */,
 				FAFD2FE91D5E0EB900DF11E1 /* DisplayViewController.swift */,
+				FA7F84851D72890300B0996B /* EditorViewController.swift */,
 			);
 			name = Shoot;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 		FAF15A591D4B8604005C7AF2 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				FAED1EBB1D72995E00E02926 /* AVCaptureDevice.swift */,
 				B3C0621B1D5B2C0500F39CAC /* DesignableButton.swift */,
 				B3C062191D5B2BCF00F39CAC /* Transition.swift */,
 				B3CDA2351D54437E0090F65A /* XibBasedView.swift */,
@@ -296,6 +302,7 @@
 				3630C3EA2C3E51D1F3BADB26 /* [CP] Embed Pods Frameworks */,
 				4F747F6B1879EDD31DB415EC /* [CP] Copy Pods Resources */,
 				B3C58D071D6BF8FB0030F3DF /* ShellScript */,
+				8D8172AA432A8408CDDBA4D0 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -404,6 +411,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		8D8172AA432A8408CDDBA4D0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B3C58D071D6BF8FB0030F3DF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -451,6 +473,7 @@
 				B3C0621A1D5B2BCF00F39CAC /* Transition.swift in Sources */,
 				B3CDA23F1D54437E0090F65A /* UIColor.swift in Sources */,
 				B3C0621E1D5B2F0700F39CAC /* UIButton.swift in Sources */,
+				FA7F84861D72890300B0996B /* EditorViewController.swift in Sources */,
 				B3CDA23C1D54437E0090F65A /* InteractiveModalViewTransition.swift in Sources */,
 				B3E6E7101D6ACF9700D9BB60 /* DesignableView.swift in Sources */,
 				B3E6E6FA1D62FC6100D9BB60 /* Share.swift in Sources */,
@@ -468,6 +491,7 @@
 				B3E6E6F61D62D49D00D9BB60 /* FocusView.swift in Sources */,
 				B3E6E7011D641A4E00D9BB60 /* PanDirectionGestureRecognizer.swift in Sources */,
 				B3EA97241D6BE84500981AF9 /* Config.swift in Sources */,
+				FAED1EBC1D72995E00E02926 /* AVCaptureDevice.swift in Sources */,
 				B3CDA2341D543A7E0090F65A /* R.generated.swift in Sources */,
 				FA0D18501D4C3C6F00F93AA7 /* PeripheralViewController.swift in Sources */,
 				FAF15A581D4B7FC1005C7AF2 /* CameraViewController.swift in Sources */,
@@ -588,14 +612,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Cong Yu (6T4Q98EJT3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BulletTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cbae313f-26b0-4029-8505-cd7141830a62";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BulletTime/BulletTime-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -607,14 +631,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Cong Yu (6T4Q98EJT3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cong Yu (6T4Q98EJT3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BulletTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cbae313f-26b0-4029-8505-cd7141830a62";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BulletTime/BulletTime-Bridging-Header.h";
 			};
 			name = Release;
