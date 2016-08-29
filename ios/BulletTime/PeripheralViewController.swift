@@ -88,7 +88,6 @@ class PeripheralViewController: UIViewController {
     func stopRecording() {
         print("p stop")
         cameraController.stopRecording()
-
     }
 
 

@@ -16,7 +16,6 @@ class CentralViewController: UIViewController {
     var cameraController: CameraViewController!
     var recording = false
     
-    let ciContext = CIContext()
     let host = Host.current
     
     @IBOutlet weak var sharedView: UIButton!

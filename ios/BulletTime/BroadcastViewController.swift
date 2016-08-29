@@ -27,11 +27,9 @@ class BroadcastViewController: UIViewController {
         guest.onDisConnected = { [weak self] in
             self?.showEmptyView()
         }
-        
         guest.onPeersUpdates = { [weak self] index, totalCount in
             self?.updatePeersInfo(index, totalCount: totalCount)
         }
-        
     }
     
     override func viewWillAppear(animated: Bool) {
