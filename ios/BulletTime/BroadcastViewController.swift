@@ -79,7 +79,7 @@ class BroadcastViewController: UIViewController {
     
     func sendReadySignal() {
         if centralPeer != nil {
-            session.sendData(Data(command: .Ready), toPeers: [centralPeer])
+            session.sendData(Data(command: .PeerReady), toPeers: [centralPeer])
         }
     }
     

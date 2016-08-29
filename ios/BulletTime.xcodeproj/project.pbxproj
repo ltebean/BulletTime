@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		53E5C034DC7CA4F8CBC6B943 /* Pods_BulletTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D89BE0E55BE3BEC11215AE2 /* Pods_BulletTime.framework */; };
+		7564CDE1DF7B060D80C9FE30 /* Pods_BulletTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DEBFA281CB5D1CB40E9FE4 /* Pods_BulletTime.framework */; };
 		B32A04341D6E90EF00C0E3FF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A04331D6E90EF00C0E3FF /* UIView.swift */; };
 		B33274B01D51B7F3000B10E4 /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33274AF1D51B7F3000B10E4 /* Gif.swift */; };
+		B35419671D73CB3000516B66 /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35419661D73CB3000516B66 /* Host.swift */; };
+		B35419691D73CB3800516B66 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35419681D73CB3800516B66 /* Guest.swift */; };
+		B354196B1D73DB6E00516B66 /* AVAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354196A1D73DB6E00516B66 /* AVAsset.swift */; };
 		B38EE6A61D5DA66200D20053 /* LTCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38EE6A51D5DA66200D20053 /* LTCircleView.swift */; };
 		B38EE6A81D61572300D20053 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38EE6A71D61572300D20053 /* BubbleView.swift */; };
 		B3BB82761D61D08800D85F13 /* lineto-circular-black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3BB82741D61D08800D85F13 /* lineto-circular-black.ttf */; };
@@ -57,11 +60,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3D89BE0E55BE3BEC11215AE2 /* Pods_BulletTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BulletTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		81549AA4778E1E8DC69816E2 /* Pods-BulletTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime.release.xcconfig"; sourceTree = "<group>"; };
-		8F7BF55BE5701690D5AC542B /* Pods-BulletTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime.debug.xcconfig"; sourceTree = "<group>"; };
+		75DEBFA281CB5D1CB40E9FE4 /* Pods_BulletTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BulletTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		961233B2FE820DD25E6467F3 /* Pods-BulletTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime.release.xcconfig"; sourceTree = "<group>"; };
 		B32A04331D6E90EF00C0E3FF /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B33274AF1D51B7F3000B10E4 /* Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gif.swift; sourceTree = "<group>"; };
+		B35419661D73CB3000516B66 /* Host.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
+		B35419681D73CB3800516B66 /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
+		B354196A1D73DB6E00516B66 /* AVAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAsset.swift; sourceTree = "<group>"; };
 		B38EE6A51D5DA66200D20053 /* LTCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTCircleView.swift; sourceTree = "<group>"; };
 		B38EE6A71D61572300D20053 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		B3BB82741D61D08800D85F13 /* lineto-circular-black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lineto-circular-black.ttf"; sourceTree = "<group>"; };
@@ -93,6 +98,7 @@
 		B3E6E70D1D658A6100D9BB60 /* ProductService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		B3E6E70F1D6ACF9700D9BB60 /* DesignableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		B3EA97231D6BE84500981AF9 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		BB8C8C0FB709B01292405B86 /* Pods-BulletTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime.debug.xcconfig"; sourceTree = "<group>"; };
 		FA0D184D1D4C3C5E00F93AA7 /* CentralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralViewController.swift; sourceTree = "<group>"; };
 		FA0D184F1D4C3C6F00F93AA7 /* PeripheralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralViewController.swift; sourceTree = "<group>"; };
 		FA0D18511D4C4BC500F93AA7 /* DiscoveriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveriesViewController.swift; sourceTree = "<group>"; };
@@ -117,20 +123,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53E5C034DC7CA4F8CBC6B943 /* Pods_BulletTime.framework in Frameworks */,
+				7564CDE1DF7B060D80C9FE30 /* Pods_BulletTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3750FEB64B161317A64F2143 /* Pods */ = {
+		67882DB58F94628FCE97E91E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8F7BF55BE5701690D5AC542B /* Pods-BulletTime.debug.xcconfig */,
-				81549AA4778E1E8DC69816E2 /* Pods-BulletTime.release.xcconfig */,
+				75DEBFA281CB5D1CB40E9FE4 /* Pods_BulletTime.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8DF573A9B605D42916467152 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BB8C8C0FB709B01292405B86 /* Pods-BulletTime.debug.xcconfig */,
+				961233B2FE820DD25E6467F3 /* Pods-BulletTime.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B35419651D73CB2500516B66 /* Role */ = {
+			isa = PBXGroup;
+			children = (
+				FA7F847F1D5EBCFA00B0996B /* SessionDelegate.swift */,
+				B35419661D73CB3000516B66 /* Host.swift */,
+				B35419681D73CB3800516B66 /* Guest.swift */,
+			);
+			name = Role;
 			sourceTree = "<group>";
 		};
 		B3C4D9111D61CDE700E31362 /* Resources */ = {
@@ -201,21 +225,13 @@
 			name = Service;
 			sourceTree = "<group>";
 		};
-		F0837D3F7806189C2EE74C34 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3D89BE0E55BE3BEC11215AE2 /* Pods_BulletTime.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		FAF15A381D4B7EEE005C7AF2 = {
 			isa = PBXGroup;
 			children = (
 				FAF15A431D4B7EEE005C7AF2 /* BulletTime */,
 				FAF15A421D4B7EEE005C7AF2 /* Products */,
-				3750FEB64B161317A64F2143 /* Pods */,
-				F0837D3F7806189C2EE74C34 /* Frameworks */,
+				8DF573A9B605D42916467152 /* Pods */,
+				67882DB58F94628FCE97E91E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -249,6 +265,7 @@
 		FAF15A561D4B7FA5005C7AF2 /* Shoot */ = {
 			isa = PBXGroup;
 			children = (
+				B35419651D73CB2500516B66 /* Role */,
 				FAF15A481D4B7EEE005C7AF2 /* Shoot.storyboard */,
 				FAF15A461D4B7EEE005C7AF2 /* RoleSelectionViewController.swift */,
 				FA0D18511D4C4BC500F93AA7 /* DiscoveriesViewController.swift */,
@@ -277,12 +294,12 @@
 				FAF15A5A1D4B860E005C7AF2 /* UIImage.swift */,
 				B33274AF1D51B7F3000B10E4 /* Gif.swift */,
 				B3C0621D1D5B2F0700F39CAC /* UIButton.swift */,
-				FA7F847F1D5EBCFA00B0996B /* SessionDelegate.swift */,
 				B3E6E6F91D62FC6100D9BB60 /* Share.swift */,
 				B3E6E7001D641A4E00D9BB60 /* PanDirectionGestureRecognizer.swift */,
 				B3E6E70F1D6ACF9700D9BB60 /* DesignableView.swift */,
 				B3C58D051D6BF7DC0030F3DF /* Array.swift */,
 				B32A04331D6E90EF00C0E3FF /* UIView.swift */,
+				B354196A1D73DB6E00516B66 /* AVAsset.swift */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -302,7 +319,6 @@
 				3630C3EA2C3E51D1F3BADB26 /* [CP] Embed Pods Frameworks */,
 				4F747F6B1879EDD31DB415EC /* [CP] Copy Pods Resources */,
 				B3C58D071D6BF8FB0030F3DF /* ShellScript */,
-				8D8172AA432A8408CDDBA4D0 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -411,21 +427,6 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8D8172AA432A8408CDDBA4D0 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B3C58D071D6BF8FB0030F3DF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -470,6 +471,7 @@
 				FA0D184E1D4C3C5E00F93AA7 /* CentralViewController.swift in Sources */,
 				B3E6E70E1D658A6100D9BB60 /* ProductService.swift in Sources */,
 				FA7F84841D5EC2F000B0996B /* BroadcastViewController.swift in Sources */,
+				B354196B1D73DB6E00516B66 /* AVAsset.swift in Sources */,
 				B3C0621A1D5B2BCF00F39CAC /* Transition.swift in Sources */,
 				B3CDA23F1D54437E0090F65A /* UIColor.swift in Sources */,
 				B3C0621E1D5B2F0700F39CAC /* UIButton.swift in Sources */,
@@ -490,6 +492,8 @@
 				B38EE6A81D61572300D20053 /* BubbleView.swift in Sources */,
 				B3E6E6F61D62D49D00D9BB60 /* FocusView.swift in Sources */,
 				B3E6E7011D641A4E00D9BB60 /* PanDirectionGestureRecognizer.swift in Sources */,
+				B35419691D73CB3800516B66 /* Guest.swift in Sources */,
+				B35419671D73CB3000516B66 /* Host.swift in Sources */,
 				B3EA97241D6BE84500981AF9 /* Config.swift in Sources */,
 				FAED1EBC1D72995E00E02926 /* AVCaptureDevice.swift in Sources */,
 				B3CDA2341D543A7E0090F65A /* R.generated.swift in Sources */,
@@ -608,7 +612,7 @@
 		};
 		FAF15A541D4B7EEE005C7AF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8F7BF55BE5701690D5AC542B /* Pods-BulletTime.debug.xcconfig */;
+			baseConfigurationReference = BB8C8C0FB709B01292405B86 /* Pods-BulletTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -627,7 +631,7 @@
 		};
 		FAF15A551D4B7EEE005C7AF2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81549AA4778E1E8DC69816E2 /* Pods-BulletTime.release.xcconfig */;
+			baseConfigurationReference = 961233B2FE820DD25E6467F3 /* Pods-BulletTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

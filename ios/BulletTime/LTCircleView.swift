@@ -74,6 +74,9 @@ class LTCircleView: UIView {
     }
     
     func insertItemAtIndex(index: Int) {
+        guard index <= views.count else {
+            return
+        }
         let viewToAdd = dataSource.viewAtIndex(index, inCircleView: self)
         viewToAdd.center = centerForItem(atIndex: index)
         viewToAdd.alpha = 0
@@ -90,6 +93,9 @@ class LTCircleView: UIView {
     }
     
     func removeItemAtIndex(index: Int) {
+        guard index < views.count else {
+            return
+        }
         let viewToRemove = views[index]
         views.removeAtIndex(index)
         UIView.animateWithDuration(0.5, delay: 0, options: [.BeginFromCurrentState], animations: {

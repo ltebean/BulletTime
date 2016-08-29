@@ -14,4 +14,5 @@ struct Config {
     static let serverURL = "http://106.187.100.229:3001"
     
     static let frameInterval = 0.3
+    static let imageSize = CGFloat(500)
 }

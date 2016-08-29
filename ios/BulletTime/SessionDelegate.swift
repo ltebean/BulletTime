@@ -10,7 +10,7 @@ import MultipeerConnectivity
 import SwiftyJSON
 
 enum Command: Int {
-    case Ready
+    case PeerReady
     case PeersUpdates
     case StartRecording
     case StopRecording

@@ -11,18 +11,11 @@ import CoreBluetooth
 
 class RoleSelectionViewController: HomeChildViewController {
     
-    enum State {
-        case Host
-        case Guest
-        case None
-    }
-    
     @IBOutlet weak var buttonHost: DesignableButton!
     @IBOutlet weak var buttonGuest: DesignableButton!
     @IBOutlet weak var buttonSpacing: NSLayoutConstraint!
     
     
-    var state = State.None
     var bluetoothManager: CBPeripheralManager!
 
     var transitionDelegate: TransitionDelegate!
@@ -52,27 +45,14 @@ class RoleSelectionViewController: HomeChildViewController {
     }
 
     @IBAction func buttonHostPressed(sender: AnyObject) {
-        state = .Host
-        next()
+        Host.reset()
+        let vc = R.storyboard.shoot.discoveries()!
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func buttonGeustPressed(sender: AnyObject) {
-        state = .Guest
-        next()
-    }
-    
-    
-    func next() {
-        self.removeTab()
-        if state == .Host {
-            let vc = R.storyboard.shoot.discoveries()!
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        }
-        else if state == .Guest {
-            let vc = R.storyboard.shoot.broadcast()!
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        let vc = R.storyboard.shoot.broadcast()!
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 

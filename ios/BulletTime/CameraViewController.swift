@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CameraEngine
 import AVFoundation
 import Async
 
@@ -94,7 +93,6 @@ class CameraViewController: UIViewController {
     func startRecording() {
         let url = NSURL(fileURLWithPath: videoPath)
         FileManager.sharedInstance.removeFileAtPath(videoPath)
-        
         movieFileOutput.startRecordingToOutputFileURL(url, recordingDelegate: self)
     }
     
@@ -102,9 +100,6 @@ class CameraViewController: UIViewController {
         movieFileOutput.stopRecording()
     }
     
-    func shoot(completion:(image: UIImage) -> ()) {
-
-    }
     
 }
 

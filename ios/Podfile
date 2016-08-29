@@ -4,7 +4,6 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'BulletTime' do
-pod 'CameraEngine'
 pod 'SVProgressHUD'
 pod 'SwiftyJSON'
 pod 'R.swift'

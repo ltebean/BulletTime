@@ -1,7 +1,6 @@
 PODS:
   - Alamofire (3.4.1)
   - AsyncSwift (1.7.3)
-  - CameraEngine (0.9.3)
   - Crashlytics (3.7.3):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.8)
@@ -21,7 +20,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AsyncSwift
-  - CameraEngine
   - Crashlytics
   - Fabric
   - LTSwiftDate
@@ -34,7 +32,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   AsyncSwift: f3ad5dd077bbd1477e7573e87071a532fedaca1a
-  CameraEngine: e24a801f76bfb2e5ff61b11592f82dfc1b4dafc9
   Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   LTSwiftDate: 7f456e301ea7426a3d0e4afac85a3fd82f3a171f
@@ -46,4 +43,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 899f240b1708ec40dbaf55c6c93acc50dc4ea235
+
+COCOAPODS: 1.0.1
