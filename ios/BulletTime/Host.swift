@@ -23,13 +23,12 @@ class Host: NSObject {
     var peersToNotify: [MCPeerID] {
         return allPeers.filter({ $0 != central })
     }
+    var imageReceived: [MCPeerID: UIImage] = [:]
+
     
     var onPeerJoin: ((peer: MCPeerID) -> ())?
     var onPeerLost: ((peer: MCPeerID, index: Int) -> ())?
     var onAllPeerImageReceived: ((images: [UIImage]) -> ())?
-
-    var imageReceived: [MCPeerID: UIImage] = [:]
-
     
     func setup() {
         serviceBrowser = MCNearbyServiceBrowser(peer: central, serviceType: "bullettime")

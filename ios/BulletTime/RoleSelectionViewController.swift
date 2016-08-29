@@ -37,6 +37,8 @@ class RoleSelectionViewController: HomeChildViewController {
         UIView.animateWithDuration(0.1, animations: {
             self.showTab()
         }, completion: nil)
+        Host.reset()
+        Guest.reset()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -45,7 +47,6 @@ class RoleSelectionViewController: HomeChildViewController {
     }
 
     @IBAction func buttonHostPressed(sender: AnyObject) {
-        Host.reset()
         let vc = R.storyboard.shoot.discoveries()!
         navigationController?.pushViewController(vc, animated: true)
     }

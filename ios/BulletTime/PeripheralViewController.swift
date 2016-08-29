@@ -14,45 +14,37 @@ import Async
 class PeripheralViewController: UIViewController {
 
     var cameraController: CameraViewController!
-    
-    var session : MCSession!
-    var centralPeer: MCPeerID!
-    let sessionDelegate = SessionDelegate()
     var displayVC: DisplayViewController!
     var videoURL: NSURL!
     var asset: AVAsset!
+    
+    var guest = Guest.current
 
     @IBOutlet weak var sharedView: UIButton!
-    @IBOutlet weak var centralPreviewView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        session.delegate = sessionDelegate
-        sessionDelegate.dataReceived = { [weak self] data, peer in
-            let command = data.command
-            if command == .StartRecording {
-                self?.startRecording()
-            }
-            else if command == .StopRecording {
-                self?.stopRecording()
-            }
-            else if command == .UseFrame {
-                let time = data.value!["time"].stringValue
-                self?.useFrame(atTime: Float64(time)!)
-            }
-            else if command == .FinalResult {
-                let images = data.value!.arrayValue.map({
-                    UIImage.imageFromBase64String($0.stringValue)
-                })
-                self?.showResult(images)
-            }
+        guest.onStartRecording = { [weak self] in
+            self?.startRecording()
         }
+        
+        guest.onStopRecording = { [weak self] in
+            self?.stopRecording()
+        }
+        
+        guest.onUseFrame = { [weak self] time in
+            self?.useFrame(atTime: time)
+        }
+        
+        guest.onReceiveFinalResult = { [weak self] images in
+            self?.showResult(images)
+        }
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        centralPreviewView.alpha = 0
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -72,25 +64,15 @@ class PeripheralViewController: UIViewController {
     
     func useFrame(atTime absoluteTime: Float64) {
         let seconds = absoluteTime - (cameraController.endTime - CMTimeGetSeconds(asset.duration))
-        
-        let imageGenerator = AVAssetImageGenerator(asset: asset)
-
-        imageGenerator.requestedTimeToleranceAfter = kCMTimeZero;
-        imageGenerator.requestedTimeToleranceBefore = kCMTimeZero;
-        imageGenerator.appliesPreferredTrackTransform = true
-        
         let time = CMTimeMakeWithSeconds(seconds, asset.duration.timescale)
-        imageGenerator.generateCGImagesAsynchronouslyForTimes([NSValue(CMTime: time)]) { (requestedTime, image, actualTime, result, error) in
+        asset.generateImageAtTime(time, completion: { image in
             if let image = image {
-                Async.main {
-                    self.displayVC = R.storyboard.shoot.display()!
-                    self.navigationController?.pushViewController(self.displayVC, animated: true)
-                    self.sendImageToCentral(UIImage(CGImage: image).cropCenterSquare())
-                }
-
+                self.guest.sendImage(image)
+                self.next()
+            } else {
+                
             }
-        }
-
+        })
     }
     
     
@@ -109,9 +91,10 @@ class PeripheralViewController: UIViewController {
 
     }
 
-    func sendImageToCentral(image: UIImage) {
-        let data = Data(command: .PeerImage, value: JSON(image.toBase64String()))
-        session.sendData(data, toPeers: [centralPeer])
+
+    func next() {
+        displayVC = R.storyboard.shoot.display()!
+        navigationController?.pushViewController(self.displayVC, animated: true)
     }
     
     
