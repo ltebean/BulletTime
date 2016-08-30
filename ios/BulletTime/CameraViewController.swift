@@ -13,6 +13,7 @@ import Async
 class CameraViewController: UIViewController {
     
     @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var recLabel: UILabel!
     
     let sessionQueue: dispatch_queue_t = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL)
     let session = AVCaptureSession()
@@ -30,11 +31,12 @@ class CameraViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
+        recLabel.hidden = true
+
+        previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
 
         Async.customQueue(sessionQueue) {
-            self.session.sessionPreset = AVCaptureSessionPresetHigh
+            self.session.sessionPreset = AVCaptureSessionPreset1280x720
             self.videoDevice = AVCaptureDevice.backCamera()
             self.videoInput = try! AVCaptureDeviceInput(device: self.videoDevice)
             self.session.addInput(self.videoInput)
@@ -97,12 +99,14 @@ class CameraViewController: UIViewController {
 
     
     func startRecording() {
+        recLabel.hidden = false
         let url = NSURL(fileURLWithPath: videoPath)
         FileManager.sharedInstance.removeFileAtPath(videoPath)
         movieFileOutput.startRecordingToOutputFileURL(url, recordingDelegate: self)
     }
     
     func stopRecording() {
+        recLabel.hidden = true
         movieFileOutput.stopRecording()
     }
     

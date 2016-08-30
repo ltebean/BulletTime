@@ -19,6 +19,7 @@
         <mutableArray key="lineto-circular-bold.ttf">
             <string>Circular-Bold</string>
             <string>Circular-Bold</string>
+            <string>Circular-Bold</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -149,7 +150,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="27"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Freeze it">
+                                <state key="normal" title="Record">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
@@ -263,7 +264,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="27"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Freeze it">
+                                <state key="normal" title="Record">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -331,7 +332,19 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BoJ-6e-nue">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgq-SD-eqa">
+                                        <rect key="frame" x="145" y="15" width="30" height="19"/>
+                                        <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="15"/>
+                                        <color key="textColor" red="0.91764705879999997" green="0.26274509800000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="tgq-SD-eqa" firstAttribute="centerX" secondItem="BoJ-6e-nue" secondAttribute="centerX" id="co3-1J-i5P"/>
+                                    <constraint firstItem="tgq-SD-eqa" firstAttribute="top" secondItem="BoJ-6e-nue" secondAttribute="top" constant="15" id="hKz-do-0tf"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kBd-9l-8tI" customClass="FocusView" customModule="BulletTime" customModuleProvider="target">
                                 <rect key="frame" x="53" y="53" width="214" height="214"/>
@@ -354,6 +367,7 @@
                     </view>
                     <connections>
                         <outlet property="previewView" destination="BoJ-6e-nue" id="f6O-lj-oKl"/>
+                        <outlet property="recLabel" destination="tgq-SD-eqa" id="wjG-Rx-h8C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -380,30 +394,77 @@
                                 </constraints>
                             </view>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="2vw-bl-suL">
-                                <rect key="frame" x="18" y="464" width="284" height="31"/>
+                                <rect key="frame" x="18" y="74" width="284" height="31"/>
+                                <color key="minimumTrackTintColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="maximumTrackTintColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="sliderValueChanged:" destination="4DP-q4-uh8" eventType="valueChanged" id="Nnc-DK-5Jt"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gc8-Z7-FCD">
-                                <rect key="frame" x="145" y="518" width="30" height="30"/>
-                                <state key="normal" title="next"/>
-                                <connections>
-                                    <action selector="next:" destination="4DP-q4-uh8" eventType="touchUpInside" id="EIs-ec-CCr"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PEC-YQ-0Z9">
+                                <rect key="frame" x="0.0" y="444" width="320" height="124"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKP-MA-xbA" customClass="DesignableView" customModule="BulletTime" customModuleProvider="target">
+                                        <rect key="frame" x="120" y="22" width="80" height="80"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Ieh-zs-a5V"/>
+                                            <constraint firstAttribute="height" constant="80" id="aTd-D6-tzr"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="40"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.73333333333333328" green="0.73333333333333328" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="9"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bra-6y-PRM" customClass="DesignableButton" customModule="BulletTime" customModuleProvider="target">
+                                        <rect key="frame" x="132" y="34" width="56" height="56"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="46i-Hs-o4Q"/>
+                                            <constraint firstAttribute="width" constant="56" id="NOl-nb-kAP"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="28"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="next:" destination="4DP-q4-uh8" eventType="touchUpInside" id="pcq-NG-hLL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="gKP-MA-xbA" firstAttribute="centerX" secondItem="PEC-YQ-0Z9" secondAttribute="centerX" id="0eL-1m-S6L"/>
+                                    <constraint firstItem="gKP-MA-xbA" firstAttribute="centerY" secondItem="PEC-YQ-0Z9" secondAttribute="centerY" id="A22-L3-Xg6"/>
+                                    <constraint firstItem="bra-6y-PRM" firstAttribute="centerX" secondItem="gKP-MA-xbA" secondAttribute="centerX" id="f2S-SQ-YvS"/>
+                                    <constraint firstItem="bra-6y-PRM" firstAttribute="centerY" secondItem="gKP-MA-xbA" secondAttribute="centerY" id="x6A-eM-E8g"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qBx-9P-zJ9" firstAttribute="centerX" secondItem="HIS-ex-O0c" secondAttribute="centerX" id="8Mg-vY-jL3"/>
-                            <constraint firstItem="Gc8-Z7-FCD" firstAttribute="top" secondItem="2vw-bl-suL" secondAttribute="bottom" constant="24" id="92W-Jt-HFw"/>
-                            <constraint firstItem="2vw-bl-suL" firstAttribute="top" secondItem="qBx-9P-zJ9" secondAttribute="bottom" constant="20" id="IIi-YK-luj"/>
+                            <constraint firstItem="QbG-ve-cfs" firstAttribute="top" secondItem="PEC-YQ-0Z9" secondAttribute="bottom" id="Anp-Dz-92u"/>
+                            <constraint firstItem="PEC-YQ-0Z9" firstAttribute="leading" secondItem="HIS-ex-O0c" secondAttribute="leading" id="BeM-73-n96"/>
                             <constraint firstItem="qBx-9P-zJ9" firstAttribute="centerY" secondItem="HIS-ex-O0c" secondAttribute="centerY" id="JnU-QE-e8w"/>
                             <constraint firstItem="qBx-9P-zJ9" firstAttribute="leading" secondItem="HIS-ex-O0c" secondAttribute="leading" id="PWe-PQ-VyG"/>
-                            <constraint firstItem="2vw-bl-suL" firstAttribute="leading" secondItem="HIS-ex-O0c" secondAttribute="leading" constant="20" id="b1x-EE-RFk"/>
-                            <constraint firstItem="Gc8-Z7-FCD" firstAttribute="centerX" secondItem="HIS-ex-O0c" secondAttribute="centerX" id="bZm-Gu-8k5"/>
                             <constraint firstAttribute="trailing" secondItem="qBx-9P-zJ9" secondAttribute="trailing" id="fhF-Bm-OMy"/>
-                            <constraint firstAttribute="trailing" secondItem="2vw-bl-suL" secondAttribute="trailing" constant="20" id="pjR-Ox-M8D"/>
+                            <constraint firstItem="PEC-YQ-0Z9" firstAttribute="top" secondItem="qBx-9P-zJ9" secondAttribute="bottom" id="oM6-7c-jSw"/>
+                            <constraint firstAttribute="trailing" secondItem="2vw-bl-suL" secondAttribute="trailing" constant="20" id="qh6-rK-h45"/>
+                            <constraint firstItem="qBx-9P-zJ9" firstAttribute="top" secondItem="2vw-bl-suL" secondAttribute="bottom" constant="20" id="rz7-mb-tT1"/>
+                            <constraint firstAttribute="trailing" secondItem="PEC-YQ-0Z9" secondAttribute="trailing" id="xGi-iT-KhO"/>
+                            <constraint firstItem="2vw-bl-suL" firstAttribute="leading" secondItem="HIS-ex-O0c" secondAttribute="leading" constant="20" id="yHk-8J-FEf"/>
                         </constraints>
                     </view>
                     <connections>
@@ -556,7 +617,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="27"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Freeze it">
+                                <state key="normal" title="Record">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -621,18 +682,6 @@
                                     <segue destination="BYZ-38-t0r" kind="embed" identifier="camera" id="ZA5-jK-Gtt"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKh-dB-XqV">
-                                <rect key="frame" x="0.0" y="15" width="320" height="80"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="9ay-UL-QcZ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="27"/>
-                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Freeze it">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l7t-hU-yFV">
                                 <rect key="frame" x="275" y="35" width="40" height="40"/>
                                 <constraints>
@@ -643,6 +692,18 @@
                                 <connections>
                                     <action selector="back:" destination="fps-vk-6Hi" eventType="touchUpInside" id="VLI-Q7-2rD"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yKh-dB-XqV">
+                                <rect key="frame" x="0.0" y="15" width="320" height="80"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="9ay-UL-QcZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="27"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Record">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -695,6 +756,6 @@
         <image name="icon-share-white" width="27" height="27"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZA5-jK-Gtt"/>
+        <segue reference="ct5-ad-COz"/>
     </inferredMetricsTieBreakers>
 </document>
