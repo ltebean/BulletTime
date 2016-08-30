@@ -14,40 +14,44 @@ class CameraViewController: UIViewController {
     
     @IBOutlet weak var previewView: UIView!
     
-    var session: AVCaptureSession!
+    let sessionQueue: dispatch_queue_t = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL)
+    let session = AVCaptureSession()
+    let movieFileOutput = AVCaptureMovieFileOutput()
+
     var previewLayer: AVCaptureVideoPreviewLayer!
-    var movieFileOutput: AVCaptureMovieFileOutput!
     var videoInput: AVCaptureDeviceInput!
     var videoDevice: AVCaptureDevice!
+    var cameraLayer: AVCaptureVideoPreviewLayer!
 
     let videoPath = FileManager.sharedInstance.absolutePath("temp.mp4")
-    var cameraLayer: AVCaptureVideoPreviewLayer!
     
     var completion: ((url: NSURL, error: NSError?) -> ())?
     var endTime: Float64 = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        session = AVCaptureSession()
-        session.sessionPreset = AVCaptureSessionPresetHigh
         
-        videoDevice = AVCaptureDevice.backCamera()
-        videoInput = try! AVCaptureDeviceInput(device: videoDevice)
-        session.addInput(videoInput)
-        
-        movieFileOutput = AVCaptureMovieFileOutput()
-        session.addOutput(movieFileOutput)
-        
-        previewLayer = AVCaptureVideoPreviewLayer(session: session)
-        previewLayer.frame = view.bounds
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        previewView.layer.insertSublayer(previewLayer, atIndex: 0)
+        self.previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
+
+        Async.customQueue(sessionQueue) {
+            self.session.sessionPreset = AVCaptureSessionPresetHigh
+            self.videoDevice = AVCaptureDevice.backCamera()
+            self.videoInput = try! AVCaptureDeviceInput(device: self.videoDevice)
+            self.session.addInput(self.videoInput)
+            self.session.addOutput(self.movieFileOutput)
+        }.main {
+            self.previewLayer.frame = self.view.bounds
+            self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            self.previewView.layer.insertSublayer(self.previewLayer, atIndex: 0)
+        }
     }
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        session.startRunning()
+        Async.customQueue(sessionQueue) {
+            self.session.startRunning()
+        }
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -56,13 +60,15 @@ class CameraViewController: UIViewController {
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        session.stopRunning()
+        Async.customQueue(sessionQueue) {
+            self.session.stopRunning()
+        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         previewLayer.frame = view.bounds
-        updateOrientation()
+//        updateOrientation()
     }
     
     
