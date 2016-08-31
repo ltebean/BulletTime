@@ -30,6 +30,7 @@ class EditorViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         asset = AVAsset(URL: videoURL)
         playerItem = AVPlayerItem(asset: asset)
         player = AVPlayer(playerItem: playerItem)

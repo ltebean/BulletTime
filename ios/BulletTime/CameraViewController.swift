@@ -35,12 +35,32 @@ class CameraViewController: UIViewController {
 
         previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
 
+        
         Async.customQueue(sessionQueue) {
             self.session.sessionPreset = AVCaptureSessionPreset1280x720
             self.videoDevice = AVCaptureDevice.backCamera()
             self.videoInput = try! AVCaptureDeviceInput(device: self.videoDevice)
             self.session.addInput(self.videoInput)
             self.session.addOutput(self.movieFileOutput)
+            
+            var bestFormat: AVCaptureDeviceFormat?
+            let formats = self.videoDevice.formats
+            for format in formats {
+                for range in format.videoSupportedFrameRateRanges {
+                    if range.maxFrameRate >= 240 {
+                        bestFormat = format as? AVCaptureDeviceFormat
+                    }
+                }
+            }
+            if let format = bestFormat {
+                let fps = CMTimeMake(1, 240)
+                try! self.videoDevice.lockForConfiguration()
+                self.videoDevice.activeFormat = format
+                self.videoDevice.activeVideoMaxFrameDuration = fps
+                self.videoDevice.activeVideoMinFrameDuration = fps
+                self.videoDevice.unlockForConfiguration()
+            }
+
         }.main {
             self.previewLayer.frame = self.view.bounds
             self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
@@ -116,6 +136,7 @@ class CameraViewController: UIViewController {
 extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
     func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
         endTime = CFAbsoluteTimeGetCurrent()
+        
         if error == nil {
             completion?(url: outputFileURL, error: nil)
         } else {
