@@ -22,11 +22,15 @@ class EditorViewController: UIViewController {
     private var player: AVPlayer!
     private var playerItem: AVPlayerItem!
     private var asset: AVAsset!
-    
+    private var playerObserver: AnyObject?
+
     let host = Host.current
     
+    @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var playerView: UIView!
     @IBOutlet weak var slider: UISlider!
+    
+    var seeking = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +42,27 @@ class EditorViewController: UIViewController {
         playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         playerView.layer.insertSublayer(playerLayer, atIndex: 0)
         
+        progressLabel.alpha = 0
+
         host.onAllPeerImageReceived = { [weak self] images in
             self?.allImageReceived(images)
         }
+        
+        NSNotificationCenter.defaultCenter().addObserverForName(AVPlayerItemDidPlayToEndTimeNotification, object: playerItem, queue: nil) { [weak self]notification in
+            self?.player.seekToTime(kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+            self?.player.play()
+        }
+        
+        let pan = PanDirectionGestureRecognizer(direction: .Horizontal ,target: self, action: #selector(EditorViewController.handlePan(_:)))
+        playerView.addGestureRecognizer(pan)
+        
+        player.seekToTime(kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+        player.play()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        player.seekToTime(kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+
         imageTaken = nil
         host.resetImageReceived()
     }
@@ -53,6 +70,41 @@ class EditorViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         playerLayer.frame = playerView.bounds
+    }
+    
+    func handlePan(gesture: UIPanGestureRecognizer) {
+        if gesture.state == .Began {
+            player.pause()
+            UIView.animateWithDuration(0.1, animations: {
+                self.progressLabel.alpha = 1
+            })
+        }
+        else if gesture.state == .Ended {
+            UIView.animateWithDuration(0.1, animations: {
+                self.progressLabel.alpha = 0
+            })
+        }
+        else if gesture.state == .Changed {
+            guard !seeking else {
+                return
+            }
+            seeking = true
+            let totalSeconds = CMTimeGetSeconds(asset.duration)
+            let secondsPerPoint = totalSeconds / Float64(UIScreen.mainScreen().bounds.width)
+            let tx = gesture.translationInView(gesture.view).x
+            let currentSeconds = CMTimeGetSeconds(playerItem.currentTime())
+            let targetSeconds = currentSeconds + Float64(tx) * secondsPerPoint
+            player.seekToTime(CMTimeMakeWithSeconds(targetSeconds, asset.duration.timescale), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: {_ in 
+                Async.main {
+                    self.seeking = false
+                }
+            })
+            gesture.setTranslation(CGPointZero, inView: gesture.view)
+            var progress = Int(targetSeconds / totalSeconds * 100)
+            progress = min(progress, 100)
+            progress = max(progress, 0)
+            progressLabel.text = "\(progress)%"
+        }
     }
     
     func allImageReceived(images: [UIImage]) {
@@ -65,20 +117,20 @@ class EditorViewController: UIViewController {
     }
     
     
-    @IBAction func sliderValueChanged(sender: UISlider) {
-        let time = calculateCurrentTime()
-        player.seekToTime(time, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
-    }
-    
-    func calculateCurrentTime() -> CMTime {
-        let progress = Float64(slider.value)
-        let totalSeconds = CMTimeGetSeconds(asset.duration)
-        let seconds = totalSeconds * progress
-        return CMTimeMakeWithSeconds(seconds, asset.duration.timescale)
-    }
+//    @IBAction func sliderValueChanged(sender: UISlider) {
+//        let time = calculateCurrentTime()
+//        player.seekToTime(time, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+//    }
+//    
+//    func calculateCurrentTime() -> CMTime {
+//        let progress = Float64(slider.value)
+//        let totalSeconds = CMTimeGetSeconds(asset.duration)
+//        let seconds = totalSeconds * progress
+//        return CMTimeMakeWithSeconds(seconds, asset.duration.timescale)
+//    }
     
     @IBAction func next(sender: AnyObject) {
-        let time = calculateCurrentTime()
+        let time = playerItem.currentTime()
         let absoluteTime = (videoEndTime - CMTimeGetSeconds(asset.duration) + CMTimeGetSeconds(time))
         asset.generateImageAtTime(time, completion: { image in
             if let image = image {
@@ -99,6 +151,10 @@ class EditorViewController: UIViewController {
         navigationController?.pushViewController(displayVC, animated: true)
     }
     
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 }
 
 extension EditorViewController: SharedViewTransition {
