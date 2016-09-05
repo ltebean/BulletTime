@@ -24,10 +24,6 @@ class PeripheralViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        guest.onStartRecording = { [weak self] in
-            self?.startRecording()
-        }
         
         guest.onStopRecording = { [weak self] in
             self?.stopRecording()
@@ -47,6 +43,11 @@ class PeripheralViewController: UIViewController {
         super.viewWillAppear(animated)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        startRecording()
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
     }
@@ -63,7 +64,7 @@ class PeripheralViewController: UIViewController {
     }
     
     func useFrame(atTime absoluteTime: Float64) {
-        let seconds = absoluteTime - (cameraController.endTime - CMTimeGetSeconds(asset.duration))
+        let seconds = absoluteTime - cameraController.startTime
         let time = CMTimeMakeWithSeconds(seconds, asset.duration.timescale)
         asset.generateImageAtTime(time, completion: { image in
             if let image = image {

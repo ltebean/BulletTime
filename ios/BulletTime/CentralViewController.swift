@@ -10,19 +10,24 @@ import UIKit
 import SwiftyJSON
 import MultipeerConnectivity
 import Async
+import SVProgressHUD
 
 class CentralViewController: UIViewController {
     
     var cameraController: CameraViewController!
-    var recording = false
-    
     let host = Host.current
+    var shootTime: Float64 = 0
     
     @IBOutlet weak var sharedView: UIButton!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        cameraController.startRecording()
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -35,22 +40,30 @@ class CentralViewController: UIViewController {
     }
     
     @IBAction func shootButtonPressed(sender: AnyObject) {
-        if !recording {
-            host.sendStartRecording()
-            cameraController.startRecording()
-        } else {
-            host.sendStopRecording()
-            cameraController.stopRecording()
-        }
-        recording = !recording
-        
+        SVProgressHUD.show()
+        shootTime = CFAbsoluteTimeGetCurrent()
+        Async.main(after: 0.2, block: {
+            self.host.sendStopRecording()
+            self.cameraController.stopRecording()
+        })
     }
     
     func goToEditor(url: NSURL) {
-        let vc = R.storyboard.shoot.editor()!
-        vc.videoURL = url
-        vc.videoEndTime = cameraController.endTime
-        navigationController?.pushViewController(vc, animated: true)
+        let asset = AVAsset(URL: url)
+        let startTime = cameraController.startTime
+        let seconds = shootTime - startTime
+        let times = [seconds - 0.1, seconds, seconds + 0.1]
+        let timeValues = times.map {
+            CMTimeMakeWithSeconds($0, asset.duration.timescale)
+        }
+        asset.generateImagesAtTimes(timeValues, completion: { images in
+            SVProgressHUD.dismiss()
+            let vc = R.storyboard.shoot.picker()!
+            vc.times = [self.shootTime - 0.1, self.shootTime, self.shootTime + 0.1]
+            vc.images = images
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
+        
     }
     
     @IBAction func back(sender: AnyObject) {

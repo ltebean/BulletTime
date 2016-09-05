@@ -366,6 +366,7 @@ struct _R: Rswift.Validatable {
       let editor = StoryboardViewControllerResource<EditorViewController>(identifier: "editor")
       let name = "Shoot"
       let peripheral = StoryboardViewControllerResource<PeripheralViewController>(identifier: "peripheral")
+      let picker = StoryboardViewControllerResource<PickerViewController>(identifier: "picker")
       
       func broadcast(_: Void) -> BroadcastViewController? {
         return UIStoryboard(resource: self).instantiateViewController(broadcast)
@@ -391,6 +392,10 @@ struct _R: Rswift.Validatable {
         return UIStoryboard(resource: self).instantiateViewController(peripheral)
       }
       
+      func picker(_: Void) -> PickerViewController? {
+        return UIStoryboard(resource: self).instantiateViewController(picker)
+      }
+      
       static func validate() throws {
         if UIImage(named: "button-save-as-video") == nil { throw ValidationError(description: "[R.swift] Image named 'button-save-as-video' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIImage(named: "icon-back-white") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-back-white' is used in storyboard 'Shoot', but couldn't be loaded.") }
@@ -399,6 +404,7 @@ struct _R: Rswift.Validatable {
         if _R.storyboard.shoot().central() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'central' could not be loaded from storyboard 'Shoot' as 'CentralViewController'.") }
         if _R.storyboard.shoot().discoveries() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'discoveries' could not be loaded from storyboard 'Shoot' as 'DiscoveriesViewController'.") }
         if _R.storyboard.shoot().editor() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'editor' could not be loaded from storyboard 'Shoot' as 'EditorViewController'.") }
+        if _R.storyboard.shoot().picker() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'picker' could not be loaded from storyboard 'Shoot' as 'PickerViewController'.") }
         if _R.storyboard.shoot().display() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'display' could not be loaded from storyboard 'Shoot' as 'DisplayViewController'.") }
         if _R.storyboard.shoot().broadcast() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'broadcast' could not be loaded from storyboard 'Shoot' as 'BroadcastViewController'.") }
         if _R.storyboard.shoot().peripheral() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'peripheral' could not be loaded from storyboard 'Shoot' as 'PeripheralViewController'.") }

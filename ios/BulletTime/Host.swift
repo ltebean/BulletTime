@@ -73,7 +73,9 @@ class Host: NSObject {
     }
     
     func sendFinalResult(images: [UIImage]) {
-        let data = Data(command: .FinalResult, value: JSON(images))
+        let data = Data(command: .FinalResult, value: JSON(images.map {
+            $0.toBase64String()
+        }))
         session.sendData(data, toPeers: peersToNotify)
     }
     

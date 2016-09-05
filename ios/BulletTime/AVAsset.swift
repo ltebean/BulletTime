@@ -26,4 +26,26 @@ extension AVAsset {
             }
         }
     }
+    
+    func generateImagesAtTimes(times: [CMTime], completion: (images: [UIImage]) -> ()) {
+        let imageGenerator = AVAssetImageGenerator(asset: self)
+        imageGenerator.requestedTimeToleranceAfter = kCMTimeZero
+        imageGenerator.requestedTimeToleranceBefore = kCMTimeZero
+        imageGenerator.appliesPreferredTrackTransform = true
+        
+        let timesValue = times.map {
+            NSValue(CMTime: $0)
+        }
+        
+        var images = [UIImage]()
+        imageGenerator.generateCGImagesAsynchronouslyForTimes(timesValue) { (requestedTime, image, actualTime, result, error) in
+            images.append(UIImage(CGImage: image!).cropCenterSquare().resize(toSize: Config.imageSize))
+            if images.count == times.count {
+                Async.main {
+                    completion(images: images)
+                }
+            }
+          
+        }
+    }
 }

@@ -45,6 +45,7 @@
 		FA0D184E1D4C3C5E00F93AA7 /* CentralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D184D1D4C3C5E00F93AA7 /* CentralViewController.swift */; };
 		FA0D18501D4C3C6F00F93AA7 /* PeripheralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D184F1D4C3C6F00F93AA7 /* PeripheralViewController.swift */; };
 		FA0D18521D4C4BC500F93AA7 /* DiscoveriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D18511D4C4BC500F93AA7 /* DiscoveriesViewController.swift */; };
+		FA3D35C51D7A735900BB293A /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA3D35C41D7A735900BB293A /* PickerViewController.swift */; };
 		FA7F84801D5EBCFA00B0996B /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F847F1D5EBCFA00B0996B /* SessionDelegate.swift */; };
 		FA7F84841D5EC2F000B0996B /* BroadcastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F84831D5EC2F000B0996B /* BroadcastViewController.swift */; };
 		FA7F84861D72890300B0996B /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7F84851D72890300B0996B /* EditorViewController.swift */; };
@@ -102,6 +103,7 @@
 		FA0D184D1D4C3C5E00F93AA7 /* CentralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralViewController.swift; sourceTree = "<group>"; };
 		FA0D184F1D4C3C6F00F93AA7 /* PeripheralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralViewController.swift; sourceTree = "<group>"; };
 		FA0D18511D4C4BC500F93AA7 /* DiscoveriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveriesViewController.swift; sourceTree = "<group>"; };
+		FA3D35C41D7A735900BB293A /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		FA7F847F1D5EBCFA00B0996B /* SessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionDelegate.swift; sourceTree = "<group>"; };
 		FA7F84831D5EC2F000B0996B /* BroadcastViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadcastViewController.swift; sourceTree = "<group>"; };
 		FA7F84851D72890300B0996B /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				FAF15A571D4B7FC1005C7AF2 /* CameraViewController.swift */,
 				FAFD2FE91D5E0EB900DF11E1 /* DisplayViewController.swift */,
 				FA7F84851D72890300B0996B /* EditorViewController.swift */,
+				FA3D35C41D7A735900BB293A /* PickerViewController.swift */,
 			);
 			name = Shoot;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				3630C3EA2C3E51D1F3BADB26 /* [CP] Embed Pods Frameworks */,
 				4F747F6B1879EDD31DB415EC /* [CP] Copy Pods Resources */,
 				B3C58D071D6BF8FB0030F3DF /* ShellScript */,
+				8105376700ECA85251D856D1 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -427,6 +431,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		8105376700ECA85251D856D1 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B3C58D071D6BF8FB0030F3DF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -473,6 +492,7 @@
 				FA7F84841D5EC2F000B0996B /* BroadcastViewController.swift in Sources */,
 				B354196B1D73DB6E00516B66 /* AVAsset.swift in Sources */,
 				B3C0621A1D5B2BCF00F39CAC /* Transition.swift in Sources */,
+				FA3D35C51D7A735900BB293A /* PickerViewController.swift in Sources */,
 				B3CDA23F1D54437E0090F65A /* UIColor.swift in Sources */,
 				B3C0621E1D5B2F0700F39CAC /* UIButton.swift in Sources */,
 				FA7F84861D72890300B0996B /* EditorViewController.swift in Sources */,
@@ -616,14 +636,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cong Yu (6T4Q98EJT3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BulletTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cc193f49-0dec-40e5-be8d-821f3dc20e43";
+				PROVISIONING_PROFILE = "a47aa688-f763-49da-9e35-d7b4c702d945";
 				SWIFT_OBJC_BRIDGING_HEADER = "BulletTime/BulletTime-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -635,14 +655,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Cong Yu (6T4Q98EJT3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BulletTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cc193f49-0dec-40e5-be8d-821f3dc20e43";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BulletTime/BulletTime-Bridging-Header.h";
 			};
 			name = Release;
