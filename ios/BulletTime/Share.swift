@@ -82,27 +82,24 @@ class Share: NSObject {
         vc.presentViewController(activityVC, animated: true, completion: nil)
     }
     
-    static func saveAsVideo(images: [UIImage], inViewController vc: UIViewController) {
+    static func shareAsVideo(product: Product, inViewController vc: UIViewController) {
+        let images = product.images
         SVProgressHUD.show()
         vc.view.userInteractionEnabled = false
 
         let settings = CEMovieMaker.videoSettingsWithCodec(AVVideoCodecH264, withWidth: 600, andHeight: 600)
         let maker = CEMovieMaker(settings: settings)
         var finalImages = [UIImage]()
-        for _ in 1...6 {
+        for _ in 1...5 {
             finalImages.appendContentsOf(images)
+            finalImages.appendContentsOf(images.reverse())
+
         }
         maker.createMovieFromImages(finalImages, withCompletion: { url in
-            PHPhotoLibrary.sharedPhotoLibrary().performChanges({
-                PHAssetChangeRequest.creationRequestForAssetFromVideoAtFileURL(url)
-            }) { saved, error in
-                vc.view.userInteractionEnabled = true
-                if saved {
-                    SVProgressHUD.showSuccessWithStatus("Exported to album")
-                } else {
-                    SVProgressHUD.showErrorWithStatus("Error")
-                }
-            }
+            SVProgressHUD.dismiss()
+            vc.view.userInteractionEnabled = true
+            let activityVC = UIActivityViewController(activityItems:[url], applicationActivities: nil)
+            vc.presentViewController(activityVC, animated: true, completion: nil)
         })
 
     }

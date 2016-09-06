@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iI3-dU-lul">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="iI3-dU-lul">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,7 +20,6 @@
             <string>Circular-Black</string>
         </mutableArray>
         <mutableArray key="lineto-circular-bold.ttf">
-            <string>Circular-Bold</string>
             <string>Circular-Bold</string>
             <string>Circular-Bold</string>
             <string>Circular-Bold</string>
@@ -581,16 +580,15 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QoW-AQ-TvU" customClass="DesignableButton" customModule="BulletTime" customModuleProvider="target">
-                                                <rect key="frame" x="104" y="9" width="52" height="52"/>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QoW-AQ-TvU" customClass="DesignableButton" customModule="BulletTime" customModuleProvider="target">
+                                                <rect key="frame" x="105" y="9" width="52" height="52"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="52" id="RhZ-hD-Kr6"/>
                                                     <constraint firstAttribute="width" constant="52" id="oxN-U4-yKK"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="15"/>
                                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="1"/>
-                                                <state key="normal" title="OK">
+                                                <state key="normal" image="icon-confirm">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -698,27 +696,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cyK-kv-RhE">
                                 <rect key="frame" x="0.0" y="444" width="320" height="124"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ybC-Qo-M7V" customClass="DesignableButton" customModule="BulletTime" customModuleProvider="target">
-                                        <rect key="frame" x="85" y="37" width="50" height="50"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="OqB-sg-SBd"/>
-                                            <constraint firstAttribute="height" constant="50" id="gQc-Yl-Nl3"/>
-                                        </constraints>
-                                        <state key="normal" image="icon-share-white">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="25"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="buttonSharePressed:" destination="ig8-EP-sVl" eventType="touchUpInside" id="0me-kh-4CJ"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQI-Pf-pOQ">
-                                        <rect key="frame" x="185" y="37" width="50" height="50"/>
+                                        <rect key="frame" x="135" y="37" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="quw-nM-rVp"/>
                                             <constraint firstAttribute="height" constant="50" id="ueH-uM-dXV"/>
@@ -731,10 +710,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="lQI-Pf-pOQ" firstAttribute="centerY" secondItem="ybC-Qo-M7V" secondAttribute="centerY" id="B41-gS-ohO"/>
-                                    <constraint firstItem="lQI-Pf-pOQ" firstAttribute="centerX" secondItem="cyK-kv-RhE" secondAttribute="centerX" constant="50" id="TiT-ck-xq1"/>
-                                    <constraint firstItem="ybC-Qo-M7V" firstAttribute="centerX" secondItem="cyK-kv-RhE" secondAttribute="centerX" constant="-50" id="Zbh-to-EhH"/>
-                                    <constraint firstItem="ybC-Qo-M7V" firstAttribute="centerY" secondItem="cyK-kv-RhE" secondAttribute="centerY" id="kFU-5u-2Gc"/>
+                                    <constraint firstItem="lQI-Pf-pOQ" firstAttribute="centerY" secondItem="cyK-kv-RhE" secondAttribute="centerY" id="OLT-y2-VGI"/>
+                                    <constraint firstItem="lQI-Pf-pOQ" firstAttribute="centerX" secondItem="cyK-kv-RhE" secondAttribute="centerX" id="TiT-ck-xq1"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -933,7 +910,7 @@
         <image name="button-save-as-video" width="50" height="50"/>
         <image name="icon-back-grey" width="17" height="10"/>
         <image name="icon-back-white" width="17" height="10"/>
-        <image name="icon-share-white" width="27" height="27"/>
+        <image name="icon-confirm" width="17" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ct5-ad-COz"/>

@@ -36,14 +36,10 @@ class DisplayViewController: UIViewController {
     @IBAction func back(sender: AnyObject) {
         navigationController?.popViewControllerAnimated(true)
     }
-    
-    @IBAction func buttonSharePressed(sender: AnyObject) {
-        Share.shareProduct(product, inViewController: self)
-        
-    }
+
     
     @IBAction func buttonSavePressed(sender: AnyObject) {
-        Share.saveAsVideo(product.images, inViewController: self)
+        Share.shareAsVideo(product, inViewController: self)
     }
 }
 

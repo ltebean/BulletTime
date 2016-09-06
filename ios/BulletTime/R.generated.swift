@@ -58,7 +58,7 @@ struct R: Rswift.Validatable {
     private init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 13 images.
+  /// This `R.image` struct is generated, and contains static references to 14 images.
   struct image {
     /// Image `button-save-as-video`.
     static let buttonSaveAsVideo = ImageResource(bundle: _R.hostingBundle, name: "button-save-as-video")
@@ -66,6 +66,8 @@ struct R: Rswift.Validatable {
     static let iconBackGrey = ImageResource(bundle: _R.hostingBundle, name: "icon-back-grey")
     /// Image `icon-back-white`.
     static let iconBackWhite = ImageResource(bundle: _R.hostingBundle, name: "icon-back-white")
+    /// Image `icon-confirm`.
+    static let iconConfirm = ImageResource(bundle: _R.hostingBundle, name: "icon-confirm")
     /// Image `icon-delete`.
     static let iconDelete = ImageResource(bundle: _R.hostingBundle, name: "icon-delete")
     /// Image `icon-feedback`.
@@ -100,6 +102,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon-back-white", bundle: ..., traitCollection: ...)`
     static func iconBackWhite(compatibleWithTraitCollection traitCollection: UITraitCollection? = nil) -> UIImage? {
       return UIImage(resource: R.image.iconBackWhite, compatibleWithTraitCollection: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon-confirm", bundle: ..., traitCollection: ...)`
+    static func iconConfirm(compatibleWithTraitCollection traitCollection: UITraitCollection? = nil) -> UIImage? {
+      return UIImage(resource: R.image.iconConfirm, compatibleWithTraitCollection: traitCollection)
     }
     
     /// `UIImage(named: "icon-delete", bundle: ..., traitCollection: ...)`
@@ -400,7 +407,7 @@ struct _R: Rswift.Validatable {
         if UIImage(named: "button-save-as-video") == nil { throw ValidationError(description: "[R.swift] Image named 'button-save-as-video' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIImage(named: "icon-back-white") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-back-white' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIImage(named: "icon-back-grey") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-back-grey' is used in storyboard 'Shoot', but couldn't be loaded.") }
-        if UIImage(named: "icon-share-white") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-share-white' is used in storyboard 'Shoot', but couldn't be loaded.") }
+        if UIImage(named: "icon-confirm") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-confirm' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if _R.storyboard.shoot().central() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'central' could not be loaded from storyboard 'Shoot' as 'CentralViewController'.") }
         if _R.storyboard.shoot().discoveries() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'discoveries' could not be loaded from storyboard 'Shoot' as 'DiscoveriesViewController'.") }
         if _R.storyboard.shoot().editor() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'editor' could not be loaded from storyboard 'Shoot' as 'EditorViewController'.") }

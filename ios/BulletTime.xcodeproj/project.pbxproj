@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7564CDE1DF7B060D80C9FE30 /* Pods_BulletTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75DEBFA281CB5D1CB40E9FE4 /* Pods_BulletTime.framework */; };
+		50179EFB3079D0D6BA65F5CA /* Pods_BulletTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A93020A0FE015DE64BEF44BF /* Pods_BulletTime.framework */; };
 		B32A04341D6E90EF00C0E3FF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A04331D6E90EF00C0E3FF /* UIView.swift */; };
 		B33274B01D51B7F3000B10E4 /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33274AF1D51B7F3000B10E4 /* Gif.swift */; };
 		B35419671D73CB3000516B66 /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35419661D73CB3000516B66 /* Host.swift */; };
@@ -61,8 +61,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		75DEBFA281CB5D1CB40E9FE4 /* Pods_BulletTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BulletTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		961233B2FE820DD25E6467F3 /* Pods-BulletTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime.release.xcconfig"; sourceTree = "<group>"; };
+		21F81DC2B3873EA340F44DC3 /* Pods-BulletTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletTime.release.xcconfig"; path = "Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime.release.xcconfig"; sourceTree = "<group>"; };
+		A93020A0FE015DE64BEF44BF /* Pods_BulletTime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BulletTime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32A04331D6E90EF00C0E3FF /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B33274AF1D51B7F3000B10E4 /* Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gif.swift; sourceTree = "<group>"; };
 		B35419661D73CB3000516B66 /* Host.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 		B3E6E70D1D658A6100D9BB60 /* ProductService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductService.swift; sourceTree = "<group>"; };
 		B3E6E70F1D6ACF9700D9BB60 /* DesignableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		B3EA97231D6BE84500981AF9 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		BB8C8C0FB709B01292405B86 /* Pods-BulletTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime.debug.xcconfig"; sourceTree = "<group>"; };
+		E1F96246C3CD5D984DDB99A3 /* Pods-BulletTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BulletTime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime.debug.xcconfig"; sourceTree = "<group>"; };
 		FA0D184D1D4C3C5E00F93AA7 /* CentralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralViewController.swift; sourceTree = "<group>"; };
 		FA0D184F1D4C3C6F00F93AA7 /* PeripheralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralViewController.swift; sourceTree = "<group>"; };
 		FA0D18511D4C4BC500F93AA7 /* DiscoveriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoveriesViewController.swift; sourceTree = "<group>"; };
@@ -125,26 +125,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7564CDE1DF7B060D80C9FE30 /* Pods_BulletTime.framework in Frameworks */,
+				50179EFB3079D0D6BA65F5CA /* Pods_BulletTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		67882DB58F94628FCE97E91E /* Frameworks */ = {
+		3DE3936F13FCC4CBA386CE4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				75DEBFA281CB5D1CB40E9FE4 /* Pods_BulletTime.framework */,
+				A93020A0FE015DE64BEF44BF /* Pods_BulletTime.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8DF573A9B605D42916467152 /* Pods */ = {
+		8D0D2197BCAAB982C641AFAC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BB8C8C0FB709B01292405B86 /* Pods-BulletTime.debug.xcconfig */,
-				961233B2FE820DD25E6467F3 /* Pods-BulletTime.release.xcconfig */,
+				E1F96246C3CD5D984DDB99A3 /* Pods-BulletTime.debug.xcconfig */,
+				21F81DC2B3873EA340F44DC3 /* Pods-BulletTime.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -232,8 +232,8 @@
 			children = (
 				FAF15A431D4B7EEE005C7AF2 /* BulletTime */,
 				FAF15A421D4B7EEE005C7AF2 /* Products */,
-				8DF573A9B605D42916467152 /* Pods */,
-				67882DB58F94628FCE97E91E /* Frameworks */,
+				8D0D2197BCAAB982C641AFAC /* Pods */,
+				3DE3936F13FCC4CBA386CE4B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -322,7 +322,6 @@
 				3630C3EA2C3E51D1F3BADB26 /* [CP] Embed Pods Frameworks */,
 				4F747F6B1879EDD31DB415EC /* [CP] Copy Pods Resources */,
 				B3C58D071D6BF8FB0030F3DF /* ShellScript */,
-				8105376700ECA85251D856D1 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -429,21 +428,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8105376700ECA85251D856D1 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BulletTime/Pods-BulletTime-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B3C58D071D6BF8FB0030F3DF /* ShellScript */ = {
@@ -632,18 +616,18 @@
 		};
 		FAF15A541D4B7EEE005C7AF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB8C8C0FB709B01292405B86 /* Pods-BulletTime.debug.xcconfig */;
+			baseConfigurationReference = E1F96246C3CD5D984DDB99A3 /* Pods-BulletTime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Cong Yu (6T4Q98EJT3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BulletTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a47aa688-f763-49da-9e35-d7b4c702d945";
+				PROVISIONING_PROFILE = "bea3ede3-7fe2-416f-b4d5-7c8d8e66686a";
 				SWIFT_OBJC_BRIDGING_HEADER = "BulletTime/BulletTime-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -651,11 +635,11 @@
 		};
 		FAF15A551D4B7EEE005C7AF2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 961233B2FE820DD25E6467F3 /* Pods-BulletTime.release.xcconfig */;
+			baseConfigurationReference = 21F81DC2B3873EA340F44DC3 /* Pods-BulletTime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Cong Yu (6T4Q98EJT3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BulletTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
