@@ -218,21 +218,21 @@ struct R: Rswift.Validatable {
     /// This struct is generated for `HomeViewController`, and contains static references to 2 segues.
     struct homeViewController {
       /// Segue identifier `me`.
-      static let me: StoryboardSegueIdentifier<UIStoryboardSegue, HomeViewController, UINavigationController> = StoryboardSegueIdentifier(identifier: "me")
+      static let me: StoryboardSegueIdentifier<UIStoryboardSegue, HomeViewController, MeViewController> = StoryboardSegueIdentifier(identifier: "me")
       /// Segue identifier `shoot`.
-      static let shoot: StoryboardSegueIdentifier<UIStoryboardSegue, HomeViewController, MeViewController> = StoryboardSegueIdentifier(identifier: "shoot")
+      static let shoot: StoryboardSegueIdentifier<UIStoryboardSegue, HomeViewController, UINavigationController> = StoryboardSegueIdentifier(identifier: "shoot")
       
       /// Optionally returns a typed version of segue `me`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func me(segue segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, HomeViewController, UINavigationController>? {
+      static func me(segue segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, HomeViewController, MeViewController>? {
         return TypedStoryboardSegueInfo(segueIdentifier: R.segue.homeViewController.me, segue: segue)
       }
       
       /// Optionally returns a typed version of segue `shoot`.
       /// Returns nil if either the segue identifier, the source, destination, or segue types don't match.
       /// For use inside `prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)`.
-      static func shoot(segue segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, HomeViewController, MeViewController>? {
+      static func shoot(segue segue: UIStoryboardSegue) -> TypedStoryboardSegueInfo<UIStoryboardSegue, HomeViewController, UINavigationController>? {
         return TypedStoryboardSegueInfo(segueIdentifier: R.segue.homeViewController.shoot, segue: segue)
       }
       

@@ -148,7 +148,7 @@ class EditorViewController: UIViewController {
             allImageReceived([])
         }
         displayVC = R.storyboard.shoot.display()!
-        push(displayVC)
+//        push(displayVC)
     }
     
     
@@ -157,13 +157,3 @@ class EditorViewController: UIViewController {
     }
 }
 
-extension EditorViewController: SharedViewTransition {
-    
-    func sharedView(isPush isPush: Bool) -> UIView? {
-        return nil
-    }
-    
-    func requiredBackgroundColor() -> UIColor? {
-        return UIColor.whiteColor()
-    }
-}

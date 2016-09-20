@@ -13,18 +13,16 @@ class RoleSelectionViewController: HomeChildViewController {
     
     @IBOutlet weak var buttonHost: DesignableButton!
     @IBOutlet weak var buttonGuest: DesignableButton!
-    @IBOutlet weak var buttonSpacing: NSLayoutConstraint!
-    
+    @IBOutlet weak var mainView: UIView!
     
     var bluetoothManager: CBPeripheralManager!
 
-    var transitionDelegate: TransitionDelegate!
+    var transitionDelegate: ViewTransitionDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        buttonSpacing.constant = 0
-        transitionDelegate = TransitionDelegate(navigationController: navigationController!)
+        transitionDelegate = ViewTransitionDelegate(navigationController: navigationController!)
         navigationController?.delegate = transitionDelegate
         
         let options = [CBCentralManagerOptionShowPowerAlertKey: 0]
@@ -34,7 +32,7 @@ class RoleSelectionViewController: HomeChildViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        UIView.animateWithDuration(0.1, animations: {
+        UIView.animateWithDuration(0.3, animations: {
             self.showTab()
         }, completion: nil)
         Host.reset()
@@ -47,13 +45,24 @@ class RoleSelectionViewController: HomeChildViewController {
     }
 
     @IBAction func buttonHostPressed(sender: AnyObject) {
+        hideHomeTab()
         push(R.storyboard.shoot.discoveries()!)
     }
     
     @IBAction func buttonGeustPressed(sender: AnyObject) {
+        hideHomeTab()
         push(R.storyboard.shoot.broadcast()!)
     }
     
+    func hideHomeTab() {
+        UIView.animateWithDuration(0.35, animations: {
+            self.hideTab()
+        })
+    }
+    
+    override func viewsToAnimate() -> [UIView] {
+        return [mainView, buttonHost, buttonGuest]
+    }
 
 }
 
@@ -83,17 +92,6 @@ extension RoleSelectionViewController: CBPeripheralManagerDelegate {
         }
         print(statusMessage)
     }
-}
-
-extension RoleSelectionViewController: SharedViewTransition {
     
-    func sharedView(isPush isPush: Bool) -> UIView? {
-        return nil
-    }
-    
-    func requiredBackgroundColor() -> UIColor? {
-        return nil
-    }
-
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeChildViewController: UIViewController {
+class HomeChildViewController: AnimatableViewController {
     
     weak var homeVC: HomeViewController!
     
@@ -25,10 +25,6 @@ class HomeChildViewController: UIViewController {
         homeVC.tab.hidden = true
     }
     
-    func setTabScrollEnabled(enabled: Bool) {
-        homeVC.scrollView.scrollEnabled = enabled
-    }
-    
     func refresh() {
         
     }
@@ -36,62 +32,74 @@ class HomeChildViewController: UIViewController {
 
 
 class HomeViewController: UIViewController {
+    
+    let animationDuration = 0.35
 
     @IBOutlet weak var tab: UIView!
     
     @IBOutlet weak var tabBackgroundLeft: NSLayoutConstraint!
     @IBOutlet weak var buttonShoot: UIButton!
     @IBOutlet weak var buttonMe: UIButton!
-    @IBOutlet weak var scrollView: UIScrollView!
     
-    var vcs = [HomeChildViewController]()
-    let pageWidth = Int(UIScreen.mainScreen().bounds.width)
+    @IBOutlet weak var meView: UIView!
+    @IBOutlet weak var roleView: UIView!
+    
+    var roleVC: RoleSelectionViewController!
+    var meVC: MeViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scrollView.scrollEnabled = false
-        // Do any additional setup after loading the view.
-        scrollView.delegate = self
-        
-        for vc in childViewControllers {
-            if let vc = vc as? UINavigationController {
-                let childVC = (vc.topViewController as! HomeChildViewController)
-                childVC.homeVC = self
-                vcs.append(childVC)
-
-            } else {
-                let childVC = (vc as! HomeChildViewController)
-                childVC.homeVC = self
-                vcs.append(childVC)
-            }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "me" {
+            meVC = segue.destinationViewController as! MeViewController
+            meVC.homeVC = self
+        } else if segue.identifier == "shoot" {
+            roleVC = (segue.destinationViewController as! UINavigationController).topViewController as! RoleSelectionViewController
+            roleVC.homeVC = self
         }
     }
     
-    func scrollToPage(page: Int, animated: Bool) {
-        scrollView.setContentOffset(CGPoint(x: (page * pageWidth), y: 0), animated: animated)
-    }
-
-
+    
     @IBAction func buttonShootPressed(sender: AnyObject) {
-        scrollToPage(0, animated: true)
+        roleVC.refresh()
+        roleView.alpha = 0
+        UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseOut], animations: {
+            self.meView.alpha = 0
+            self.buttonMe.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.15)
+
+        }, completion: { finished in
+            UIView.animateWithDuration(self.animationDuration, delay: 0, options: [.CurveEaseOut], animations: {
+                self.buttonShoot.backgroundColor = UIColor.blackColor()
+                self.roleView.alpha = 1
+            }, completion: { finished in
+                self.view.sendSubviewToBack(self.meView)
+            })
+        })
     }
 
     @IBAction func buttonMePressed(sender: AnyObject) {
-        scrollToPage(1, animated: true)
-        vcs[1].refresh()
+        meVC.refresh()
+        meView.alpha = 0
+        UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseOut], animations: {
+            self.roleView.alpha = 0
+            self.buttonShoot.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.15)
+
+        }, completion: { finished in
+            UIView.animateWithDuration(self.animationDuration, delay: 0, options: [.CurveEaseOut], animations: {
+                self.buttonMe.backgroundColor = UIColor.blackColor()
+                self.meView.alpha = 1
+            }, completion: { finished in
+                self.view.sendSubviewToBack(self.roleView)
+            })
+        })
     }
     
 
 }
 
-extension HomeViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        let tx = scrollView.contentOffset.x
-        let width = UIScreen.mainScreen().bounds.width
-        
-        let progress = tx / width
-        
-        tabBackgroundLeft.constant = progress * tab.bounds.width / 2
-    }
-}

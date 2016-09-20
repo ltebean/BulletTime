@@ -11,7 +11,7 @@ import SwiftyJSON
 import MultipeerConnectivity
 import Async
 
-class PeripheralViewController: UIViewController {
+class PeripheralViewController: AnimatableViewController {
 
     var cameraController: CameraViewController!
     var displayVC: DisplayViewController!
@@ -21,6 +21,7 @@ class PeripheralViewController: UIViewController {
     var guest = Guest.current
 
     @IBOutlet weak var sharedView: UIButton!
+    @IBOutlet weak var mainView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,16 +102,14 @@ class PeripheralViewController: UIViewController {
     @IBAction func back(sender: AnyObject) {
         pop()
     }
-}
-
-
-extension PeripheralViewController: SharedViewTransition {
     
-    func sharedView(isPush isPush: Bool) -> UIView? {
-        return sharedView
+    override func viewsToAnimate() -> [UIView] {
+        return [mainView]
     }
     
-    func requiredBackgroundColor() -> UIColor? {
+    override func backgroundColor() -> UIColor {
         return UIColor.blackColor()
     }
 }
+
+

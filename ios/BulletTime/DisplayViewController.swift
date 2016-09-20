@@ -9,7 +9,7 @@
 import UIKit
 import AssetsLibrary
 
-class DisplayViewController: UIViewController {
+class DisplayViewController: AnimatableViewController {
 
     @IBOutlet weak var playerView: PlayerView!
     var productService = ProductService.sharedInstance
@@ -41,15 +41,9 @@ class DisplayViewController: UIViewController {
     @IBAction func buttonSavePressed(sender: AnyObject) {
         Share.shareAsVideo(product, inViewController: self)
     }
+    
+    override func viewsToAnimate() -> [UIView] {
+        return view.subviews
+    }
 }
 
-extension DisplayViewController: SharedViewTransition {
-    
-    func sharedView(isPush isPush: Bool) -> UIView? {
-        return nil
-    }
-    
-    func requiredBackgroundColor() -> UIColor? {
-        return UIColor.whiteColor()
-    }
-}

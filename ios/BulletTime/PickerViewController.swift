@@ -9,7 +9,7 @@
 import UIKit
 import Async
 
-class PickerViewController: UIViewController {
+class PickerViewController: AnimatableViewController {
 
     var times: [Float64] = []
     var images: [UIImage]!
@@ -118,15 +118,12 @@ class PickerViewController: UIViewController {
         push(displayVC)
     }
     
-}
-
-extension PickerViewController: SharedViewTransition {
-    
-    func sharedView(isPush isPush: Bool) -> UIView? {
-        return nil
+    override func viewsToAnimate() -> [UIView] {
+        return view.subviews
     }
     
-    func requiredBackgroundColor() -> UIColor? {
+    override func backgroundColor() -> UIColor {
         return UIColor.blackColor()
     }
+    
 }

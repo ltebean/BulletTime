@@ -31,6 +31,7 @@
 		B3CDA23E1D54437E0090F65A /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CDA2381D54437E0090F65A /* UIFont.swift */; };
 		B3CDA23F1D54437E0090F65A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CDA2391D54437E0090F65A /* UIColor.swift */; };
 		B3CDA2401D54437E0090F65A /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3CDA23A1D54437E0090F65A /* NavigationController.swift */; };
+		B3D22A581D910F3A009EE82A /* ViewTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D22A571D910F3A009EE82A /* ViewTransition.swift */; };
 		B3E6E6F61D62D49D00D9BB60 /* FocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E6E6F51D62D49D00D9BB60 /* FocusView.swift */; };
 		B3E6E6F81D62D4A900D9BB60 /* FocusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B3E6E6F71D62D4A900D9BB60 /* FocusView.xib */; };
 		B3E6E6FA1D62FC6100D9BB60 /* Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E6E6F91D62FC6100D9BB60 /* Share.swift */; };
@@ -87,6 +88,7 @@
 		B3CDA2381D54437E0090F65A /* UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		B3CDA2391D54437E0090F65A /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		B3CDA23A1D54437E0090F65A /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		B3D22A571D910F3A009EE82A /* ViewTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTransition.swift; sourceTree = "<group>"; };
 		B3E6E6F51D62D49D00D9BB60 /* FocusView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FocusView.swift; sourceTree = "<group>"; };
 		B3E6E6F71D62D4A900D9BB60 /* FocusView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FocusView.xib; sourceTree = "<group>"; };
 		B3E6E6F91D62FC6100D9BB60 /* Share.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Share.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				B32A04331D6E90EF00C0E3FF /* UIView.swift */,
 				B354196A1D73DB6E00516B66 /* AVAsset.swift */,
 				B388967D1D90E81800BD05DC /* UIViewController.swift */,
+				B3D22A571D910F3A009EE82A /* ViewTransition.swift */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				FAF15A5B1D4B860E005C7AF2 /* UIImage.swift in Sources */,
 				FAF15A451D4B7EEE005C7AF2 /* AppDelegate.swift in Sources */,
 				B388967E1D90E81800BD05DC /* UIViewController.swift in Sources */,
+				B3D22A581D910F3A009EE82A /* ViewTransition.swift in Sources */,
 				B3CDA2401D54437E0090F65A /* NavigationController.swift in Sources */,
 				B3CDA23D1D54437E0090F65A /* FileManager.swift in Sources */,
 				FA0D18521D4C4BC500F93AA7 /* DiscoveriesViewController.swift in Sources */,

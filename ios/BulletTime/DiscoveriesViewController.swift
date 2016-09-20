@@ -10,10 +10,11 @@ import UIKit
 import MultipeerConnectivity
 import SwiftyJSON
 
-class DiscoveriesViewController: UIViewController {
+class DiscoveriesViewController: AnimatableViewController {
 
     @IBOutlet weak var buttonNext: UIButton!
     @IBOutlet weak var circleView: LTCircleView!
+    @IBOutlet weak var mainView: UIView!
     
     let host = Host.current
     
@@ -59,6 +60,10 @@ class DiscoveriesViewController: UIViewController {
     @IBAction func buttonNextPressed(sender: AnyObject) {
         push(R.storyboard.shoot.central()!)
     }
+    
+    override func viewsToAnimate() -> [UIView] {
+        return [mainView, buttonNext]
+    }
 }
 
 
@@ -76,16 +81,5 @@ extension DiscoveriesViewController: LTCircleViewDataSource {
             bubble.showHalo()
         }
         return bubble
-    }
-}
-
-extension DiscoveriesViewController: SharedViewTransition {
-    
-    func sharedView(isPush isPush: Bool) -> UIView? {
-        return buttonNext
-    }
-    
-    func requiredBackgroundColor() -> UIColor? {
-        return nil
     }
 }
