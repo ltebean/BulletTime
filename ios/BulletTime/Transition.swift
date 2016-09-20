@@ -57,7 +57,7 @@ class Transition: NSObject, UIViewControllerAnimatedTransitioning, UIGestureReco
         
         let sourceView = sourceVC.view
         let destinationView = destinationVC.view
-        let containerView = transitionContext.containerView()!
+        let containerView = transitionContext.containerView()
         
         let duration = transitionDuration(transitionContext)
         

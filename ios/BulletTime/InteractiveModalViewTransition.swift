@@ -89,7 +89,7 @@ public class InteractiveModalViewTransition: NSObject, UIViewControllerAnimatedT
         let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let sourceView = fromVC.view
         let destinationView = toVC.view
-        let containerView = transitionContext.containerView()!
+        let containerView = transitionContext.containerView()
         
         containerView.addSubview(destinationView)
         
@@ -174,7 +174,7 @@ class InteractiveModalViewReversedTransition: NSObject, UIViewControllerAnimated
         let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let sourceView = fromVC.view
         let destinationView = toVC.view
-        let containerView = transitionContext.containerView()!
+        let containerView = transitionContext.containerView()
         
         containerView.addSubview(destinationView)
         containerView.bringSubviewToFront(sourceView)

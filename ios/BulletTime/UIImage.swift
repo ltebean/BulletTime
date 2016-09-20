@@ -28,7 +28,7 @@ extension UIImage {
             cropSquare = CGRectMake(x, y, size, size)
         }
         
-        let imageRef = CGImageCreateWithImageInRect(self.CGImage, cropSquare)!
+        let imageRef = CGImageCreateWithImageInRect(self.CGImage!, cropSquare)!
         
         return UIImage(CGImage: imageRef, scale: self.scale, orientation: self.imageOrientation)
     }
@@ -41,7 +41,7 @@ extension UIImage {
         drawInRect(CGRectMake(0, 0, newWidth, newHeight))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return newImage
+        return newImage!
     }
     
     func toBase64String() -> String {

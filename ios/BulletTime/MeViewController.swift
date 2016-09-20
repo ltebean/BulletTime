@@ -104,7 +104,7 @@ extension MeViewController: ProductCellDelegate {
     
     func needsShareProduct(product: Product) {
         print("share")
-        Share.shareProduct(product, inViewController: self)
+        Share.shareAsVideo(product, inViewController: self)
     }
     
     func needsDeleteProduct(product: Product) {

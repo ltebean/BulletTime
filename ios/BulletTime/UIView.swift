@@ -13,7 +13,7 @@ extension UIView {
         UIGraphicsBeginImageContext(frame.size)
         drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
 //        layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return image
     }

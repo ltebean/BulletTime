@@ -77,17 +77,16 @@ class PickerViewController: UIViewController {
             self.bgCenter.constant = CGFloat(center)
             self.pickerView.layoutIfNeeded()
         })
-        Async.main(after: 0.6, block: {
-            self.showNextButton()
-        })
+        showNextButton()
     }
     
     func showNextButton() {
         buttonNext.hidden = false
         buttonNext.alpha = 0
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animateWithDuration(0.2, delay: 0.4, options: [], animations: {
             self.buttonNext.alpha = 1
-        })
+        }, completion: nil)
+
     }
     
 

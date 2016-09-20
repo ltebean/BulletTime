@@ -65,19 +65,19 @@ extension RoleSelectionViewController: CBPeripheralManagerDelegate {
         var statusMessage = ""
         
         switch peripheral.state {
-        case CBPeripheralManagerState.PoweredOn:
+        case .PoweredOn:
             statusMessage = "Bluetooth Status: Turned On"
             
-        case CBPeripheralManagerState.PoweredOff:
+        case .PoweredOff:
             statusMessage = "Bluetooth Status: Turned Off"
             
-        case CBPeripheralManagerState.Resetting:
+        case .Resetting:
             statusMessage = "Bluetooth Status: Resetting"
             
-        case CBPeripheralManagerState.Unauthorized:
+        case .Unauthorized:
             statusMessage = "Bluetooth Status: Not Authorized"
             
-        case CBPeripheralManagerState.Unsupported:
+        case .Unsupported:
             statusMessage = "Bluetooth Status: Not Supported"
             
         default:
