@@ -34,7 +34,7 @@ class DisplayViewController: UIViewController {
     }
 
     @IBAction func back(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+        pop()
     }
 
     

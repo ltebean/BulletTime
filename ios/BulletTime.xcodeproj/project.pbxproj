@@ -13,6 +13,7 @@
 		B35419671D73CB3000516B66 /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35419661D73CB3000516B66 /* Host.swift */; };
 		B35419691D73CB3800516B66 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35419681D73CB3800516B66 /* Guest.swift */; };
 		B354196B1D73DB6E00516B66 /* AVAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354196A1D73DB6E00516B66 /* AVAsset.swift */; };
+		B388967E1D90E81800BD05DC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B388967D1D90E81800BD05DC /* UIViewController.swift */; };
 		B38EE6A61D5DA66200D20053 /* LTCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38EE6A51D5DA66200D20053 /* LTCircleView.swift */; };
 		B38EE6A81D61572300D20053 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38EE6A71D61572300D20053 /* BubbleView.swift */; };
 		B3BB82761D61D08800D85F13 /* lineto-circular-black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3BB82741D61D08800D85F13 /* lineto-circular-black.ttf */; };
@@ -68,6 +69,7 @@
 		B35419661D73CB3000516B66 /* Host.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
 		B35419681D73CB3800516B66 /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		B354196A1D73DB6E00516B66 /* AVAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAsset.swift; sourceTree = "<group>"; };
+		B388967D1D90E81800BD05DC /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		B38EE6A51D5DA66200D20053 /* LTCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTCircleView.swift; sourceTree = "<group>"; };
 		B38EE6A71D61572300D20053 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		B3BB82741D61D08800D85F13 /* lineto-circular-black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lineto-circular-black.ttf"; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				B3C58D051D6BF7DC0030F3DF /* Array.swift */,
 				B32A04331D6E90EF00C0E3FF /* UIView.swift */,
 				B354196A1D73DB6E00516B66 /* AVAsset.swift */,
+				B388967D1D90E81800BD05DC /* UIViewController.swift */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				B3E6E7071D64430B00D9BB60 /* HomeViewController.swift in Sources */,
 				FAF15A5B1D4B860E005C7AF2 /* UIImage.swift in Sources */,
 				FAF15A451D4B7EEE005C7AF2 /* AppDelegate.swift in Sources */,
+				B388967E1D90E81800BD05DC /* UIViewController.swift in Sources */,
 				B3CDA2401D54437E0090F65A /* NavigationController.swift in Sources */,
 				B3CDA23D1D54437E0090F65A /* FileManager.swift in Sources */,
 				FA0D18521D4C4BC500F93AA7 /* DiscoveriesViewController.swift in Sources */,

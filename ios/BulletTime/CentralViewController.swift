@@ -17,6 +17,7 @@ class CentralViewController: UIViewController {
     var cameraController: CameraViewController!
     let host = Host.current
     var shootTime: Float64 = 0
+    var imageGenerator: AVAssetImageGenerator!
     
     @IBOutlet weak var sharedView: UIButton!
 
@@ -56,18 +57,18 @@ class CentralViewController: UIViewController {
         let timeValues = times.map {
             CMTimeMakeWithSeconds($0, asset.duration.timescale)
         }
-        asset.generateImagesAtTimes(timeValues, completion: { images in
+        imageGenerator = asset.generateImagesAtTimes(timeValues, completion: { images in
             SVProgressHUD.dismiss()
             let vc = R.storyboard.shoot.picker()!
             vc.times = [self.shootTime - 0.1, self.shootTime, self.shootTime + 0.1]
             vc.images = images
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.push(vc)
         })
         
     }
     
     @IBAction func back(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+        pop()
     }
     
 }

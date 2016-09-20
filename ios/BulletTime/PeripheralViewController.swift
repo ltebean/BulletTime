@@ -94,12 +94,12 @@ class PeripheralViewController: UIViewController {
 
     func next() {
         displayVC = R.storyboard.shoot.display()!
-        navigationController?.pushViewController(self.displayVC, animated: true)
+        push(displayVC)
     }
     
     
     @IBAction func back(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+        pop()
     }
 }
 

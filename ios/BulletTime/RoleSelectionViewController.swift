@@ -47,13 +47,11 @@ class RoleSelectionViewController: HomeChildViewController {
     }
 
     @IBAction func buttonHostPressed(sender: AnyObject) {
-        let vc = R.storyboard.shoot.discoveries()!
-        navigationController?.pushViewController(vc, animated: true)
+        push(R.storyboard.shoot.discoveries()!)
     }
     
     @IBAction func buttonGeustPressed(sender: AnyObject) {
-        let vc = R.storyboard.shoot.broadcast()!
-        navigationController?.pushViewController(vc, animated: true)
+        push(R.storyboard.shoot.broadcast()!)
     }
     
 

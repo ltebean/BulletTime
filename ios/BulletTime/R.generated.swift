@@ -58,7 +58,7 @@ struct R: Rswift.Validatable {
     private init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 14 images.
+  /// This `R.image` struct is generated, and contains static references to 15 images.
   struct image {
     /// Image `button-save-as-video`.
     static let buttonSaveAsVideo = ImageResource(bundle: _R.hostingBundle, name: "button-save-as-video")
@@ -80,6 +80,8 @@ struct R: Rswift.Validatable {
     static let iconGesture3 = ImageResource(bundle: _R.hostingBundle, name: "icon-gesture-3")
     /// Image `icon-share`.
     static let iconShare = ImageResource(bundle: _R.hostingBundle, name: "icon-share")
+    /// Image `icon-share-bold`.
+    static let iconShareBold = ImageResource(bundle: _R.hostingBundle, name: "icon-share-bold")
     /// Image `icon-share-white`.
     static let iconShareWhite = ImageResource(bundle: _R.hostingBundle, name: "icon-share-white")
     /// Image `icon-star`.
@@ -137,6 +139,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "icon-share", bundle: ..., traitCollection: ...)`
     static func iconShare(compatibleWithTraitCollection traitCollection: UITraitCollection? = nil) -> UIImage? {
       return UIImage(resource: R.image.iconShare, compatibleWithTraitCollection: traitCollection)
+    }
+    
+    /// `UIImage(named: "icon-share-bold", bundle: ..., traitCollection: ...)`
+    static func iconShareBold(compatibleWithTraitCollection traitCollection: UITraitCollection? = nil) -> UIImage? {
+      return UIImage(resource: R.image.iconShareBold, compatibleWithTraitCollection: traitCollection)
     }
     
     /// `UIImage(named: "icon-share-white", bundle: ..., traitCollection: ...)`

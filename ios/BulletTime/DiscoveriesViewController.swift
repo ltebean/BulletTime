@@ -53,12 +53,11 @@ class DiscoveriesViewController: UIViewController {
     }
     
     @IBAction func back(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+        pop()
     }
 
     @IBAction func buttonNextPressed(sender: AnyObject) {
-        let vc = R.storyboard.shoot.central()!
-        navigationController?.pushViewController(vc, animated: true)
+        push(R.storyboard.shoot.central()!)
     }
 }
 

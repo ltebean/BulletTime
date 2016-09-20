@@ -148,7 +148,7 @@ class EditorViewController: UIViewController {
             allImageReceived([])
         }
         displayVC = R.storyboard.shoot.display()!
-        navigationController?.pushViewController(displayVC, animated: true)
+        push(displayVC)
     }
     
     

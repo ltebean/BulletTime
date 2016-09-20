@@ -69,12 +69,11 @@ class BroadcastViewController: UIViewController {
 
     
     @IBAction func buttonNextPressed(sender: AnyObject) {
-        let vc = R.storyboard.shoot.peripheral()!
-        navigationController?.pushViewController(vc, animated: true)
+        push(R.storyboard.shoot.peripheral()!)
     }
 
     @IBAction func back(sender: AnyObject) {
-        navigationController?.popViewControllerAnimated(true)
+        pop()
     }
 }
 

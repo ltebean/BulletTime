@@ -106,12 +106,16 @@ class PickerViewController: UIViewController {
         next()
     }
     
+    @IBAction func back(sender: AnyObject) {
+        pop()
+    }
+    
     func next() {
         if host.peersToNotify.count == 0 {
             allImageReceived([])
         }
         displayVC = R.storyboard.shoot.display()!
-        navigationController?.pushViewController(displayVC, animated: true)
+        push(displayVC)
     }
     
 }

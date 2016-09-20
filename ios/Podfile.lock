@@ -4,7 +4,6 @@ PODS:
     - Fabric (~> 1.6.3)
   - Fabric (1.6.8)
   - LTSwiftDate (0.1.0)
-  - LTUIKit (0.1.0)
   - R.swift (2.4.0):
     - R.swift.Library (~> 2.2.0)
   - R.swift.Library (2.2.0)
@@ -21,7 +20,6 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - LTSwiftDate
-  - LTUIKit
   - R.swift
   - RealmSwift (= 1.1.0)
   - SVProgressHUD
@@ -32,7 +30,6 @@ SPEC CHECKSUMS:
   Crashlytics: 76f6beaff70acf226139582c09c78461597c2b98
   Fabric: 5755268d0171435ab167e3d0878a28a777deaf10
   LTSwiftDate: 7f456e301ea7426a3d0e4afac85a3fd82f3a171f
-  LTUIKit: a2ea10f50d780c81e8f1defd9f646b874ae2da6f
   R.swift: 0ef9c42dc6c94ac44a3c78a7639c73f855a8e159
   R.swift.Library: 31a487b65381f37a7d203a6f1f935b43c9be35b0
   Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
@@ -40,6 +37,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: ee1bbeed17a49876d5b9286e0134aeb3413c60de
+PODFILE CHECKSUM: cc07aee978fac644b62711b9687e5d9b0ce02a41
 
 COCOAPODS: 1.1.0.beta.2
