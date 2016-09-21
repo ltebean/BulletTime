@@ -60,6 +60,10 @@
 	</array>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>to connect to other devices</string>
+	<key>NSCameraUsageDescription</key>
+	<string>to take photo</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>to save video to your album</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
