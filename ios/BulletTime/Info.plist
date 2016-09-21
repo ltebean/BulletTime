@@ -58,6 +58,8 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>to connect to other devices</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>
