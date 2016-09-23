@@ -17,7 +17,8 @@ class PeripheralViewController: AnimatableViewController {
     var displayVC: DisplayViewController!
     var videoURL: NSURL!
     var asset: AVAsset!
-    
+    var imageGenerator: AVAssetImageGenerator!
+
     var guest = Guest.current
 
     @IBOutlet weak var sharedView: UIButton!
@@ -67,7 +68,7 @@ class PeripheralViewController: AnimatableViewController {
     func useFrame(atTime absoluteTime: Float64) {
         let seconds = absoluteTime - cameraController.startTime
         let time = CMTimeMakeWithSeconds(seconds, asset.duration.timescale)
-        asset.generateImageAtTime(time, completion: { image in
+        imageGenerator = asset.generateImageAtTime(time, completion: { image in
             if let image = image {
                 self.guest.sendImage(image)
                 self.next()
