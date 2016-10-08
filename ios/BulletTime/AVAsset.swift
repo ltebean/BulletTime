@@ -11,7 +11,7 @@ import Async
 
 extension AVAsset {
     
-    func generateImageAtTime(time: CMTime, completion: (image: UIImage?) -> ()) {
+    func generateImageAtTime(time: CMTime, completion: (image: UIImage?) -> ()) -> AVAssetImageGenerator {
         let imageGenerator = AVAssetImageGenerator(asset: self)
         imageGenerator.requestedTimeToleranceAfter = kCMTimeZero
         imageGenerator.requestedTimeToleranceBefore = kCMTimeZero
@@ -25,6 +25,7 @@ extension AVAsset {
                 }
             }
         }
+        return imageGenerator
     }
     
     func generateImagesAtTimes(times: [CMTime], completion: (images: [UIImage]) -> ()) -> AVAssetImageGenerator {
