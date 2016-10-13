@@ -10,7 +10,7 @@ import UIKit
 import MultipeerConnectivity
 import SwiftyJSON
 
-class BroadcastViewController: AnimatableViewController {
+class BroadcastViewController: UIViewController {
     
     let guest = Guest.current
     var totalCount = 0
@@ -77,9 +77,6 @@ class BroadcastViewController: AnimatableViewController {
         pop()
     }
     
-    override func viewsToAnimate() -> [UIView] {
-        return [mainView, buttonNext]
-    }
 }
 
 extension BroadcastViewController: LTCircleViewDataSource {
@@ -97,4 +94,12 @@ extension BroadcastViewController: LTCircleViewDataSource {
         }
         return bubble
     }
+}
+
+extension BroadcastViewController: AnimatableViewController {
+    
+    func viewsToAnimate() -> [UIView] {
+        return [mainView, buttonNext]
+    }
+
 }

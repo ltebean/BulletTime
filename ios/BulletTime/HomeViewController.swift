@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeChildViewController: AnimatableViewController {
+class HomeChildViewController: UIViewController {
     
     weak var homeVC: HomeViewController!
     

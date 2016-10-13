@@ -12,7 +12,7 @@ import MultipeerConnectivity
 import Async
 import SVProgressHUD
 
-class CentralViewController: AnimatableViewController {
+class CentralViewController: UIViewController {
     
     var cameraController: CameraViewController!
     let host = Host.current
@@ -72,13 +72,16 @@ class CentralViewController: AnimatableViewController {
         pop()
     }
     
-    override func viewsToAnimate() -> [UIView] {
+}
+
+
+extension CentralViewController: AnimatableViewController {
+    
+    func viewsToAnimate() -> [UIView] {
         return [mainView]
     }
     
-    override func backgroundColor() -> UIColor {
+    func backgroundColor() -> UIColor {
         return UIColor.blackColor()
     }
-    
 }
-

@@ -10,7 +10,7 @@ import UIKit
 import MultipeerConnectivity
 import SwiftyJSON
 
-class DiscoveriesViewController: AnimatableViewController {
+class DiscoveriesViewController: UIViewController {
 
     @IBOutlet weak var buttonNext: UIButton!
     @IBOutlet weak var circleView: LTCircleView!
@@ -61,9 +61,7 @@ class DiscoveriesViewController: AnimatableViewController {
         push(R.storyboard.shoot.central()!)
     }
     
-    override func viewsToAnimate() -> [UIView] {
-        return [mainView, buttonNext]
-    }
+    
 }
 
 
@@ -82,4 +80,12 @@ extension DiscoveriesViewController: LTCircleViewDataSource {
         }
         return bubble
     }
+}
+
+extension DiscoveriesViewController: AnimatableViewController {
+    
+    func viewsToAnimate() -> [UIView] {
+        return [mainView, buttonNext]
+    }
+    
 }

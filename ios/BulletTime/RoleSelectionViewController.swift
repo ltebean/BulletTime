@@ -60,7 +60,11 @@ class RoleSelectionViewController: HomeChildViewController {
         })
     }
     
-    override func viewsToAnimate() -> [UIView] {
+}
+
+extension RoleSelectionViewController: AnimatableViewController {
+    
+    func viewsToAnimate() -> [UIView] {
         return [mainView, buttonHost, buttonGuest]
     }
 

@@ -11,7 +11,7 @@ import SwiftyJSON
 import MultipeerConnectivity
 import Async
 
-class PeripheralViewController: AnimatableViewController {
+class PeripheralViewController: UIViewController {
 
     var cameraController: CameraViewController!
     var displayVC: DisplayViewController!
@@ -104,13 +104,18 @@ class PeripheralViewController: AnimatableViewController {
         pop()
     }
     
-    override func viewsToAnimate() -> [UIView] {
+}
+
+extension PeripheralViewController: AnimatableViewController {
+    
+    func viewsToAnimate() -> [UIView] {
         return [mainView]
     }
     
-    override func backgroundColor() -> UIColor {
+    func backgroundColor() -> UIColor {
         return UIColor.blackColor()
     }
+    
 }
 
 

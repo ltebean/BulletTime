@@ -9,7 +9,7 @@
 import UIKit
 import AssetsLibrary
 
-class DisplayViewController: AnimatableViewController {
+class DisplayViewController: UIViewController {
 
     @IBOutlet weak var playerView: PlayerView!
     var productService = ProductService.sharedInstance
@@ -42,8 +42,11 @@ class DisplayViewController: AnimatableViewController {
         Share.shareAsVideo(product, inViewController: self)
     }
     
-    override func viewsToAnimate() -> [UIView] {
+}
+
+extension DisplayViewController: AnimatableViewController {
+    
+    func viewsToAnimate() -> [UIView] {
         return view.subviews
     }
 }
-

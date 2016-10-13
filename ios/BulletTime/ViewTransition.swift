@@ -9,11 +9,14 @@
 import UIKit
 import Async
 
-class AnimatableViewController: UIViewController {
+protocol AnimatableViewController: class {
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
+    func viewsToAnimate() -> [UIView]
+    
+    func backgroundColor() -> UIColor
+}
+
+extension AnimatableViewController {
     
     func viewsToAnimate() -> [UIView] {
         return []
@@ -22,40 +25,8 @@ class AnimatableViewController: UIViewController {
     func backgroundColor() -> UIColor {
         return UIColor.whiteColor()
     }
-    
-    func push(viewController: AnimatableViewController) {
-        let views = viewsToAnimate()
-        UIView.animateWithDuration(0.35,  delay: 0, options: [.CurveEaseOut], animations: {
-            views.forEach {
-                $0.alpha = 0
-                $0.transform.ty = -60
-            }
-            self.view.backgroundColor = viewController.backgroundColor()
-        }, completion: { finished in
-            views.forEach {
-                $0.alpha = 1
-                $0.transform.ty = 0
-            }
-            self.view.backgroundColor = self.backgroundColor()
-            self.navigationController?.pushViewController(viewController, animated: true)
-        })
-    }
-    
-    func pop() {
-        let targetVC = navigationController?.viewControllers[(navigationController?.viewControllers.count)! - 2] as! AnimatableViewController
-        let views = viewsToAnimate()
-        UIView.animateWithDuration(0.35,  delay: 0, options: [.CurveEaseOut], animations: {
-            views.forEach {
-                $0.alpha = 0
-                $0.transform.ty = 60
-            }
-            self.view.backgroundColor = targetVC.backgroundColor()
-        }, completion: { finished in
-            self.navigationController?.popViewControllerAnimated(true)
-        })
-    }
-
 }
+
 
 class ViewTransitionDelegate: NSObject, UINavigationControllerDelegate {
     
@@ -88,43 +59,67 @@ class ViewTransition: NSObject, UIViewControllerAnimatedTransitioning, UIGesture
     var push = true
     
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return 0.35
+        return 0.7
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)! as! AnimatableViewController
-        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)! as! AnimatableViewController
+        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)! 
+        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         
+        let fromView = fromVC.view
         let toView = toVC.view
         let containerView = transitionContext.containerView()
-        containerView.addSubview(toView)
 
-        let duration = transitionDuration(transitionContext)
+        let duration = transitionDuration(transitionContext) / 2
         
         if (push) {
             handleBack(toVC)
         }
         
-        let views = toVC.viewsToAnimate()
-        
-        views.forEach {
-            $0.alpha = 0
-            $0.transform.ty = push ? 60 : -60
-        }
-        
+        let fromAnimatable = fromVC as! AnimatableViewController
+        let toAnimatable = toVC as! AnimatableViewController
+
+        let fromViews = fromAnimatable.viewsToAnimate()
+        let toViews = toAnimatable.viewsToAnimate()
+
         UIView.animateWithDuration(duration,  delay: 0, options: [.CurveEaseOut], animations: {
-            views.forEach {
+            fromViews.forEach {
+                $0.alpha = 0
+                $0.transform.ty = self.push ? -60 : 60
+            }
+            fromView.backgroundColor = toAnimatable.backgroundColor()
+        }, completion: { finished in
+            fromViews.forEach {
                 $0.alpha = 1
                 $0.transform.ty = 0
             }
-        }, completion: { finished in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            fromView.backgroundColor = fromAnimatable.backgroundColor()
+            
+            containerView.addSubview(toView)
+            
+            
+            toViews.forEach {
+                $0.alpha = 0
+                $0.transform.ty = self.push ? 60 : -60
+            }
+            
+            UIView.animateWithDuration(duration,  delay: 0, options: [.CurveEaseOut], animations: {
+                toViews.forEach {
+                    $0.alpha = 1
+                    $0.transform.ty = 0
+                }
+            }, completion: { finished in
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            })
+
         })
+        
+        
     
     }
     
-    func handleBack(vc: AnimatableViewController) {
+    func handleBack(vc: UIViewController) {
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(ViewTransition.handleSwipe))
         gesture.direction = .Down
         vc.view.addGestureRecognizer(gesture)
@@ -132,7 +127,7 @@ class ViewTransition: NSObject, UIViewControllerAnimatedTransitioning, UIGesture
     
     func handleSwipe(gesture: UISwipeGestureRecognizer) {
         if gesture.state == .Ended {
-            let vc = navigationController.topViewController as! AnimatableViewController
+            let vc = navigationController.topViewController!
             vc.pop()
         }
     }
