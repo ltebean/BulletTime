@@ -10,9 +10,7 @@ import UIKit
 import Async
 
 protocol AnimatableViewController: class {
-    
     func viewsToAnimate() -> [UIView]
-    
     func backgroundColor() -> UIColor
 }
 
@@ -98,7 +96,6 @@ class ViewTransition: NSObject, UIViewControllerAnimatedTransitioning, UIGesture
             
             containerView.addSubview(toView)
             
-            
             toViews.forEach {
                 $0.alpha = 0
                 $0.transform.ty = self.push ? 60 : -60
@@ -112,11 +109,7 @@ class ViewTransition: NSObject, UIViewControllerAnimatedTransitioning, UIGesture
             }, completion: { finished in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
             })
-
         })
-        
-        
-    
     }
     
     func handleBack(vc: UIViewController) {

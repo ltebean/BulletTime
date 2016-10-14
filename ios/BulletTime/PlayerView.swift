@@ -114,6 +114,5 @@ class PlayerView: UIView {
         }
     }
 
-    
 }
 
