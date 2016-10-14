@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class BroadcastViewController: UIViewController {
     
-    let guest = Guest.current
+    let guest = Guest.current()
     var totalCount = 0
     var index = 0
     
@@ -25,10 +25,10 @@ class BroadcastViewController: UIViewController {
         super.viewDidLoad()
         circleView.dataSource = self
 
-        guest?.onDisConnected = { [weak self] in
+        guest.onDisConnected = { [weak self] in
             self?.showEmptyView()
         }
-        guest?.onPeersUpdates = { [weak self] index, totalCount in
+        guest.onPeersUpdates = { [weak self] index, totalCount in
             self?.updatePeersInfo(index, totalCount: totalCount)
         }
     }
@@ -40,8 +40,8 @@ class BroadcastViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guest?.startAdvertising()
-        guest?.sendReadySignal()
+        guest.startAdvertising()
+        guest.sendReadySignal()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

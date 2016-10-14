@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class Host: NSObject {
     
-    static var current: Host!
+    private static var shared: Host!
     
     let central = MCPeerID(displayName: UIDevice.current.name)
     let sessionDelegate = SessionDelegate()
@@ -134,8 +134,12 @@ class Host: NSObject {
 
     // MARK: life cycle
     static func reset() {
-        current = Host()
-        current.setup()
+        shared = Host()
+        shared.setup()
+    }
+    
+    static func current() -> Host {
+        return shared
     }
     
     deinit {

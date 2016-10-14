@@ -16,7 +16,7 @@ class DiscoveriesViewController: UIViewController {
     @IBOutlet weak var circleView: LTCircleView!
     @IBOutlet weak var mainView: UIView!
     
-    let host = Host.current!
+    let host = Host.current()
     
     
     override func viewDidLoad() {

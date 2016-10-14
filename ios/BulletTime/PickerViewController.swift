@@ -20,7 +20,7 @@ class PickerViewController: UIViewController {
     @IBOutlet weak var bgView: DesignableView!
     @IBOutlet weak var bgCenter: NSLayoutConstraint!
     
-    let host = Host.current
+    let host = Host.current()
 
     let pickerWidth = 280
     let pickerHeight = 80
@@ -43,14 +43,14 @@ class PickerViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(PickerViewController.tapped(_:)))
         pickerView.addGestureRecognizer(tap)
         
-        host?.onAllPeerImageReceived = { [weak self] images in
+        host.onAllPeerImageReceived = { [weak self] images in
             self?.allImageReceived(images)
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        host?.resetImageReceived()
+        host.resetImageReceived()
         imageView.image = images[currentIndex]
     }
     
@@ -92,7 +92,7 @@ class PickerViewController: UIViewController {
     func allImageReceived(_ images: [UIImage]) {
         var result = [imageTaken]
         result.append(contentsOf: images)
-        host?.sendFinalResult(result)
+        host.sendFinalResult(result)
         Async.main(after: 0.8) {
             self.displayVC.images = result
         }
@@ -100,7 +100,7 @@ class PickerViewController: UIViewController {
     
     
     @IBAction func buttonNextPressed(_ sender: AnyObject) {
-        host?.sendUseFrame(atTime: times[currentIndex])
+        host.sendUseFrame(atTime: times[currentIndex])
         next()
     }
     
@@ -109,7 +109,7 @@ class PickerViewController: UIViewController {
     }
     
     func next() {
-        if host?.peersToNotify.count == 0 {
+        if host.peersToNotify.count == 0 {
             allImageReceived([])
         }
         displayVC = R.storyboard.shoot.display()!

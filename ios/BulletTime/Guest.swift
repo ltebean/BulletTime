@@ -11,9 +11,9 @@ import MultipeerConnectivity
 import SwiftyJSON
 
 
-class Guest: NSObject, MCNearbyServiceAdvertiserDelegate {
+class Guest: NSObject {
     
-    static var current: Guest!
+    static var shared: Guest!
     
     let peer = MCPeerID(displayName: UIDevice.current.name)
     var serviceAdvertiser: MCNearbyServiceAdvertiser!
@@ -117,27 +117,28 @@ class Guest: NSObject, MCNearbyServiceAdvertiserDelegate {
     }
     
     // MARK: life cycle
+    static func current() -> Guest {
+        return shared
+    }
+    
     static func reset() {
-        current = Guest()
-        current.setup()
+        shared = Guest()
+        shared.setup()
     }
-    
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        
-    }
-    
-    
-    //    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-    //        central = peerID
-    //        invitationHandler(true, session)
-    //    }
-    
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
-        
-    }
-    
     
     deinit {
         serviceAdvertiser.stopAdvertisingPeer()
+    }
+}
+
+extension Guest: MCNearbyServiceAdvertiserDelegate {
+    
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+        central = peerID
+        invitationHandler(true, session)
+    }
+    
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
+        
     }
 }

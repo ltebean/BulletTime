@@ -24,7 +24,7 @@ class EditorViewController: UIViewController {
     fileprivate var asset: AVAsset!
     fileprivate var playerObserver: AnyObject?
 
-    let host = Host.current!
+    let host = Host.current()
     
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var playerView: UIView!

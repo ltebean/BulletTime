@@ -19,7 +19,7 @@ class PeripheralViewController: UIViewController {
     var asset: AVAsset!
     var imageGenerator: AVAssetImageGenerator!
 
-    var guest = Guest.current!
+    var guest = Guest.current()
 
     @IBOutlet weak var sharedView: UIButton!
     @IBOutlet weak var mainView: UIView!

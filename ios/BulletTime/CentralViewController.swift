@@ -15,7 +15,7 @@ import SVProgressHUD
 class CentralViewController: UIViewController {
     
     var cameraController: CameraViewController!
-    let host = Host.current!
+    let host = Host.current()
     var shootTime: Float64 = 0
     var imageGenerator: AVAssetImageGenerator!
     
