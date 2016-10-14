@@ -109,10 +109,11 @@ class LTCircleView: UIView {
     
     override func drawRect(rect: CGRect) {
         let path = UIBezierPath(ovalInRect: rect.insetBy(dx: 1, dy: 1))
-        let pattern: [CGFloat] = [6.0, 6.0]
+        let pattern: [CGFloat] = [4.0, 10.0]
         path.setLineDash(pattern, count: 2, phase: 0.0)
         path.lineCapStyle = CGLineCap.Round
-        UIColor.grayColor().setStroke()
+        path.lineWidth = 2
+        UIColor(hex: 0xcccccc).setStroke()
         path.stroke()
     }
     

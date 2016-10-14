@@ -37,8 +37,7 @@
                                             <frame key="frameInset" width="320" height="410"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NtG-hL-7xW">
-                                                    <frame key="frameInset" width="320" height="400"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NtG-hL-7xW">
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fmx-cz-Zrj" customClass="PlayerView" customModule="BulletTime" customModuleProvider="target">
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -67,23 +66,23 @@
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 1, 2015" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lE2-bP-fpO">
-                                                            <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="18"/>
                                                             <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="lE2-bP-fpO" firstAttribute="leading" secondItem="NtG-hL-7xW" secondAttribute="leading" constant="20" id="6E9-sw-ryc"/>
+                                                        <constraint firstItem="lE2-bP-fpO" firstAttribute="leading" secondItem="NtG-hL-7xW" secondAttribute="leading" constant="30" id="6E9-sw-ryc"/>
                                                         <constraint firstAttribute="bottom" secondItem="Fmx-cz-Zrj" secondAttribute="bottom" constant="91" id="7G3-Mf-1Bq"/>
                                                         <constraint firstItem="lE2-bP-fpO" firstAttribute="centerY" secondItem="7lX-8a-vt5" secondAttribute="centerY" id="AIw-eX-nvZ"/>
                                                         <constraint firstItem="Fmx-cz-Zrj" firstAttribute="leading" secondItem="NtG-hL-7xW" secondAttribute="leading" id="BMh-7K-twX"/>
-                                                        <constraint firstItem="SqP-oq-YBw" firstAttribute="top" secondItem="Fmx-cz-Zrj" secondAttribute="bottom" constant="12" id="GVi-Td-51K"/>
+                                                        <constraint firstItem="SqP-oq-YBw" firstAttribute="top" secondItem="Fmx-cz-Zrj" secondAttribute="bottom" constant="10" id="GVi-Td-51K"/>
                                                         <constraint firstItem="Fmx-cz-Zrj" firstAttribute="top" secondItem="NtG-hL-7xW" secondAttribute="top" id="PMs-Ke-QdT"/>
                                                         <constraint firstAttribute="trailing" secondItem="Fmx-cz-Zrj" secondAttribute="trailing" id="Q2x-gW-yMk"/>
-                                                        <constraint firstItem="SqP-oq-YBw" firstAttribute="leading" secondItem="7lX-8a-vt5" secondAttribute="trailing" constant="17" id="ppF-wW-Dca"/>
+                                                        <constraint firstItem="SqP-oq-YBw" firstAttribute="leading" secondItem="7lX-8a-vt5" secondAttribute="trailing" constant="10" id="ppF-wW-Dca"/>
                                                         <constraint firstItem="7lX-8a-vt5" firstAttribute="centerY" secondItem="SqP-oq-YBw" secondAttribute="centerY" id="rI3-Nm-YDQ"/>
-                                                        <constraint firstAttribute="trailing" secondItem="SqP-oq-YBw" secondAttribute="trailing" constant="15" id="z0W-Aa-H9z"/>
+                                                        <constraint firstAttribute="trailing" secondItem="SqP-oq-YBw" secondAttribute="trailing" constant="26" id="z0W-Aa-H9z"/>
                                                         <constraint firstItem="7lX-8a-vt5" firstAttribute="leading" secondItem="lE2-bP-fpO" secondAttribute="trailing" constant="16" id="zgL-uC-A1A"/>
                                                     </constraints>
                                                 </view>
@@ -105,7 +104,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iSH-LN-B0W">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zva-ce-KFS">
-                                        <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="21"/>
+                                        <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="24"/>
                                         <state key="normal" title="About">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -113,21 +112,12 @@
                                             <action selector="buttonAboutPressed:" destination="Pqc-ue-iRd" eventType="touchUpInside" id="SuC-3c-KMj"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Yr-Iv-Ho7">
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="2" id="0Fo-g1-rAN"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="0Yr-Iv-Ho7" firstAttribute="leading" secondItem="Zva-ce-KFS" secondAttribute="leading" id="0xB-jQ-3NS"/>
-                                    <constraint firstItem="Zva-ce-KFS" firstAttribute="leading" secondItem="iSH-LN-B0W" secondAttribute="leading" constant="20" id="BT5-sH-jwC"/>
-                                    <constraint firstItem="0Yr-Iv-Ho7" firstAttribute="top" secondItem="Zva-ce-KFS" secondAttribute="bottom" constant="-9" id="aJp-SI-kjS"/>
-                                    <constraint firstAttribute="height" constant="60" id="iLA-VP-AXR"/>
+                                    <constraint firstItem="Zva-ce-KFS" firstAttribute="leading" secondItem="iSH-LN-B0W" secondAttribute="leading" constant="30" id="BT5-sH-jwC"/>
+                                    <constraint firstAttribute="height" constant="80" id="iLA-VP-AXR"/>
                                     <constraint firstItem="Zva-ce-KFS" firstAttribute="centerY" secondItem="iSH-LN-B0W" secondAttribute="centerY" constant="1" id="n4f-lC-W5M"/>
-                                    <constraint firstItem="0Yr-Iv-Ho7" firstAttribute="trailing" secondItem="Zva-ce-KFS" secondAttribute="trailing" id="s2i-BQ-Z1c"/>
                                 </constraints>
                             </view>
                         </subviews>

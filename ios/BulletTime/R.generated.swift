@@ -411,10 +411,10 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIImage(named: "button-save-as-video") == nil { throw ValidationError(description: "[R.swift] Image named 'button-save-as-video' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIImage(named: "icon-back-white") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-back-white' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIImage(named: "icon-back-grey") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-back-grey' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIImage(named: "icon-confirm") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-confirm' is used in storyboard 'Shoot', but couldn't be loaded.") }
+        if UIImage(named: "icon-share-bold") == nil { throw ValidationError(description: "[R.swift] Image named 'icon-share-bold' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if _R.storyboard.shoot().central() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'central' could not be loaded from storyboard 'Shoot' as 'CentralViewController'.") }
         if _R.storyboard.shoot().discoveries() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'discoveries' could not be loaded from storyboard 'Shoot' as 'DiscoveriesViewController'.") }
         if _R.storyboard.shoot().editor() == nil { throw ValidationError(description:"[R.swift] ViewController with identifier 'editor' could not be loaded from storyboard 'Shoot' as 'EditorViewController'.") }

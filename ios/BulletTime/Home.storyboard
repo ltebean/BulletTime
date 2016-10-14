@@ -6,8 +6,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="lineto-circular-black.ttf">
-            <string>Circular-Black</string>
+        <array key="lineto-circular-bold.ttf">
+            <string>Circular-Bold</string>
         </array>
     </customFonts>
     <scenes>
@@ -37,7 +37,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdZ-R9-FpO">
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="24"/>
                                         <state key="normal" title="Me">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -47,7 +47,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmj-pr-lhO">
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="24"/>
                                         <state key="normal" title="Shoot">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -60,11 +60,11 @@
                                 <constraints>
                                     <constraint firstItem="jmj-pr-lhO" firstAttribute="leading" secondItem="yMN-vq-92R" secondAttribute="leading" id="3JS-cx-n8w"/>
                                     <constraint firstAttribute="bottom" secondItem="jmj-pr-lhO" secondAttribute="bottom" id="5lt-Jw-d8L"/>
-                                    <constraint firstAttribute="width" constant="152" id="ERm-Ax-0Xo"/>
+                                    <constraint firstAttribute="width" constant="160" id="ERm-Ax-0Xo"/>
                                     <constraint firstItem="jmj-pr-lhO" firstAttribute="top" secondItem="yMN-vq-92R" secondAttribute="top" id="Glf-oA-x3d"/>
                                     <constraint firstItem="MdZ-R9-FpO" firstAttribute="width" secondItem="jmj-pr-lhO" secondAttribute="width" id="Gru-Pc-4k0"/>
                                     <constraint firstAttribute="bottom" secondItem="MdZ-R9-FpO" secondAttribute="bottom" id="O9I-do-nm9"/>
-                                    <constraint firstAttribute="height" constant="60" id="YRy-Mz-q9t"/>
+                                    <constraint firstAttribute="height" constant="80" id="YRy-Mz-q9t"/>
                                     <constraint firstAttribute="trailing" secondItem="MdZ-R9-FpO" secondAttribute="trailing" id="byC-wa-304"/>
                                     <constraint firstItem="MdZ-R9-FpO" firstAttribute="top" secondItem="yMN-vq-92R" secondAttribute="top" id="o3o-B5-2lm"/>
                                     <constraint firstItem="MdZ-R9-FpO" firstAttribute="leading" secondItem="jmj-pr-lhO" secondAttribute="trailing" id="tIR-VV-A67"/>

@@ -53,7 +53,7 @@ class BubbleView: UIView {
         
         haloView = UIView(frame: bounds)
         haloView.layer.masksToBounds = true
-        haloView.frame = bounds.insetBy(dx: -8, dy: -8)
+        haloView.frame = bounds.insetBy(dx: -10, dy: -10)
         haloView.layer.cornerRadius = haloView.frame.width / 2
         haloView.center = CGPoint(x: bounds.width / 2, y: bounds.height / 2)
         addSubview(haloView)

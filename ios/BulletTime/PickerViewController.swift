@@ -22,9 +22,9 @@ class PickerViewController: UIViewController {
     
     let host = Host.current
 
-    let pickerWidth = 260
-    let pickerHeight = 70
-    let bgViewCenterX = 260 / 2 - 70 / 2
+    let pickerWidth = 280
+    let pickerHeight = 80
+    let bgViewCenterX = 280 / 2 - 80 / 2
     var currentIndex = 1 {
         didSet {
             imageView.image = images[currentIndex]
@@ -46,8 +46,6 @@ class PickerViewController: UIViewController {
         host.onAllPeerImageReceived = { [weak self] images in
             self?.allImageReceived(images)
         }
-        
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -73,17 +71,17 @@ class PickerViewController: UIViewController {
             currentIndex = 2
             center = bgViewCenterX
         }
-        UIView.animateWithDuration(0.1, animations: {
+        UIView.animateWithDuration(0.15, delay: 0, options: [.CurveEaseOut], animations: {
             self.bgCenter.constant = CGFloat(center)
             self.pickerView.layoutIfNeeded()
-        })
+        }, completion: nil)
         showNextButton()
     }
     
     func showNextButton() {
         buttonNext.hidden = false
         buttonNext.alpha = 0
-        UIView.animateWithDuration(0.2, delay: 0.4, options: [], animations: {
+        UIView.animateWithDuration(0.2, delay: 0.4, options: [.CurveEaseOut], animations: {
             self.buttonNext.alpha = 1
         }, completion: nil)
 

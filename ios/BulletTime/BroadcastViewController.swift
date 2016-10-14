@@ -86,7 +86,7 @@ extension BroadcastViewController: LTCircleViewDataSource {
     }
     
     func viewAtIndex(index: Int, inCircleView circleView: LTCircleView) -> UIView {
-        let bubble = BubbleView(frame: CGRect(x: 0, y: 0, width: 36, height: 36))
+        let bubble = BubbleView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         bubble.color = UIColor.steppedColor(fromHex: BubbleView.startColorHex, endHex: BubbleView.endColorHex, totalCount: totalCount, index: index)
         bubble.text = "\(index + 1)"
         if (index == self.index) {
