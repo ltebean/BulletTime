@@ -11,7 +11,7 @@ import UIKit
 extension UIView {
     func toImage() -> UIImage {
         UIGraphicsBeginImageContext(frame.size)
-        drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
+        drawHierarchy(in: bounds, afterScreenUpdates: true)
 //        layer.renderInContext(UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()

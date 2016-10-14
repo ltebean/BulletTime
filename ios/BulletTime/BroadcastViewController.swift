@@ -25,26 +25,26 @@ class BroadcastViewController: UIViewController {
         super.viewDidLoad()
         circleView.dataSource = self
 
-        guest.onDisConnected = { [weak self] in
+        guest?.onDisConnected = { [weak self] in
             self?.showEmptyView()
         }
-        guest.onPeersUpdates = { [weak self] index, totalCount in
+        guest?.onPeersUpdates = { [weak self] index, totalCount in
             self?.updatePeersInfo(index, totalCount: totalCount)
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         showConnecting()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guest.startAdvertising()
-        guest.sendReadySignal()
+        guest?.startAdvertising()
+        guest?.sendReadySignal()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
     
@@ -61,7 +61,7 @@ class BroadcastViewController: UIViewController {
     }
     
     
-    func updatePeersInfo(index: Int, totalCount: Int) {
+    func updatePeersInfo(_ index: Int, totalCount: Int) {
         self.totalCount = totalCount
         self.index = index
         circleView.reloadData()
@@ -69,11 +69,11 @@ class BroadcastViewController: UIViewController {
     }
 
     
-    @IBAction func buttonNextPressed(sender: AnyObject) {
+    @IBAction func buttonNextPressed(_ sender: AnyObject) {
         push(R.storyboard.shoot.peripheral()!)
     }
 
-    @IBAction func back(sender: AnyObject) {
+    @IBAction func back(_ sender: AnyObject) {
         pop()
     }
     
@@ -81,11 +81,11 @@ class BroadcastViewController: UIViewController {
 
 extension BroadcastViewController: LTCircleViewDataSource {
     
-    func numberOfItemsInCircleView(circleView: LTCircleView) -> Int {
+    func numberOfItemsInCircleView(_ circleView: LTCircleView) -> Int {
         return totalCount
     }
     
-    func viewAtIndex(index: Int, inCircleView circleView: LTCircleView) -> UIView {
+    func viewAtIndex(_ index: Int, inCircleView circleView: LTCircleView) -> UIView {
         let bubble = BubbleView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         bubble.color = UIColor.steppedColor(fromHex: BubbleView.startColorHex, endHex: BubbleView.endColorHex, totalCount: totalCount, index: index)
         bubble.text = "\(index + 1)"

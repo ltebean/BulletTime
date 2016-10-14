@@ -14,21 +14,21 @@ import Photos
 
 class ShareItem: NSObject, UIActivityItemSource {
     
-    let data: NSData
+    let data: Data
     
-    init(data: NSData) {
+    init(data: Data) {
         self.data = data
     }
     
-    func activityViewControllerPlaceholderItem(activityViewController: UIActivityViewController) -> AnyObject {
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
         return data
     }
     
-    func activityViewController(activityViewController: UIActivityViewController, itemForActivityType activityType: String) -> AnyObject? {
+    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivityType) -> Any? {
         return data
     }
     
-    func activityViewController(activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: String?) -> String {
+    func activityViewController(_ activityViewController: UIActivityViewController, dataTypeIdentifierForActivityType activityType: UIActivityType?) -> String {
         return CFBridgingRetain(kUTTypeMPEG4) as! String
     }
 }
@@ -77,29 +77,31 @@ class Share: NSObject {
 //        
 //    }
 
-    private static func shareURL(url: NSURL, inViewController vc: UIViewController) {
+    fileprivate static func shareURL(_ url: URL, inViewController vc: UIViewController) {
         let activityVC = UIActivityViewController(activityItems:[url], applicationActivities: nil)
-        vc.presentViewController(activityVC, animated: true, completion: nil)
+        vc.present(activityVC, animated: true, completion: nil)
     }
     
-    static func shareAsVideo(product: Product, inViewController vc: UIViewController) {
+    static func shareAsVideo(_ product: Product, inViewController vc: UIViewController) {
         let images = product.images
         SVProgressHUD.show()
-        vc.view.userInteractionEnabled = false
+        vc.view.isUserInteractionEnabled = false
 
-        let settings = CEMovieMaker.videoSettingsWithCodec(AVVideoCodecH264, withWidth: 600, andHeight: 600)
-        let maker = CEMovieMaker(settings: settings)
+        let settings = CEMovieMaker.videoSettings(withCodec: AVVideoCodecH264, withWidth: 600, andHeight: 600)
+        let maker = CEMovieMaker(settings: settings)!
         var finalImages = [UIImage]()
         for _ in 1...5 {
-            finalImages.appendContentsOf(images)
-            finalImages.appendContentsOf(images.reverse())
+            finalImages.append(contentsOf: images)
+            finalImages.append(contentsOf: images.reversed())
 
         }
-        maker.createMovieFromImages(finalImages, withCompletion: { url in
+        maker.createMovie(from: finalImages, withCompletion: { url in
             SVProgressHUD.dismiss()
-            vc.view.userInteractionEnabled = true
-            let activityVC = UIActivityViewController(activityItems:[url], applicationActivities: nil)
-            vc.presentViewController(activityVC, animated: true, completion: nil)
+            vc.view.isUserInteractionEnabled = true
+            let data = try! Data(contentsOf: url!)
+            print(url, data)
+            let activityVC = UIActivityViewController(activityItems:[url!], applicationActivities: nil)
+            vc.present(activityVC, animated: true, completion: nil)
         })
 
     }

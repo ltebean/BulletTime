@@ -10,8 +10,8 @@ import UIKit
 
 
 protocol LTCircleViewDataSource: class {
-    func numberOfItemsInCircleView(circleView: LTCircleView) -> Int
-    func viewAtIndex(index: Int, inCircleView circleView: LTCircleView) -> UIView
+    func numberOfItemsInCircleView(_ circleView: LTCircleView) -> Int
+    func viewAtIndex(_ index: Int, inCircleView circleView: LTCircleView) -> UIView
 }
 
 @IBDesignable
@@ -19,7 +19,7 @@ class LTCircleView: UIView {
     
     var reusableViews: [UILabel] = []
     var itemSize = 30
-    var spacingAngle: Double = 30
+    var spacingAngle: Double = 35
     var views: [UIView] = []
     
     var imageView: UIImageView!
@@ -39,7 +39,7 @@ class LTCircleView: UIView {
     
     func load() {
         imageView = UIImageView(frame: bounds)
-        imageView.contentMode = .Center
+        imageView.contentMode = .center
         imageView.image = gestures.randomItem()
         addSubview(imageView)
     }
@@ -68,12 +68,12 @@ class LTCircleView: UIView {
     }
     
     func reArrange() {
-        for (index, view) in views.enumerate() {
+        for (index, view) in views.enumerated() {
             view.center = centerForItem(atIndex: index)
         }
     }
     
-    func insertItemAtIndex(index: Int) {
+    func insertItemAtIndex(_ index: Int) {
         guard index <= views.count else {
             return
         }
@@ -82,9 +82,9 @@ class LTCircleView: UIView {
         viewToAdd.alpha = 0
         addSubview(viewToAdd)
         
-        views.insert(viewToAdd, atIndex: index)
+        views.insert(viewToAdd, at: index)
         
-        UIView.animateWithDuration(0.5,delay: 0, options: [.BeginFromCurrentState], animations: {
+        UIView.animate(withDuration: 0.5,delay: 0, options: [.beginFromCurrentState], animations: {
             self.reArrange()
             viewToAdd.alpha = 1
         }, completion: { finished in
@@ -92,13 +92,13 @@ class LTCircleView: UIView {
         })
     }
     
-    func removeItemAtIndex(index: Int) {
+    func removeItemAtIndex(_ index: Int) {
         guard index < views.count else {
             return
         }
         let viewToRemove = views[index]
-        views.removeAtIndex(index)
-        UIView.animateWithDuration(0.5, delay: 0, options: [.BeginFromCurrentState], animations: {
+        views.remove(at: index)
+        UIView.animate(withDuration: 0.5, delay: 0, options: [.beginFromCurrentState], animations: {
             self.reArrange()
             viewToRemove.alpha = 0
         }, completion: { finished in
@@ -107,11 +107,11 @@ class LTCircleView: UIView {
         })
     }
     
-    override func drawRect(rect: CGRect) {
-        let path = UIBezierPath(ovalInRect: rect.insetBy(dx: 1, dy: 1))
+    override func draw(_ rect: CGRect) {
+        let path = UIBezierPath(ovalIn: rect.insetBy(dx: 1, dy: 1))
         let pattern: [CGFloat] = [4.0, 10.0]
         path.setLineDash(pattern, count: 2, phase: 0.0)
-        path.lineCapStyle = CGLineCap.Round
+        path.lineCapStyle = CGLineCap.round
         path.lineWidth = 2
         UIColor(hex: 0xcccccc).setStroke()
         path.stroke()

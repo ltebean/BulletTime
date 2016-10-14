@@ -11,39 +11,39 @@ import Async
 
 extension AVAsset {
     
-    func generateImageAtTime(time: CMTime, completion: (image: UIImage?) -> ()) -> AVAssetImageGenerator {
+    func generateImageAtTime(_ time: CMTime, completion: @escaping (_ image: UIImage?) -> ()) -> AVAssetImageGenerator {
         let imageGenerator = AVAssetImageGenerator(asset: self)
         imageGenerator.requestedTimeToleranceAfter = kCMTimeZero
         imageGenerator.requestedTimeToleranceBefore = kCMTimeZero
         imageGenerator.appliesPreferredTrackTransform = true
-        imageGenerator.generateCGImagesAsynchronouslyForTimes([NSValue(CMTime: time)]) { (requestedTime, image, actualTime, result, error) in
+        imageGenerator.generateCGImagesAsynchronously(forTimes: [NSValue(time: time)]) { (requestedTime, image, actualTime, result, error) in
             Async.main {
                 if let image = image {
-                    completion(image: UIImage(CGImage: image).cropCenterSquare().resize(toSize: Config.imageSize))
+                    completion(UIImage(cgImage: image).cropCenterSquare().resize(toSize: Config.imageSize))
                 } else {
-                    completion(image: nil)
+                    completion(nil)
                 }
             }
         }
         return imageGenerator
     }
     
-    func generateImagesAtTimes(times: [CMTime], completion: (images: [UIImage]) -> ()) -> AVAssetImageGenerator {
+    func generateImagesAtTimes(_ times: [CMTime], completion: @escaping (_ images: [UIImage]) -> ()) -> AVAssetImageGenerator {
         let imageGenerator = AVAssetImageGenerator(asset: self)
         imageGenerator.requestedTimeToleranceAfter = kCMTimeZero
         imageGenerator.requestedTimeToleranceBefore = kCMTimeZero
         imageGenerator.appliesPreferredTrackTransform = true
         
         let timesValue = times.map {
-            NSValue(CMTime: $0)
+            NSValue(time: $0)
         }
         
         var images = [UIImage]()
-        imageGenerator.generateCGImagesAsynchronouslyForTimes(timesValue) { (requestedTime, image, actualTime, result, error) in
-            images.append(UIImage(CGImage: image!).cropCenterSquare().resize(toSize: Config.imageSize))
+        imageGenerator.generateCGImagesAsynchronously(forTimes: timesValue) { (requestedTime, image, actualTime, result, error) in
+            images.append(UIImage(cgImage: image!).cropCenterSquare().resize(toSize: Config.imageSize))
             if images.count == times.count {
                 Async.main {
-                    completion(images: images)
+                    completion(images)
                 }
             }
         }

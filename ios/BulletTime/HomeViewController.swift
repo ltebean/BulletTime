@@ -14,7 +14,7 @@ class HomeChildViewController: UIViewController {
     
     func showTab() {
         homeVC.tab.alpha = 1
-        homeVC.tab.hidden = false
+        homeVC.tab.isHidden = false
     }
     
     func hideTab() {
@@ -22,7 +22,7 @@ class HomeChildViewController: UIViewController {
     }
     
     func removeTab() {
-        homeVC.tab.hidden = true
+        homeVC.tab.isHidden = true
     }
     
     func refresh() {
@@ -51,51 +51,51 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "me" {
-            meVC = segue.destinationViewController as! MeViewController
+            meVC = segue.destination as! MeViewController
             meVC.homeVC = self
         } else if segue.identifier == "shoot" {
-            roleVC = (segue.destinationViewController as! UINavigationController).topViewController as! RoleSelectionViewController
+            roleVC = (segue.destination as! UINavigationController).topViewController as! RoleSelectionViewController
             roleVC.homeVC = self
         }
     }
     
     
-    @IBAction func buttonShootPressed(sender: AnyObject) {
+    @IBAction func buttonShootPressed(_ sender: AnyObject) {
         roleVC.refresh()
         roleView.alpha = 0
-        UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseOut], animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseOut], animations: {
             self.meView.alpha = 0
-            self.buttonMe.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.15)
+            self.buttonMe.backgroundColor = UIColor.black.withAlphaComponent(0.15)
 
         }, completion: { finished in
-            UIView.animateWithDuration(self.animationDuration, delay: 0, options: [.CurveEaseOut], animations: {
-                self.buttonShoot.backgroundColor = UIColor.blackColor()
+            UIView.animate(withDuration: self.animationDuration, delay: 0, options: [.curveEaseOut], animations: {
+                self.buttonShoot.backgroundColor = UIColor.black
                 self.roleView.alpha = 1
             }, completion: { finished in
-                self.view.sendSubviewToBack(self.meView)
+                self.view.sendSubview(toBack: self.meView)
             })
         })
     }
 
-    @IBAction func buttonMePressed(sender: AnyObject) {
+    @IBAction func buttonMePressed(_ sender: AnyObject) {
         meVC.refresh()
         meView.alpha = 0
-        UIView.animateWithDuration(animationDuration, delay: 0, options: [.CurveEaseOut], animations: {
+        UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseOut], animations: {
             self.roleView.alpha = 0
-            self.buttonShoot.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.15)
+            self.buttonShoot.backgroundColor = UIColor.black.withAlphaComponent(0.15)
 
         }, completion: { finished in
-            UIView.animateWithDuration(self.animationDuration, delay: 0, options: [.CurveEaseOut], animations: {
-                self.buttonMe.backgroundColor = UIColor.blackColor()
+            UIView.animate(withDuration: self.animationDuration, delay: 0, options: [.curveEaseOut], animations: {
+                self.buttonMe.backgroundColor = UIColor.black
                 self.meView.alpha = 1
             }, completion: { finished in
-                self.view.sendSubviewToBack(self.roleView)
+                self.view.sendSubview(toBack: self.roleView)
             })
         })
     }

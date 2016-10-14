@@ -12,12 +12,12 @@ import RealmSwift
 
 class Product: Object {
     
-    dynamic var uuid: String = NSUUID().UUIDString
+    dynamic var uuid: String = UUID().uuidString
     dynamic var imageIds: String = ""
-    dynamic var timeCreated = NSDate()
+    dynamic var timeCreated = Date()
     
     lazy var images: [UIImage] = { [unowned self] in
-        let ids = self.imageIds.componentsSeparatedByString(",")
+        let ids = self.imageIds.components(separatedBy: ",")
         return ids.map {
             let path = FileManager.sharedInstance.absolutePath("photo/\($0).jpg")
             return UIImage(contentsOfFile:path)!
@@ -45,8 +45,8 @@ class ProductService: NSObject {
     
     func loadAll() -> [Product] {
         return realm
-            .objects(Product)
-            .sorted("timeCreated", ascending: false)
+            .objects(Product.self)
+            .sorted(byProperty: "timeCreated", ascending: false)
             .flatMap({ e in e })
     }
     
@@ -54,11 +54,11 @@ class ProductService: NSObject {
         let product = Product()
         var imageIds:[String] = []
         for image in images {
-            let uuid = NSUUID().UUIDString
-            fileManager.writeObject(image, toRelativePath: basePath, fileName: "\(uuid).jpg")
+            let uuid = UUID().uuidString
+            let _ = fileManager.writeObject(image, toRelativePath: basePath, fileName: "\(uuid).jpg")
             imageIds.append(uuid)
         }
-        product.imageIds = imageIds.joinWithSeparator(",")
+        product.imageIds = imageIds.joined(separator: ",")
         try! realm.write {
             realm.add(product, update: true)
         }
@@ -66,8 +66,8 @@ class ProductService: NSObject {
     }
     
     
-    func deleteProduct(product: Product) {
-        let ids = product.imageIds.componentsSeparatedByString(",")
+    func deleteProduct(_ product: Product) {
+        let ids = product.imageIds.components(separatedBy: ",")
         for id in ids {
             let path = FileManager.sharedInstance.absolutePath("\(basePath)/\(id).jpg")
             FileManager.sharedInstance.removeFileAtPath(path)

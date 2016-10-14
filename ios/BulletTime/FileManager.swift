@@ -9,68 +9,68 @@
 import Foundation
 import UIKit
 
-public class FileManager: NSObject {
+open class FileManager: NSObject {
     
-    public static let sharedInstance = FileManager()
+    open static let sharedInstance = FileManager()
     
-    let fileManager = NSFileManager.defaultManager()
-    let documentPath = try! NSFileManager.defaultManager().URLForDirectory(NSSearchPathDirectory.DocumentDirectory, inDomain: NSSearchPathDomainMask.UserDomainMask, appropriateForURL: nil, create: true).path!
+    let fileManager = Foundation.FileManager.default
+    let documentPath = try! Foundation.FileManager.default.url(for: Foundation.FileManager.SearchPathDirectory.documentDirectory, in: Foundation.FileManager.SearchPathDomainMask.userDomainMask, appropriateFor: nil, create: true).path
     
-    public func absolutePath(path: String) -> String {
+    open func absolutePath(_ path: String) -> String {
         return documentPath + "/" + path
     }
     
-    public func fileExistsAtRelativePath(path: String) -> Bool {
-        return fileManager.fileExistsAtPath(absolutePath(path))
+    open func fileExistsAtRelativePath(_ path: String) -> Bool {
+        return fileManager.fileExists(atPath: absolutePath(path))
     }
     
-    public func fileExistsAtPath(path: String) -> Bool {
-        return fileManager.fileExistsAtPath(path)
+    open func fileExistsAtPath(_ path: String) -> Bool {
+        return fileManager.fileExists(atPath: path)
     }
     
-    public func writeObject(object: NSObject, toRelativePath relativePath: String, fileName: String) -> Bool {
+    open func writeObject(_ object: NSObject, toRelativePath relativePath: String, fileName: String) -> Bool {
         return writeObject(object, toPath: absolutePath(relativePath), fileName:fileName)
     }
     
-    public func removeFileAtPath(path: String) {
+    open func removeFileAtPath(_ path: String) {
         do {
-            try fileManager.removeItemAtPath(path)
+            try fileManager.removeItem(atPath: path)
         } catch {
             return
         }
     }
     
-    public func removeFileAtURL(url: NSURL) {
+    open func removeFileAtURL(_ url: URL) {
         do {
-            try fileManager.removeItemAtURL(url)
+            try fileManager.removeItem(at: url)
         } catch {
             return
         }
     }
     
-    public func writeObject(object: NSObject, toPath path: String, fileName: String) -> Bool {
+    open func writeObject(_ object: NSObject, toPath path: String, fileName: String) -> Bool {
         do {
-            try fileManager.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
+            try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
         } catch {
             return false
         }
         let finalPath = "\(path)/\(fileName)"
         if let object = object as? NSArray {
-            return object.writeToFile(finalPath, atomically: true)
+            return object.write(toFile: finalPath, atomically: true)
         }
         else if let object = object as? NSDictionary {
-            return object.writeToFile(finalPath, atomically: true)
+            return object.write(toFile: finalPath, atomically: true)
         }
         else if let object = object as? UIImage {
-            return (UIImageJPEGRepresentation(object, 0.8)?.writeToFile(finalPath, atomically: true))!
+            return ((try? UIImageJPEGRepresentation(object, 0.8)?.write(to: URL(fileURLWithPath: finalPath), options: [.atomic])) != nil)
         }
         return false
     }
     
     
-    public func clearDocDir() {
+    open func clearDocDir() {
         do {
-            let files = try fileManager.contentsOfDirectoryAtPath(documentPath)
+            let files = try fileManager.contentsOfDirectory(atPath: documentPath)
             for file in files {
                 removeFileAtPath(absolutePath(file))
             }

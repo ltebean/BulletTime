@@ -15,11 +15,11 @@ class PeripheralViewController: UIViewController {
 
     var cameraController: CameraViewController!
     var displayVC: DisplayViewController!
-    var videoURL: NSURL!
+    var videoURL: URL!
     var asset: AVAsset!
     var imageGenerator: AVAssetImageGenerator!
 
-    var guest = Guest.current
+    var guest = Guest.current!
 
     @IBOutlet weak var sharedView: UIButton!
     @IBOutlet weak var mainView: UIView!
@@ -41,25 +41,25 @@ class PeripheralViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         startRecording()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "camera" {
-            cameraController = segue.destinationViewController as! CameraViewController
+            cameraController = segue.destination as! CameraViewController
             cameraController.completion = ({ [weak self] url, error in
-                self?.videoURL = url
-                self?.asset = AVAsset(URL: url)
+                self?.videoURL = url as URL!
+                self?.asset = AVAsset(url: url as URL)
             })
 
         }
@@ -79,7 +79,7 @@ class PeripheralViewController: UIViewController {
     }
     
     
-    func showResult(images: [UIImage]) {
+    func showResult(_ images: [UIImage]) {
         displayVC.images = images
     }
     
@@ -100,7 +100,7 @@ class PeripheralViewController: UIViewController {
     }
     
     
-    @IBAction func back(sender: AnyObject) {
+    @IBAction func back(_ sender: AnyObject) {
         pop()
     }
     
@@ -113,7 +113,7 @@ extension PeripheralViewController: AnimatableViewController {
     }
     
     func backgroundColor() -> UIColor {
-        return UIColor.blackColor()
+        return UIColor.black
     }
     
 }

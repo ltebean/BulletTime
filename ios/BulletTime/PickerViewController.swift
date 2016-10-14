@@ -39,27 +39,27 @@ class PickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        buttonNext.hidden = true
+        buttonNext.isHidden = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(PickerViewController.tapped(_:)))
         pickerView.addGestureRecognizer(tap)
         
-        host.onAllPeerImageReceived = { [weak self] images in
+        host?.onAllPeerImageReceived = { [weak self] images in
             self?.allImageReceived(images)
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        host.resetImageReceived()
+        host?.resetImageReceived()
         imageView.image = images[currentIndex]
     }
     
-    func tapped(gesture: UITapGestureRecognizer) {
-        guard gesture.state == .Ended else {
+    func tapped(_ gesture: UITapGestureRecognizer) {
+        guard gesture.state == .ended else {
             return
         }
-        buttonNext.hidden = true
-        let x = Int(gesture.locationInView(gesture.view).x)
+        buttonNext.isHidden = true
+        let x = Int(gesture.location(in: gesture.view).x)
         var center = 0
         if x < (pickerWidth / 3) {
             currentIndex = 0
@@ -71,7 +71,7 @@ class PickerViewController: UIViewController {
             currentIndex = 2
             center = bgViewCenterX
         }
-        UIView.animateWithDuration(0.15, delay: 0, options: [.CurveEaseOut], animations: {
+        UIView.animate(withDuration: 0.15, delay: 0, options: [.curveEaseOut], animations: {
             self.bgCenter.constant = CGFloat(center)
             self.pickerView.layoutIfNeeded()
         }, completion: nil)
@@ -79,9 +79,9 @@ class PickerViewController: UIViewController {
     }
     
     func showNextButton() {
-        buttonNext.hidden = false
+        buttonNext.isHidden = false
         buttonNext.alpha = 0
-        UIView.animateWithDuration(0.2, delay: 0.4, options: [.CurveEaseOut], animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.4, options: [.curveEaseOut], animations: {
             self.buttonNext.alpha = 1
         }, completion: nil)
 
@@ -89,27 +89,27 @@ class PickerViewController: UIViewController {
     
 
     
-    func allImageReceived(images: [UIImage]) {
+    func allImageReceived(_ images: [UIImage]) {
         var result = [imageTaken]
-        result.appendContentsOf(images)
-        host.sendFinalResult(result)
+        result.append(contentsOf: images)
+        host?.sendFinalResult(result)
         Async.main(after: 0.8) {
             self.displayVC.images = result
         }
     }
     
     
-    @IBAction func buttonNextPressed(sender: AnyObject) {
-        host.sendUseFrame(atTime: times[currentIndex])
+    @IBAction func buttonNextPressed(_ sender: AnyObject) {
+        host?.sendUseFrame(atTime: times[currentIndex])
         next()
     }
     
-    @IBAction func back(sender: AnyObject) {
+    @IBAction func back(_ sender: AnyObject) {
         pop()
     }
     
     func next() {
-        if host.peersToNotify.count == 0 {
+        if host?.peersToNotify.count == 0 {
             allImageReceived([])
         }
         displayVC = R.storyboard.shoot.display()!
@@ -126,6 +126,6 @@ extension PickerViewController: AnimatableViewController {
     }
     
     func backgroundColor() -> UIColor {
-        return UIColor.blackColor()
+        return UIColor.black
     }
 }

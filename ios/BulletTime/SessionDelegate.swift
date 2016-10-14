@@ -10,16 +10,16 @@ import MultipeerConnectivity
 import SwiftyJSON
 
 enum Command: Int {
-    case PeerReady
-    case PeersUpdates
-    case StartRecording
-    case StopRecording
-    case UseFrame
-    case PeerImage
-    case FinalResult
+    case peerReady
+    case peersUpdates
+    case startRecording
+    case stopRecording
+    case useFrame
+    case peerImage
+    case finalResult
 }
 
-struct Data {
+struct JSONData {
     let command: Command
     var value: JSON?
     
@@ -38,10 +38,40 @@ struct Data {
     }
 }
 
+class SessionDelegate: NSObject, MCSessionDelegate {
+    
+    var dataReceived: ((_ data: JSONData, _ peer: MCPeerID) -> ())?
+    
+    var stateChanged: ((_ state: MCSessionState) -> ())?
+    
+    func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
+        DispatchQueue.main.async {
+            let json = JSON(data: data)
+            self.dataReceived?(JSONData(json: json), peerID)
+        }
+    }
+    
+    func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
+        DispatchQueue.main.async {
+            self.stateChanged?(state)
+        }
+    }
+    
+    func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
+    }
+    
+    func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) {
+    }
+    
+    func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
+    }
+    
+}
+
 
 extension MCSession {
     
-    func sendData(data: Data, toPeers peers:[MCPeerID], withMode: MCSessionSendDataMode = .Reliable) {
+    func sendData(_ data: JSONData, toPeers peers:[MCPeerID], withMode: MCSessionSendDataMode = .reliable) {
         var json = JSON([
             "c": data.command.rawValue
         ])
@@ -49,43 +79,12 @@ extension MCSession {
             json["v"] = value
         }
         do {
-            try sendData(json.rawData(), toPeers: peers, withMode: .Reliable)
+            try send(json.rawData(), toPeers: peers, with: .reliable)
         } catch {
             print(error)
         }
     }
 }
 
-class SessionDelegate: NSObject, MCSessionDelegate {
-    
-    var dataReceived: ((data: Data, peer: MCPeerID) -> ())?
-    
-    var stateChanged: ((state: MCSessionState) -> ())?
-    
-    func session(session: MCSession, peer peerID: MCPeerID, didChangeState state: MCSessionState) {
-        dispatch_async(dispatch_get_main_queue()) {
-            self.stateChanged?(state: state)
-        }
-    }
-    
-    func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {
-        dispatch_async(dispatch_get_main_queue()) {
-            let json = JSON(data: data)
-            self.dataReceived?(data: Data(json: json), peer: peerID)
-        }
-    }
-    
-    func session(session: MCSession, didReceiveStream stream: NSInputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        
-    }
-    
-    func session(session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, withProgress progress: NSProgress) {
-        
-    }
-    
-    func session(session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, atURL localURL: NSURL, withError error: NSError?) {
-        
-    }
-}
 
 

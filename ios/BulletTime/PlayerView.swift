@@ -10,14 +10,14 @@ import UIKit
 
 class PlayerView: UIView {
     
-    private var images: [UIImage] = []
-    private var imageView: UIImageView!
-    private var spinner: UIActivityIndicatorView!
+    fileprivate var images: [UIImage] = []
+    fileprivate var imageView: UIImageView!
+    fileprivate var spinner: UIActivityIndicatorView!
 
-    private var currentIndex = 0
+    fileprivate var currentIndex = 0
     
-    private var timer: NSTimer!
-    private var dragging = false
+    fileprivate var timer: Timer!
+    fileprivate var dragging = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,15 +31,15 @@ class PlayerView: UIView {
     
     func setup() {
         imageView = UIImageView(frame: bounds)
-        imageView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         imageView.backgroundColor = UIColor(hex: 0xcccccc)
         addSubview(imageView)
         
-        spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        spinner = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         addSubview(spinner)
         spinner.startAnimating()
         
-        let pan = PanDirectionGestureRecognizer(direction: .Horizontal, target: self, action: #selector(PlayerView.handlePan(_:)))
+        let pan = PanDirectionGestureRecognizer(direction: .horizontal, target: self, action: #selector(PlayerView.handlePan(_:)))
         addGestureRecognizer(pan)
     }
     
@@ -61,10 +61,10 @@ class PlayerView: UIView {
         if timer != nil {
             timer.invalidate()
         }
-        timer = NSTimer.scheduledTimerWithTimeInterval(Config.frameInterval, target: self, selector: #selector(PlayerView.tick(_:)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: Config.frameInterval, target: self, selector: #selector(PlayerView.tick(_:)), userInfo: nil, repeats: true)
     }
     
-    func tick(timer: NSTimer) {
+    func tick(_ timer: Timer) {
         guard !dragging else {
             return
         }
@@ -73,18 +73,18 @@ class PlayerView: UIView {
         currentIndex = index
     }
     
-    func handlePan(gesture: UIPanGestureRecognizer) {
-        if gesture.state == .Began {
+    func handlePan(_ gesture: UIPanGestureRecognizer) {
+        if gesture.state == .began {
             dragging = true
         }
-        else if gesture.state == .Changed {
-            let tx = gesture.translationInView(self).x
+        else if gesture.state == .changed {
+            let tx = gesture.translation(in: self).x
             if fabs(tx) > 30 {
                 tx > 0 ? showNext() : showPrevious()
-                gesture.setTranslation(CGPointZero, inView: self)
+                gesture.setTranslation(CGPoint.zero, in: self)
             }
         }
-        else if gesture.state == .Ended {
+        else if gesture.state == .ended {
             dragging = false
         }
     }

@@ -10,11 +10,12 @@ import Foundation
 import MultipeerConnectivity
 import SwiftyJSON
 
-class Guest: NSObject {
+
+class Guest: NSObject, MCNearbyServiceAdvertiserDelegate {
     
     static var current: Guest!
     
-    let peer = MCPeerID(displayName: UIDevice.currentDevice().name)
+    let peer = MCPeerID(displayName: UIDevice.current.name)
     var serviceAdvertiser: MCNearbyServiceAdvertiser!
     var session : MCSession!
     var central: MCPeerID!
@@ -22,11 +23,11 @@ class Guest: NSObject {
     
     var onConnected: (() -> ())?
     var onDisConnected: (() -> ())?
-    var onPeersUpdates: ((index: Int, totalCount: Int) -> ())?
+    var onPeersUpdates: ((_ index: Int, _ totalCount: Int) -> ())?
     var onStartRecording: (() -> ())?
     var onStopRecording: (() -> ())?
-    var onUseFrame: ((time: Float64) -> ())?
-    var onReceiveFinalResult: ((images: [UIImage]) -> ())?
+    var onUseFrame: ((_ time: Float64) -> ())?
+    var onReceiveFinalResult: ((_ images: [UIImage]) -> ())?
     
     func setup() {
         serviceAdvertiser = MCNearbyServiceAdvertiser(peer: peer, discoveryInfo: nil, serviceType: "bullettime")
@@ -35,23 +36,23 @@ class Guest: NSObject {
         session.delegate = sessionDelegate
         sessionDelegate.dataReceived = { [weak self] data, peer in
             let command = data.command
-            if command == .PeersUpdates {
+            if command == .peersUpdates {
                 let json = data.value!
                 let totalCount = json["count"].intValue
                 let index = json["index"].intValue
                 self?.updatePeersInfo(index, totalCount: totalCount)
             }
-            else if command == .StartRecording {
+            else if command == .startRecording {
                 self?.startRecording()
             }
-            else if command == .StopRecording {
+            else if command == .stopRecording {
                 self?.stopRecording()
             }
-            else if command == .UseFrame {
+            else if command == .useFrame {
                 let time = data.value!["time"].stringValue
                 self?.useFrame(atTime: Float64(time)!)
             }
-            else if command == .FinalResult {
+            else if command == .finalResult {
                 let images = data.value!.arrayValue.map({
                     UIImage.imageFromBase64String($0.stringValue)
                 })
@@ -60,15 +61,15 @@ class Guest: NSObject {
             
         }
         sessionDelegate.stateChanged = { [weak self] state in
-            if state == .Connected {
+            if state == .connected {
                 self?.sendReadySignal()
                 self?.onConnected?()
             }
-            else if state == .NotConnected {
+            else if state == .notConnected {
                 self?.onDisConnected?()
             }
         }
-
+        
     }
     
     
@@ -84,35 +85,35 @@ class Guest: NSObject {
     // MARK: send signal
     func sendReadySignal() {
         if central != nil {
-            session.sendData(Data(command: .PeerReady), toPeers: [central])
+            session.sendData(JSONData(command: .peerReady), toPeers: [central])
         }
     }
     
-    func sendImage(image: UIImage) {
-        let data = Data(command: .PeerImage, value: JSON(image.toBase64String()))
+    func sendImage(_ image: UIImage) {
+        let data = JSONData(command: .peerImage, value: JSON(image.toBase64String()))
         session.sendData(data, toPeers: [central])
     }
-
+    
     
     // MARK: event handler
-    private func updatePeersInfo(index: Int, totalCount: Int) {
-        onPeersUpdates?(index: index, totalCount: totalCount)
+    fileprivate func updatePeersInfo(_ index: Int, totalCount: Int) {
+        onPeersUpdates?(index, totalCount)
     }
     
-    private func startRecording() {
+    fileprivate func startRecording() {
         onStartRecording?()
     }
     
-    private func stopRecording() {
+    fileprivate func stopRecording() {
         onStopRecording?()
     }
     
-    private func useFrame(atTime time: Float64) {
-        onUseFrame?(time: time)
+    fileprivate func useFrame(atTime time: Float64) {
+        onUseFrame?(time)
     }
     
-    private func receiveFinalResult(images: [UIImage]) {
-        onReceiveFinalResult?(images: images)
+    fileprivate func receiveFinalResult(_ images: [UIImage]) {
+        onReceiveFinalResult?(images)
     }
     
     // MARK: life cycle
@@ -121,19 +122,22 @@ class Guest: NSObject {
         current.setup()
     }
     
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+        
+    }
+    
+    
+    //    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+    //        central = peerID
+    //        invitationHandler(true, session)
+    //    }
+    
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
+        
+    }
+    
+    
     deinit {
         serviceAdvertiser.stopAdvertisingPeer()
     }
-}
-
-extension Guest: MCNearbyServiceAdvertiserDelegate {
-    func advertiser(advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: NSData?, invitationHandler: (Bool, MCSession?) -> Void) {
-        central = peerID
-        invitationHandler(true, session)
-    }
-    
-    internal func advertiser(advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: NSError) {
-        print("didNotStartAdvertisingPeer: \(error)")
-    }
-    
 }

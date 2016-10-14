@@ -10,8 +10,8 @@ import UIKit
 import LTSwiftDate
 
 protocol ProductCellDelegate: class {
-    func needsShareProduct(product: Product)
-    func needsDeleteProduct(product: Product)
+    func needsShareProduct(_ product: Product)
+    func needsDeleteProduct(_ product: Product)
 }
 
 class ProductCell: UITableViewCell {
@@ -31,11 +31,11 @@ class ProductCell: UITableViewCell {
         dateLabel.text = product.timeCreated.toString(format: "MMM d, yyyy")
     }
     
-    @IBAction func buttonDeletePressed(sender: AnyObject) {
+    @IBAction func buttonDeletePressed(_ sender: AnyObject) {
         delegate?.needsDeleteProduct(product)
     }
     
-    @IBAction func buttonSharePressed(sender: AnyObject) {
+    @IBAction func buttonSharePressed(_ sender: AnyObject) {
         delegate?.needsShareProduct(product)
     }
 }
@@ -65,36 +65,36 @@ class MeViewController: HomeChildViewController {
         tableView.reloadData()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 
-    @IBAction func buttonAboutPressed(sender: AnyObject) {
+    @IBAction func buttonAboutPressed(_ sender: AnyObject) {
         let vc = R.storyboard.me.settings()!
-        vc.modalTransitionStyle = .FlipHorizontal
-        presentViewController(vc, animated: true, completion: nil)
+        vc.modalTransitionStyle = .flipHorizontal
+        present(vc, animated: true, completion: nil)
     }
 }
 
 extension MeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return productList.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProductCell
-        cell.product = productList[indexPath.row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProductCell
+        cell.product = productList[(indexPath as NSIndexPath).row]
         cell.delegate = self
         return cell
     }
     
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     
@@ -102,29 +102,29 @@ extension MeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MeViewController: ProductCellDelegate {
     
-    func needsShareProduct(product: Product) {
+    func needsShareProduct(_ product: Product) {
         print("share")
         Share.shareAsVideo(product, inViewController: self)
     }
     
-    func needsDeleteProduct(product: Product) {
-        let alertController = UIAlertController(title: "Delete?", message: nil, preferredStyle: .Alert)
-        let yes = UIAlertAction(title: "Yes", style: .Destructive) { [weak self] action in
+    func needsDeleteProduct(_ product: Product) {
+        let alertController = UIAlertController(title: "Delete?", message: nil, preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Yes", style: .destructive) { [weak self] action in
             self?.deleteProduct(product)
         }
-        let no = UIAlertAction(title: "No", style: .Cancel) { action in }
+        let no = UIAlertAction(title: "No", style: .cancel) { action in }
         alertController.addAction(yes)
         alertController.addAction(no)
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
-    func deleteProduct(product: Product) {
-        guard let index = productList.indexOf(product) else {
+    func deleteProduct(_ product: Product) {
+        guard let index = productList.index(of: product) else {
             return
         }
         productService.deleteProduct(product)
-        productList.removeAtIndex(index)
-        tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection:0)], withRowAnimation: .Automatic)
+        productList.remove(at: index)
+        tableView.deleteRows(at: [IndexPath(row: index, section:0)], with: .automatic)
     }
 
 }

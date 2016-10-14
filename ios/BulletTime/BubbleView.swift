@@ -16,9 +16,9 @@ class BubbleView: UIView {
     var haloView: UIView!
     var label: UILabel!
     
-    var color = UIColor.blackColor() {
+    var color = UIColor.black {
         didSet {
-            haloView.backgroundColor = color.colorWithAlphaComponent(0.5)
+            haloView.backgroundColor = color.withAlphaComponent(0.5)
             label.backgroundColor = color
         }
     }
@@ -40,16 +40,16 @@ class BubbleView: UIView {
     }
     
     func showHalo() {
-        haloView.hidden = false
+        haloView.isHidden = false
     }
     
     func hideHalo() {
-        haloView.hidden = true
+        haloView.isHidden = true
     }
 
     
     func setup() {
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         
         haloView = UIView(frame: bounds)
         haloView.layer.masksToBounds = true
@@ -62,8 +62,8 @@ class BubbleView: UIView {
         label = UILabel(frame: bounds)
         label.layer.cornerRadius = bounds.width / 2
         label.layer.masksToBounds = true
-        label.textColor = UIColor.whiteColor()
-        label.textAlignment = .Center
+        label.textColor = UIColor.white
+        label.textAlignment = .center
         addSubview(label)
     }
     

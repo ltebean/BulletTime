@@ -7,7 +7,7 @@ target 'BulletTime' do
 pod 'SVProgressHUD'
 pod 'SwiftyJSON'
 pod 'R.swift'
-pod 'RealmSwift', '1.1.0'
+pod 'RealmSwift'
 pod 'LTSwiftDate'
 pod 'AsyncSwift'
 pod 'Fabric'
@@ -17,7 +17,6 @@ end
 post_install do |installer|
     installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '2.3'
             config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""
             config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
             config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"

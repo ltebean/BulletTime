@@ -22,23 +22,23 @@ extension UIImage {
         let y = (height - size) / 2.0
         
         var cropSquare: CGRect
-        if imageOrientation == .Left || imageOrientation == .Right {
-            cropSquare = CGRectMake(y, x, size, size)
+        if imageOrientation == .left || imageOrientation == .right {
+            cropSquare = CGRect(x: y, y: x, width: size, height: size)
         } else {
-            cropSquare = CGRectMake(x, y, size, size)
+            cropSquare = CGRect(x: x, y: y, width: size, height: size)
         }
         
-        let imageRef = CGImageCreateWithImageInRect(self.CGImage!, cropSquare)!
+        let imageRef = self.cgImage!.cropping(to: cropSquare)!
         
-        return UIImage(CGImage: imageRef, scale: self.scale, orientation: self.imageOrientation)
+        return UIImage(cgImage: imageRef, scale: self.scale, orientation: self.imageOrientation)
     }
     
     func resize(toSize newWidth: CGFloat) -> UIImage {
         
         let scale = newWidth / size.width
         let newHeight = size.height * scale
-        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
-        drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage!
@@ -46,11 +46,11 @@ extension UIImage {
     
     func toBase64String() -> String {
         let data = UIImageJPEGRepresentation(self, 0.8)!
-        return data.base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+        return data.base64EncodedString(options: .lineLength64Characters)
     }
     
-    static func imageFromBase64String(base64String: String) -> UIImage {
-        let data = NSData(base64EncodedString: base64String, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)!
+    static func imageFromBase64String(_ base64String: String) -> UIImage {
+        let data = Foundation.Data(base64Encoded: base64String, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)!
         return UIImage(data: data)!
     }
 }

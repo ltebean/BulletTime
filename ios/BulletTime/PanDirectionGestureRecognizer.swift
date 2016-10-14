@@ -14,8 +14,8 @@ import UIKit.UIGestureRecognizerSubclass
 class PanDirectionGestureRecognizer: UIPanGestureRecognizer {
     
     enum PanDirection {
-        case Vertical
-        case Horizontal
+        case vertical
+        case horizontal
     }
     
     let direction : PanDirection
@@ -26,15 +26,15 @@ class PanDirectionGestureRecognizer: UIPanGestureRecognizer {
     }
     
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent) {
-        super.touchesMoved(touches, withEvent: event)
-        if state == .Began {
-            let velocity = velocityInView(self.view!)
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesMoved(touches, with: event)
+        if state == .began {
+            let velocity = self.velocity(in: self.view!)
             switch direction {
-            case .Horizontal where fabs(velocity.y) > fabs(velocity.x):
-                state = .Cancelled
-            case .Vertical where fabs(velocity.x) > fabs(velocity.y):
-                state = .Cancelled
+            case .horizontal where fabs(velocity.y) > fabs(velocity.x):
+                state = .cancelled
+            case .vertical where fabs(velocity.x) > fabs(velocity.y):
+                state = .cancelled
             default:
                 break
             }

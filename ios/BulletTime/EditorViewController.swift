@@ -15,16 +15,16 @@ class EditorViewController: UIViewController {
     
     var displayVC: DisplayViewController!
     var videoEndTime: Float64 = 0
-    var videoURL: NSURL!
+    var videoURL: URL!
     var imageTaken: UIImage?
     
-    private var playerLayer: AVPlayerLayer!
-    private var player: AVPlayer!
-    private var playerItem: AVPlayerItem!
-    private var asset: AVAsset!
-    private var playerObserver: AnyObject?
+    fileprivate var playerLayer: AVPlayerLayer!
+    fileprivate var player: AVPlayer!
+    fileprivate var playerItem: AVPlayerItem!
+    fileprivate var asset: AVAsset!
+    fileprivate var playerObserver: AnyObject?
 
-    let host = Host.current
+    let host = Host.current!
     
     @IBOutlet weak var progressLabel: UILabel!
     @IBOutlet weak var playerView: UIView!
@@ -35,12 +35,12 @@ class EditorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        asset = AVAsset(URL: videoURL)
+        asset = AVAsset(url: videoURL)
         playerItem = AVPlayerItem(asset: asset)
         player = AVPlayer(playerItem: playerItem)
         playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        playerView.layer.insertSublayer(playerLayer, atIndex: 0)
+        playerView.layer.insertSublayer(playerLayer, at: 0)
         
         progressLabel.alpha = 0
 
@@ -48,19 +48,19 @@ class EditorViewController: UIViewController {
             self?.allImageReceived(images)
         }
         
-        NSNotificationCenter.defaultCenter().addObserverForName(AVPlayerItemDidPlayToEndTimeNotification, object: playerItem, queue: nil) { [weak self]notification in
-            self?.player.seekToTime(kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: playerItem, queue: nil) { [weak self]notification in
+            self?.player.seek(to: kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
             self?.player.play()
         }
         
-        let pan = PanDirectionGestureRecognizer(direction: .Horizontal ,target: self, action: #selector(EditorViewController.handlePan(_:)))
+        let pan = PanDirectionGestureRecognizer(direction: .horizontal ,target: self, action: #selector(EditorViewController.handlePan(_:)))
         playerView.addGestureRecognizer(pan)
         
-        player.seekToTime(kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
+        player.seek(to: kCMTimeZero, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero)
         player.play()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         imageTaken = nil
@@ -72,34 +72,34 @@ class EditorViewController: UIViewController {
         playerLayer.frame = playerView.bounds
     }
     
-    func handlePan(gesture: UIPanGestureRecognizer) {
-        if gesture.state == .Began {
+    func handlePan(_ gesture: UIPanGestureRecognizer) {
+        if gesture.state == .began {
             player.pause()
-            UIView.animateWithDuration(0.1, animations: {
+            UIView.animate(withDuration: 0.1, animations: {
                 self.progressLabel.alpha = 1
             })
         }
-        else if gesture.state == .Ended {
-            UIView.animateWithDuration(0.1, animations: {
+        else if gesture.state == .ended {
+            UIView.animate(withDuration: 0.1, animations: {
                 self.progressLabel.alpha = 0
             })
         }
-        else if gesture.state == .Changed {
+        else if gesture.state == .changed {
             guard !seeking else {
                 return
             }
             seeking = true
             let totalSeconds = CMTimeGetSeconds(asset.duration)
-            let secondsPerPoint = totalSeconds / Float64(UIScreen.mainScreen().bounds.width)
-            let tx = gesture.translationInView(gesture.view).x
+            let secondsPerPoint = totalSeconds / Float64(UIScreen.main.bounds.width)
+            let tx = gesture.translation(in: gesture.view).x
             let currentSeconds = CMTimeGetSeconds(playerItem.currentTime())
             let targetSeconds = currentSeconds + Float64(tx) * secondsPerPoint
-            player.seekToTime(CMTimeMakeWithSeconds(targetSeconds, asset.duration.timescale), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: {_ in 
+            player.seek(to: CMTimeMakeWithSeconds(targetSeconds, asset.duration.timescale), toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero, completionHandler: {_ in 
                 Async.main {
                     self.seeking = false
                 }
             })
-            gesture.setTranslation(CGPointZero, inView: gesture.view)
+            gesture.setTranslation(CGPoint.zero, in: gesture.view)
             var progress = Int(targetSeconds / totalSeconds * 100)
             progress = min(progress, 100)
             progress = max(progress, 0)
@@ -107,9 +107,9 @@ class EditorViewController: UIViewController {
         }
     }
     
-    func allImageReceived(images: [UIImage]) {
+    func allImageReceived(_ images: [UIImage]) {
         var result = [imageTaken!]
-        result.appendContentsOf(images)
+        result.append(contentsOf: images)
         host.sendFinalResult(result)
         Async.main(after: 0.8) {
             self.displayVC.images = result
@@ -129,10 +129,10 @@ class EditorViewController: UIViewController {
 //        return CMTimeMakeWithSeconds(seconds, asset.duration.timescale)
 //    }
     
-    @IBAction func next(sender: AnyObject) {
+    @IBAction func next(_ sender: AnyObject) {
         let time = playerItem.currentTime()
         let absoluteTime = (videoEndTime - CMTimeGetSeconds(asset.duration) + CMTimeGetSeconds(time))
-        asset.generateImageAtTime(time, completion: { image in
+        let _ = asset.generateImageAtTime(time, completion: { image in
             if let image = image {
                 self.imageTaken = image
                 self.host.sendUseFrame(atTime: absoluteTime)
@@ -153,7 +153,7 @@ class EditorViewController: UIViewController {
     
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

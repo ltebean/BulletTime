@@ -21,7 +21,7 @@ extension AnimatableViewController {
     }
     
     func backgroundColor() -> UIColor {
-        return UIColor.whiteColor()
+        return UIColor.white
     }
 }
 
@@ -36,12 +36,12 @@ class ViewTransitionDelegate: NSObject, UINavigationControllerDelegate {
         self.transition = ViewTransition(navigationController: navigationController)
     }
     
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.push = operation == UINavigationControllerOperation.Push
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.push = operation == UINavigationControllerOperation.push
         return transition
     }
     
-    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return nil
     }
 }
@@ -56,20 +56,20 @@ class ViewTransition: NSObject, UIViewControllerAnimatedTransitioning, UIGesture
     
     var push = true
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.7
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)! 
-        let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        let fromVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)! 
+        let toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
         
         let fromView = fromVC.view
         let toView = toVC.view
-        let containerView = transitionContext.containerView()
+        let containerView = transitionContext.containerView
 
-        let duration = transitionDuration(transitionContext) / 2
+        let duration = transitionDuration(using: transitionContext) / 2
         
         if (push) {
             handleBack(toVC)
@@ -81,51 +81,51 @@ class ViewTransition: NSObject, UIViewControllerAnimatedTransitioning, UIGesture
         let fromViews = fromAnimatable.viewsToAnimate()
         let toViews = toAnimatable.viewsToAnimate()
 
-        UIView.animateWithDuration(duration,  delay: 0, options: [.CurveEaseOut], animations: {
+        UIView.animate(withDuration: duration,  delay: 0, options: [.curveEaseOut], animations: {
             fromViews.forEach {
                 $0.alpha = 0
                 $0.transform.ty = self.push ? -60 : 60
             }
-            fromView.backgroundColor = toAnimatable.backgroundColor()
+            fromView?.backgroundColor = toAnimatable.backgroundColor()
         }, completion: { finished in
             fromViews.forEach {
                 $0.alpha = 1
                 $0.transform.ty = 0
             }
-            fromView.backgroundColor = fromAnimatable.backgroundColor()
+            fromView?.backgroundColor = fromAnimatable.backgroundColor()
             
-            containerView.addSubview(toView)
+            containerView.addSubview(toView!)
             
             toViews.forEach {
                 $0.alpha = 0
                 $0.transform.ty = self.push ? 60 : -60
             }
             
-            UIView.animateWithDuration(duration,  delay: 0, options: [.CurveEaseOut], animations: {
+            UIView.animate(withDuration: duration,  delay: 0, options: [.curveEaseOut], animations: {
                 toViews.forEach {
                     $0.alpha = 1
                     $0.transform.ty = 0
                 }
             }, completion: { finished in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             })
         })
     }
     
-    func handleBack(vc: UIViewController) {
+    func handleBack(_ vc: UIViewController) {
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(ViewTransition.handleSwipe))
-        gesture.direction = .Down
+        gesture.direction = .down
         vc.view.addGestureRecognizer(gesture)
     }
     
-    func handleSwipe(gesture: UISwipeGestureRecognizer) {
-        if gesture.state == .Ended {
+    func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
+        if gesture.state == .ended {
             let vc = navigationController.topViewController!
             vc.pop()
         }
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }

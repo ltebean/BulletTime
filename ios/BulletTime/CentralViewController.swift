@@ -15,7 +15,7 @@ import SVProgressHUD
 class CentralViewController: UIViewController {
     
     var cameraController: CameraViewController!
-    let host = Host.current
+    let host = Host.current!
     var shootTime: Float64 = 0
     var imageGenerator: AVAssetImageGenerator!
     
@@ -27,31 +27,31 @@ class CentralViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         cameraController.startRecording()
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "camera" {
-            cameraController = segue.destinationViewController as! CameraViewController
+            cameraController = segue.destination as! CameraViewController
             cameraController.completion = ({ [weak self] url, error in
-                self?.goToEditor(url)
+                self?.goToEditor(url as URL)
             })
         }
     }
     
-    @IBAction func shootButtonPressed(sender: AnyObject) {
+    @IBAction func shootButtonPressed(_ sender: AnyObject) {
         SVProgressHUD.show()
         shootTime = CFAbsoluteTimeGetCurrent()
-        Async.main(after: 0.2, block: {
+        Async.main(after: 0.2, {
             self.host.sendStopRecording()
             self.cameraController.stopRecording()
         })
     }
     
-    func goToEditor(url: NSURL) {
-        let asset = AVAsset(URL: url)
+    func goToEditor(_ url: URL) {
+        let asset = AVAsset(url: url)
         let startTime = cameraController.startTime
         let seconds = shootTime - startTime
         let times = [seconds - 0.1, seconds, seconds + 0.1]
@@ -68,7 +68,7 @@ class CentralViewController: UIViewController {
         
     }
     
-    @IBAction func back(sender: AnyObject) {
+    @IBAction func back(_ sender: AnyObject) {
         pop()
     }
     
@@ -82,6 +82,6 @@ extension CentralViewController: AnimatableViewController {
     }
     
     func backgroundColor() -> UIColor {
-        return UIColor.blackColor()
+        return UIColor.black
     }
 }

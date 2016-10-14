@@ -30,32 +30,32 @@ class RoleSelectionViewController: HomeChildViewController {
 
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.showTab()
         }, completion: nil)
         Host.reset()
         Guest.reset()
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeTab()
     }
 
-    @IBAction func buttonHostPressed(sender: AnyObject) {
+    @IBAction func buttonHostPressed(_ sender: AnyObject) {
         hideHomeTab()
         push(R.storyboard.shoot.discoveries()!)
     }
     
-    @IBAction func buttonGeustPressed(sender: AnyObject) {
+    @IBAction func buttonGeustPressed(_ sender: AnyObject) {
         hideHomeTab()
         push(R.storyboard.shoot.broadcast()!)
     }
     
     func hideHomeTab() {
-        UIView.animateWithDuration(0.35, animations: {
+        UIView.animate(withDuration: 0.35, animations: {
             self.hideTab()
         })
     }
@@ -71,24 +71,24 @@ extension RoleSelectionViewController: AnimatableViewController {
 }
 
 extension RoleSelectionViewController: CBPeripheralManagerDelegate {
-    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         
         var statusMessage = ""
         
         switch peripheral.state {
-        case .PoweredOn:
+        case .poweredOn:
             statusMessage = "Bluetooth Status: Turned On"
             
-        case .PoweredOff:
+        case .poweredOff:
             statusMessage = "Bluetooth Status: Turned Off"
             
-        case .Resetting:
+        case .resetting:
             statusMessage = "Bluetooth Status: Resetting"
             
-        case .Unauthorized:
+        case .unauthorized:
             statusMessage = "Bluetooth Status: Not Authorized"
             
-        case .Unsupported:
+        case .unsupported:
             statusMessage = "Bluetooth Status: Not Supported"
             
         default:

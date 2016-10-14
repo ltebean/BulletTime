@@ -16,7 +16,7 @@ class DiscoveriesViewController: UIViewController {
     @IBOutlet weak var circleView: LTCircleView!
     @IBOutlet weak var mainView: UIView!
     
-    let host = Host.current
+    let host = Host.current!
     
     
     override func viewDidLoad() {
@@ -31,33 +31,33 @@ class DiscoveriesViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         circleView.reloadData()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         host.startBrowsing()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
     }
     
-    func peerJoined(peer: MCPeerID) {
+    func peerJoined(_ peer: MCPeerID) {
         circleView.insertItemAtIndex(host.allPeers.count - 1)
     }
     
-    func peerLost(peer: MCPeerID, atIndex index: Int) {
+    func peerLost(_ peer: MCPeerID, atIndex index: Int) {
         circleView.removeItemAtIndex(index)
     }
     
-    @IBAction func back(sender: AnyObject) {
+    @IBAction func back(_ sender: AnyObject) {
         pop()
     }
 
-    @IBAction func buttonNextPressed(sender: AnyObject) {
+    @IBAction func buttonNextPressed(_ sender: AnyObject) {
         push(R.storyboard.shoot.central()!)
     }
     
@@ -67,11 +67,11 @@ class DiscoveriesViewController: UIViewController {
 
 extension DiscoveriesViewController: LTCircleViewDataSource {
     
-    func numberOfItemsInCircleView(circleView: LTCircleView) -> Int {
+    func numberOfItemsInCircleView(_ circleView: LTCircleView) -> Int {
         return host.allPeers.count
     }
     
-    func viewAtIndex(index: Int, inCircleView circleView: LTCircleView) -> UIView {
+    func viewAtIndex(_ index: Int, inCircleView circleView: LTCircleView) -> UIView {
         let bubble = BubbleView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         bubble.text = "\(index + 1)"
         bubble.color = UIColor.steppedColor(fromHex: BubbleView.startColorHex, endHex: BubbleView.endColorHex, totalCount: host.allPeers.count, index: index)

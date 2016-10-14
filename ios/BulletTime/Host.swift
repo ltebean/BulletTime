@@ -14,7 +14,7 @@ class Host: NSObject {
     
     static var current: Host!
     
-    let central = MCPeerID(displayName: UIDevice.currentDevice().name)
+    let central = MCPeerID(displayName: UIDevice.current.name)
     let sessionDelegate = SessionDelegate()
 
     var serviceBrowser: MCNearbyServiceBrowser!
@@ -26,21 +26,21 @@ class Host: NSObject {
     var imageReceived: [MCPeerID: UIImage] = [:]
 
     
-    var onPeerJoin: ((peer: MCPeerID) -> ())?
-    var onPeerLost: ((peer: MCPeerID, index: Int) -> ())?
-    var onAllPeerImageReceived: ((images: [UIImage]) -> ())?
+    var onPeerJoin: ((_ peer: MCPeerID) -> ())?
+    var onPeerLost: ((_ peer: MCPeerID, _ index: Int) -> ())?
+    var onAllPeerImageReceived: ((_ images: [UIImage]) -> ())?
     
     func setup() {
         serviceBrowser = MCNearbyServiceBrowser(peer: central, serviceType: "bullettime")
         serviceBrowser.delegate = self
-        session = MCSession(peer: central, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.Required)
+        session = MCSession(peer: central, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.required)
         session.delegate = sessionDelegate
         sessionDelegate.dataReceived = { [weak self] data, peer in
             let command = data.command
-            if command == .PeerReady {
+            if command == .peerReady {
                 self?.peerJoined(peer)
             }
-            else if command == .PeerImage {
+            else if command == .peerImage {
                 let image = UIImage.imageFromBase64String(data.value!.stringValue)
                 self?.peerImageReceived(image, fromPeer: peer)
             }
@@ -63,24 +63,24 @@ class Host: NSObject {
     
     // MARK: send signal
     func sendStartRecording() {
-        let data = Data(command: .StartRecording)
+        let data = JSONData(command: .startRecording)
         session.sendData(data, toPeers: peersToNotify)
     }
     
     func sendStopRecording() {
-        let data = Data(command: .StopRecording)
+        let data = JSONData(command: .stopRecording)
         session.sendData(data, toPeers: peersToNotify)
     }
     
-    func sendFinalResult(images: [UIImage]) {
-        let data = Data(command: .FinalResult, value: JSON(images.map {
+    func sendFinalResult(_ images: [UIImage]) {
+        let data = JSONData(command: .finalResult, value: JSON(images.map {
             $0.toBase64String()
         }))
         session.sendData(data, toPeers: peersToNotify)
     }
     
     func sendUseFrame(atTime time: Float64) {
-        let data = Data(command: .UseFrame, value: [
+        let data = JSONData(command: .useFrame, value: [
             "time": String(format:"%.8f", time)
         ])
         session.sendData(data, toPeers: peersToNotify)
@@ -89,8 +89,8 @@ class Host: NSObject {
     func sendPeersUpdates() {
         let count = "\(allPeers.count)"
         for peer in peersToNotify {
-            let index = "\(allPeers.indexOf(peer)!)"
-            let data = Data(command: .PeersUpdates, value: JSON([
+            let index = "\(allPeers.index(of: peer)!)"
+            let data = JSONData(command: .peersUpdates, value: JSON([
                 "count": count,
                 "index": index
             ]))
@@ -99,25 +99,25 @@ class Host: NSObject {
     }
     
      // MARK: event handler
-    private func peerJoined(peer: MCPeerID) {
-        guard allPeers.indexOf(peer) == nil else {
+    fileprivate func peerJoined(_ peer: MCPeerID) {
+        guard allPeers.index(of: peer) == nil else {
             return
         }
         allPeers.append(peer)
         sendPeersUpdates()
-        onPeerJoin?(peer: peer)
+        onPeerJoin?(peer)
     }
 
-    private func peerLost(peer: MCPeerID) {
-        guard let index = allPeers.indexOf(peer) else {
+    fileprivate func peerLost(_ peer: MCPeerID) {
+        guard let index = allPeers.index(of: peer) else {
             return
         }
-        allPeers.removeAtIndex(index)
+        allPeers.remove(at: index)
         sendPeersUpdates()
-        onPeerLost?(peer: peer, index: index)
+        onPeerLost?(peer, index)
     }
     
-    private func peerImageReceived(image: UIImage, fromPeer peer: MCPeerID) {
+    fileprivate func peerImageReceived(_ image: UIImage, fromPeer peer: MCPeerID) {
         imageReceived[peer] = image
         guard imageReceived.count == peersToNotify.count else {
             return
@@ -128,7 +128,7 @@ class Host: NSObject {
                 images.append(image)
             }
         }
-        onAllPeerImageReceived?(images: images)
+        onAllPeerImageReceived?(images)
     }
     
 
@@ -145,19 +145,19 @@ class Host: NSObject {
 
 extension Host: MCNearbyServiceBrowserDelegate {
     
-    func browser(browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        if let _ = allPeers.indexOf(peerID) {
+    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
+        if let _ = allPeers.index(of: peerID) {
             return
         }
-        serviceBrowser.invitePeer(peerID, toSession: session, withContext: nil, timeout: 30)
+        serviceBrowser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
     }
     
-    func browser(browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         peerLost(peerID)
     }
     
     
-    func browser(browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: NSError) {
+    func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         
     }
     

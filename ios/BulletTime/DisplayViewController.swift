@@ -18,7 +18,7 @@ class DisplayViewController: UIViewController {
     var images: [UIImage] = [] {
         didSet {
             playerView.reload(withImages: images)
-            view.userInteractionEnabled = true
+            view.isUserInteractionEnabled = true
             product = productService.createProduct(withImages: images)
         }
     }
@@ -26,19 +26,19 @@ class DisplayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.userInteractionEnabled = false
+        view.isUserInteractionEnabled = false
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 
-    @IBAction func back(sender: AnyObject) {
+    @IBAction func back(_ sender: AnyObject) {
         pop()
     }
 
     
-    @IBAction func buttonSavePressed(sender: AnyObject) {
+    @IBAction func buttonSavePressed(_ sender: AnyObject) {
         Share.shareAsVideo(product, inViewController: self)
     }
     

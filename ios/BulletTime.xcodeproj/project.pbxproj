@@ -11,11 +11,11 @@
 		B32A04341D6E90EF00C0E3FF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32A04331D6E90EF00C0E3FF /* UIView.swift */; };
 		B33274B01D51B7F3000B10E4 /* Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33274AF1D51B7F3000B10E4 /* Gif.swift */; };
 		B35419671D73CB3000516B66 /* Host.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35419661D73CB3000516B66 /* Host.swift */; };
-		B35419691D73CB3800516B66 /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35419681D73CB3800516B66 /* Guest.swift */; };
 		B354196B1D73DB6E00516B66 /* AVAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B354196A1D73DB6E00516B66 /* AVAsset.swift */; };
 		B388967E1D90E81800BD05DC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B388967D1D90E81800BD05DC /* UIViewController.swift */; };
 		B38EE6A61D5DA66200D20053 /* LTCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38EE6A51D5DA66200D20053 /* LTCircleView.swift */; };
 		B38EE6A81D61572300D20053 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38EE6A71D61572300D20053 /* BubbleView.swift */; };
+		B3B0DC601DB0E1340011BEDF /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B0DC5F1DB0E1340011BEDF /* Guest.swift */; };
 		B3BB82761D61D08800D85F13 /* lineto-circular-black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3BB82741D61D08800D85F13 /* lineto-circular-black.ttf */; };
 		B3BB82771D61D08800D85F13 /* lineto-circular-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3BB82751D61D08800D85F13 /* lineto-circular-bold.ttf */; };
 		B3C0621A1D5B2BCF00F39CAC /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C062191D5B2BCF00F39CAC /* Transition.swift */; };
@@ -68,11 +68,11 @@
 		B32A04331D6E90EF00C0E3FF /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		B33274AF1D51B7F3000B10E4 /* Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gif.swift; sourceTree = "<group>"; };
 		B35419661D73CB3000516B66 /* Host.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Host.swift; sourceTree = "<group>"; };
-		B35419681D73CB3800516B66 /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		B354196A1D73DB6E00516B66 /* AVAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVAsset.swift; sourceTree = "<group>"; };
 		B388967D1D90E81800BD05DC /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		B38EE6A51D5DA66200D20053 /* LTCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTCircleView.swift; sourceTree = "<group>"; };
 		B38EE6A71D61572300D20053 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
+		B3B0DC5F1DB0E1340011BEDF /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		B3BB82741D61D08800D85F13 /* lineto-circular-black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lineto-circular-black.ttf"; sourceTree = "<group>"; };
 		B3BB82751D61D08800D85F13 /* lineto-circular-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lineto-circular-bold.ttf"; sourceTree = "<group>"; };
 		B3C062191D5B2BCF00F39CAC /* Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 			children = (
 				FA7F847F1D5EBCFA00B0996B /* SessionDelegate.swift */,
 				B35419661D73CB3000516B66 /* Host.swift */,
-				B35419681D73CB3800516B66 /* Guest.swift */,
+				B3B0DC5F1DB0E1340011BEDF /* Guest.swift */,
 			);
 			name = Role;
 			sourceTree = "<group>";
@@ -345,12 +345,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = ltebean;
 				TargetAttributes = {
 					FAF15A401D4B7EEE005C7AF2 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = LUAG5Z5ST3;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -504,7 +505,7 @@
 				B38EE6A81D61572300D20053 /* BubbleView.swift in Sources */,
 				B3E6E6F61D62D49D00D9BB60 /* FocusView.swift in Sources */,
 				B3E6E7011D641A4E00D9BB60 /* PanDirectionGestureRecognizer.swift in Sources */,
-				B35419691D73CB3800516B66 /* Guest.swift in Sources */,
+				B3B0DC601DB0E1340011BEDF /* Guest.swift in Sources */,
 				B35419671D73CB3000516B66 /* Host.swift in Sources */,
 				B3EA97241D6BE84500981AF9 /* Config.swift in Sources */,
 				FAED1EBC1D72995E00E02926 /* AVCaptureDevice.swift in Sources */,
@@ -553,8 +554,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -581,6 +584,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -598,8 +602,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -618,6 +624,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -626,19 +634,22 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E1F96246C3CD5D984DDB99A3 /* Pods-BulletTime.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = LUAG5Z5ST3;
 				INFOPLIST_FILE = BulletTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bea3ede3-7fe2-416f-b4d5-7c8d8e66686a";
+				PROVISIONING_PROFILE = "7f757e9e-dc21-4a5b-850a-9feaadc1a779";
+				PROVISIONING_PROFILE_SPECIFIER = "bullet-dev1";
 				SWIFT_OBJC_BRIDGING_HEADER = "BulletTime/BulletTime-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -646,6 +657,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 21F81DC2B3873EA340F44DC3 /* Pods-BulletTime.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -657,7 +669,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "BulletTime/BulletTime-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

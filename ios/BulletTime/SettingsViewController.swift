@@ -10,12 +10,12 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
 
-    @IBAction func buttonBackPressed(sender: AnyObject) {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func buttonBackPressed(_ sender: AnyObject) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let row = indexPath.row
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let row = (indexPath as NSIndexPath).row
         if row == 0 {
             shareApp()
         }

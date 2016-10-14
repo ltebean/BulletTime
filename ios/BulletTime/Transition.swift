@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SharedViewTransition {
-    func sharedView(isPush isPush: Bool) -> UIView?
+    func sharedView(isPush: Bool) -> UIView?
     func requiredBackgroundColor() -> UIColor?
 }
 
@@ -24,13 +24,13 @@ class TransitionDelegate: NSObject, UINavigationControllerDelegate {
         self.transition = Transition(navigationController: navigationController)
     }
     
-    func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.push = operation == UINavigationControllerOperation.Push
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.push = operation == UINavigationControllerOperation.push
         transition.delegate = self
         return transition
     }
     
-    func navigationController(navigationController: UINavigationController, interactionControllerForAnimationController animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactiveTransition
     }
 }
@@ -46,32 +46,32 @@ class Transition: NSObject, UIViewControllerAnimatedTransitioning, UIGestureReco
     var push = true
     weak var delegate: TransitionDelegate!
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.4
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        let sourceVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!
-        let destinationVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
+        let sourceVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)!
+        let destinationVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)!
         
         let sourceView = sourceVC.view
         let destinationView = destinationVC.view
-        let containerView = transitionContext.containerView()
+        let containerView = transitionContext.containerView
         
-        let duration = transitionDuration(transitionContext)
+        let duration = transitionDuration(using: transitionContext)
         
         
-        let height = UIScreen.mainScreen().bounds.height
+        let height = UIScreen.main.bounds.height
         
-        containerView.addSubview(destinationView)
-        destinationView.layoutIfNeeded()
+        containerView.addSubview(destinationView!)
+        destinationView?.layoutIfNeeded()
         
         if (push) {
-            destinationView.transform.ty = height
-            handleBack(destinationView)
+            destinationView?.transform.ty = height
+            handleBack(destinationView!)
         } else {
-            destinationView.transform.ty = -height
+            destinationView?.transform.ty = -height
         }
         
 
@@ -85,12 +85,12 @@ class Transition: NSObject, UIViewControllerAnimatedTransitioning, UIGestureReco
         
         var snapshotView: UIView?
         if needsAnimation {
-            snapshotView = sharedSourceView!.snapshotViewAfterScreenUpdates(false)
-            snapshotView!.center = containerView.convertPoint(sharedSourceView!.center, fromView: sharedSourceView!.superview)
+            snapshotView = sharedSourceView!.snapshotView(afterScreenUpdates: false)
+            snapshotView!.center = containerView.convert(sharedSourceView!.center, from: sharedSourceView!.superview)
             snapshotView!.translatesAutoresizingMaskIntoConstraints = true
-            sharedSourceView!.hidden = true
+            sharedSourceView!.isHidden = true
             
-            sharedDestinationView!.hidden = true
+            sharedDestinationView!.isHidden = true
             containerView.addSubview(snapshotView!)
         }
         
@@ -100,76 +100,76 @@ class Transition: NSObject, UIViewControllerAnimatedTransitioning, UIGestureReco
         let needsBGTransition = (sourceBackgroundColor != nil) && (destinationBackgroundColor != nil)
         
         if needsBGTransition {
-            destinationView.backgroundColor = sourceBackgroundColor
+            destinationView?.backgroundColor = sourceBackgroundColor
         }
 
         
-        UIView.animateWithDuration(duration, delay: 0, options: [], animations: {
+        UIView.animate(withDuration: duration, delay: 0, options: [], animations: {
 
             if (self.push) {
-                sourceView.transform.ty = -height
-                destinationView.transform.ty = 0
+                sourceView?.transform.ty = -height
+                destinationView?.transform.ty = 0
             } else {
-                sourceView.transform.ty = height
-                destinationView.transform.ty = 0
+                sourceView?.transform.ty = height
+                destinationView?.transform.ty = 0
             }
             if needsAnimation {
-                snapshotView!.center = containerView.convertPoint(sharedDestinationView!.center, fromView: sharedDestinationView!.superview)
+                snapshotView!.center = containerView.convert(sharedDestinationView!.center, from: sharedDestinationView!.superview)
             }
             
             if needsBGTransition {
-                sourceView.backgroundColor = destinationBackgroundColor!
-                destinationView.backgroundColor = destinationBackgroundColor!
+                sourceView?.backgroundColor = destinationBackgroundColor!
+                destinationView?.backgroundColor = destinationBackgroundColor!
             }
             containerView.layoutIfNeeded()
             
         }, completion: { finished in
                 
-            sourceView.transform = CGAffineTransformIdentity
-            destinationView.transform = CGAffineTransformIdentity
+            sourceView?.transform = CGAffineTransform.identity
+            destinationView?.transform = CGAffineTransform.identity
             
             if needsBGTransition {
-                sourceView.backgroundColor = sourceBackgroundColor!
+                sourceView?.backgroundColor = sourceBackgroundColor!
             }
 
             if needsAnimation {
-                sharedSourceView!.hidden = false
-                sharedDestinationView!.hidden = false
+                sharedSourceView!.isHidden = false
+                sharedDestinationView!.isHidden = false
                 snapshotView!.removeFromSuperview()
             }
 
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         })
         
     }
     
-    func handleBack(view: UIView) {
-        let gesture = PanDirectionGestureRecognizer(direction: .Vertical, target: self, action: #selector(Transition.handlePan))
+    func handleBack(_ view: UIView) {
+        let gesture = PanDirectionGestureRecognizer(direction: .vertical, target: self, action: #selector(Transition.handlePan))
         //        gesture.delegate = self
         view.addGestureRecognizer(gesture)
     }
     
-    func handlePan(gesture: UIPanGestureRecognizer) {
-        let progress = gesture.translationInView(gesture.view).y / UIScreen.mainScreen().bounds.height
+    func handlePan(_ gesture: UIPanGestureRecognizer) {
+        let progress = gesture.translation(in: gesture.view).y / UIScreen.main.bounds.height
         
-        if gesture.state == .Began {
+        if gesture.state == .began {
             delegate.interactiveTransition = UIPercentDrivenInteractiveTransition()
-            navigationController.popViewControllerAnimated(true)
+            navigationController.popViewController(animated: true)
         }
-        else if gesture.state == .Changed {
-            delegate.interactiveTransition?.updateInteractiveTransition(progress)
+        else if gesture.state == .changed {
+            delegate.interactiveTransition?.update(progress)
         }
-        else if gesture.state == .Ended || gesture.state == .Cancelled {
+        else if gesture.state == .ended || gesture.state == .cancelled {
             if progress > 0.3 {
-                delegate.interactiveTransition?.finishInteractiveTransition()
+                delegate.interactiveTransition?.finish()
             } else {
-                delegate.interactiveTransition?.cancelInteractiveTransition()
+                delegate.interactiveTransition?.cancel()
             }
             delegate.interactiveTransition = nil
         }
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 }

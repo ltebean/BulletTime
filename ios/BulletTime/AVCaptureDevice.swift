@@ -11,15 +11,15 @@ import AVFoundation
 extension AVCaptureDevice {
     
     static func backCamera() -> AVCaptureDevice {
-        return captureDeviceWithPosition(.Back)!
+        return captureDeviceWithPosition(.back)!
     }
     
     static func frontCamera() -> AVCaptureDevice {
-        return captureDeviceWithPosition(.Front)!
+        return captureDeviceWithPosition(.front)!
     }
     
-    private static func captureDeviceWithPosition(position: AVCaptureDevicePosition) -> AVCaptureDevice? {
-        let devices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo) as! [AVCaptureDevice]
+    fileprivate static func captureDeviceWithPosition(_ position: AVCaptureDevicePosition) -> AVCaptureDevice? {
+        let devices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo) as! [AVCaptureDevice]
         return devices.filter({
             $0.position == position
         }).first

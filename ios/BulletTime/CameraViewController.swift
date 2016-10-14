@@ -15,7 +15,7 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var recLabel: UILabel!
     
-    let sessionQueue: dispatch_queue_t = dispatch_queue_create("session queue", DISPATCH_QUEUE_SERIAL)
+    let sessionQueue: DispatchQueue = DispatchQueue(label: "session queue", attributes: [])
     let session = AVCaptureSession()
     let movieFileOutput = AVCaptureMovieFileOutput()
 
@@ -26,17 +26,17 @@ class CameraViewController: UIViewController {
 
     let videoPath = FileManager.sharedInstance.absolutePath("temp.mp4")
     
-    var completion: ((url: NSURL, error: NSError?) -> ())?
+    var completion: ((_ url: URL, _ error: NSError?) -> ())?
     var startTime: Float64 = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        recLabel.hidden = true
+        recLabel.isHidden = true
 
         previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
 
         
-        Async.customQueue(sessionQueue) {
+        Async.custom(queue: sessionQueue) {
             self.session.sessionPreset = AVCaptureSessionPreset1280x720
             self.videoDevice = AVCaptureDevice.backCamera()
             self.videoInput = try! AVCaptureDeviceInput(device: self.videoDevice)
@@ -44,10 +44,10 @@ class CameraViewController: UIViewController {
             self.session.addOutput(self.movieFileOutput)
             
             var bestFormat: AVCaptureDeviceFormat?
-            let formats = self.videoDevice.formats
+            let formats = self.videoDevice.formats!
             for format in formats {
-                for range in format.videoSupportedFrameRateRanges {
-                    if range.maxFrameRate >= 240 {
+                for range in (format as AnyObject).videoSupportedFrameRateRanges {
+                    if (range as AnyObject).maxFrameRate >= 240 {
                         bestFormat = format as? AVCaptureDeviceFormat
                     }
                 }
@@ -64,25 +64,25 @@ class CameraViewController: UIViewController {
         }.main {
             self.previewLayer.frame = self.view.bounds
             self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-            self.previewView.layer.insertSublayer(self.previewLayer, atIndex: 0)
+            self.previewView.layer.insertSublayer(self.previewLayer, at: 0)
         }
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Async.customQueue(sessionQueue) {
+        Async.custom(queue: sessionQueue) {
             self.session.startRunning()
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        Async.customQueue(sessionQueue) {
+        Async.custom(queue: sessionQueue) {
             self.session.stopRunning()
         }
     }
@@ -94,35 +94,35 @@ class CameraViewController: UIViewController {
     }
     
     
-    private func updateOrientation() {
-        let connection = movieFileOutput.connectionWithMediaType(AVMediaTypeVideo)
-        if connection.supportsVideoOrientation {
-            connection.videoOrientation = interfaceToVideoOrientation()
+    fileprivate func updateOrientation() {
+        let connection = movieFileOutput.connection(withMediaType: AVMediaTypeVideo)
+        if (connection?.isVideoOrientationSupported)! {
+            connection?.videoOrientation = interfaceToVideoOrientation()
             previewLayer.connection.videoOrientation = interfaceToVideoOrientation()
         }
     }
     
-    private func interfaceToVideoOrientation() -> AVCaptureVideoOrientation {
-        switch UIApplication.sharedApplication().statusBarOrientation {
-        case .Portrait:
-            return .Portrait
-        case .PortraitUpsideDown:
-            return .PortraitUpsideDown
-        case .LandscapeLeft:
-            return .LandscapeLeft;
-        case .LandscapeRight:
-            return .LandscapeRight;
+    fileprivate func interfaceToVideoOrientation() -> AVCaptureVideoOrientation {
+        switch UIApplication.shared.statusBarOrientation {
+        case .portrait:
+            return .portrait
+        case .portraitUpsideDown:
+            return .portraitUpsideDown
+        case .landscapeLeft:
+            return .landscapeLeft;
+        case .landscapeRight:
+            return .landscapeRight;
         default:
-            return .Portrait;
+            return .portrait;
         }
     }
 
     
     func startRecording() {
 //        recLabel.hidden = false
-        let url = NSURL(fileURLWithPath: videoPath)
+        let url = URL(fileURLWithPath: videoPath)
         FileManager.sharedInstance.removeFileAtPath(videoPath)
-        movieFileOutput.startRecordingToOutputFileURL(url, recordingDelegate: self)
+        movieFileOutput.startRecording(toOutputFileURL: url, recordingDelegate: self)
         startTime = CFAbsoluteTimeGetCurrent()
     }
     
@@ -135,12 +135,12 @@ class CameraViewController: UIViewController {
 }
 
 extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
-    func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
+    func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         
         if error == nil {
-            completion?(url: outputFileURL, error: nil)
+            completion?(outputFileURL, nil)
         } else {
-            completion?(url: outputFileURL, error: error)
+            completion?(outputFileURL, error as NSError?)
         }
     }
 }
