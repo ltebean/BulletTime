@@ -25,6 +25,8 @@ class BroadcastViewController: UIViewController {
         super.viewDidLoad()
         circleView.dataSource = self
 
+        showConnecting()
+
         guest.onDisConnected = { [weak self] in
             self?.showEmptyView()
         }
@@ -35,7 +37,6 @@ class BroadcastViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        showConnecting()
     }
     
     override func viewDidAppear(_ animated: Bool) {

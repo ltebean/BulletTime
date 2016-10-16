@@ -645,8 +645,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7f757e9e-dc21-4a5b-850a-9feaadc1a779";
-				PROVISIONING_PROFILE_SPECIFIER = "bullet-dev1";
+				PROVISIONING_PROFILE = "60246eec-4145-4bec-a7fc-887c088d34ff";
+				PROVISIONING_PROFILE_SPECIFIER = "bullet-dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "BulletTime/BulletTime-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;

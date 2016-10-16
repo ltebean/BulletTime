@@ -66,7 +66,8 @@ class PeripheralViewController: UIViewController {
     }
     
     func useFrame(atTime absoluteTime: Float64) {
-        let seconds = absoluteTime - cameraController.startTime
+        let seconds = absoluteTime - (cameraController.endTime - CMTimeGetSeconds(asset.duration))
+
         let time = CMTimeMakeWithSeconds(seconds, asset.duration.timescale)
         imageGenerator = asset.generateImageAtTime(time, completion: { image in
             if let image = image {

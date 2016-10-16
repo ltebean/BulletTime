@@ -52,7 +52,7 @@ class CentralViewController: UIViewController {
     
     func goToEditor(_ url: URL) {
         let asset = AVAsset(url: url)
-        let startTime = cameraController.startTime
+        let startTime = cameraController.endTime - CMTimeGetSeconds(asset.duration)
         let seconds = shootTime - startTime
         let times = [seconds - 0.1, seconds, seconds + 0.1]
         let timeValues = times.map {

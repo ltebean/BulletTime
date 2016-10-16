@@ -221,7 +221,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="cbx-iy-QjY" firstAttribute="centerY" secondItem="75S-95-BG3" secondAttribute="centerY" id="4rN-Bo-jyW"/>
                                     <constraint firstItem="75S-95-BG3" firstAttribute="leading" secondItem="x9R-2o-e08" secondAttribute="leading" constant="30" id="F54-hK-BEk"/>
@@ -893,7 +893,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="l7t-hU-yFV" firstAttribute="centerY" secondItem="zGn-FQ-4tH" secondAttribute="centerY" id="4cA-x4-7Le"/>
                                     <constraint firstAttribute="trailing" secondItem="l7t-hU-yFV" secondAttribute="trailing" constant="15" id="5nA-6k-kbq"/>

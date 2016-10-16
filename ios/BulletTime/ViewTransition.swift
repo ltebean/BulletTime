@@ -57,7 +57,7 @@ class ViewTransition: NSObject, UIViewControllerAnimatedTransitioning, UIGesture
     var push = true
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.7
+        return 0.8
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
