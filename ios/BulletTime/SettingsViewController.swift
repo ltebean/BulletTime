@@ -28,6 +28,15 @@ class SettingsViewController: UITableViewController {
         
     }
     
+    @IBAction func goToLackarPage(_ sender: AnyObject) {
+        UIApplication.shared.openURL(URL(string: "http://lackar.com/")!)
+    }
+    
+    @IBAction func goToLeoPage(_ sender: AnyObject) {
+        UIApplication.shared.openURL(URL(string: "https://github.com/ltebean")!)
+    }
+    
+    
     func shareApp() {
         
     }

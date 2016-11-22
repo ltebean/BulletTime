@@ -31,36 +31,106 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxi-Wo-PyJ">
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LU-ln-caQ">
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-bg" translatesAutoresizingMaskIntoConstraints="NO" id="6IF-eR-mha"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UWh-C5-NpO">
+                                                <attributedString key="attributedText">
+                                                    <fragment content="This is a camera app for taking a frozen moment in 3D. Call your friends to install ">
+                                                        <attributes>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="18" name="Circular-Book"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="Friizit">
+                                                        <attributes>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="18" name="Circular-Book"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            <integer key="NSUnderline" value="1"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment>
+                                                        <string key="content"> on their iPhones and let everybody stand around and aiming towards the target. The target should be in motion then you can see how you freezing it. Finally you can share the frozen moment to Instagram as a video. Tag </string>
+                                                        <attributes>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="18" name="Circular-Book"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="#Friizit">
+                                                        <attributes>
+                                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="18" name="Circular-Book"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                            <integer key="NSUnderline" value="1"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ka4-8j-708">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="PNc-jV-dKE"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="appButtonPressed:" destination="sen-Tm-IzU" eventType="touchUpInside" id="Xct-Ma-bQJ"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uw2-Bf-0hz">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="FcA-Fy-dUG"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="instagramTagButtonPressed:" destination="sen-Tm-IzU" eventType="touchUpInside" id="oEW-dE-fC0"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="Uw2-Bf-0hz" firstAttribute="trailing" secondItem="6IF-eR-mha" secondAttribute="trailing" id="0hp-ay-WNH"/>
+                                            <constraint firstAttribute="trailing" secondItem="UWh-C5-NpO" secondAttribute="trailing" constant="30" id="2Ak-cq-77I"/>
+                                            <constraint firstItem="Ka4-8j-708" firstAttribute="top" secondItem="UWh-C5-NpO" secondAttribute="top" constant="20" id="Bze-s0-sg3"/>
+                                            <constraint firstItem="Ka4-8j-708" firstAttribute="leading" secondItem="UWh-C5-NpO" secondAttribute="leading" id="CRp-WV-ICU"/>
+                                            <constraint firstItem="Uw2-Bf-0hz" firstAttribute="leading" secondItem="UWh-C5-NpO" secondAttribute="leading" id="GzU-Ae-SNB"/>
+                                            <constraint firstItem="Ka4-8j-708" firstAttribute="trailing" secondItem="UWh-C5-NpO" secondAttribute="trailing" id="M1d-gi-hGz"/>
+                                            <constraint firstAttribute="trailing" secondItem="6IF-eR-mha" secondAttribute="trailing" id="PB2-bh-99o"/>
+                                            <constraint firstItem="6IF-eR-mha" firstAttribute="leading" secondItem="2LU-ln-caQ" secondAttribute="leading" id="c1z-C2-9gY"/>
+                                            <constraint firstItem="UWh-C5-NpO" firstAttribute="top" secondItem="2LU-ln-caQ" secondAttribute="top" constant="100" id="ddA-Ap-oJS"/>
+                                            <constraint firstItem="Uw2-Bf-0hz" firstAttribute="bottom" secondItem="UWh-C5-NpO" secondAttribute="bottom" id="fJO-iM-4RL"/>
+                                            <constraint firstItem="UWh-C5-NpO" firstAttribute="leading" secondItem="2LU-ln-caQ" secondAttribute="leading" constant="30" id="g4p-oA-22u"/>
+                                            <constraint firstItem="6IF-eR-mha" firstAttribute="top" secondItem="2LU-ln-caQ" secondAttribute="top" id="hRZ-ig-AyO"/>
                                             <constraint firstAttribute="width" secondItem="2LU-ln-caQ" secondAttribute="height" multiplier="1:1" id="qZg-08-HzA"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="UWh-C5-NpO" secondAttribute="bottom" constant="30" id="ssT-37-VrN"/>
+                                            <constraint firstAttribute="bottom" secondItem="6IF-eR-mha" secondAttribute="bottom" id="vMi-Ld-IKe"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rCW-aw-lIz">
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to control the shutter for everyone" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYA-2z-3Vg">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to control the shutter for everyone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dYA-2z-3Vg">
                                                 <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="18"/>
                                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One of you is the host" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bA-lj-n7j">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="One of you is the host" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7bA-lj-n7j">
                                                 <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="30"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="dYA-2z-3Vg" firstAttribute="leading" secondItem="rCW-aw-lIz" secondAttribute="leading" constant="20" id="0rk-vf-z5z"/>
+                                            <constraint firstItem="dYA-2z-3Vg" firstAttribute="leading" secondItem="rCW-aw-lIz" secondAttribute="leading" constant="30" id="0rk-vf-z5z"/>
                                             <constraint firstItem="dYA-2z-3Vg" firstAttribute="top" secondItem="7bA-lj-n7j" secondAttribute="bottom" constant="2" id="50S-jP-kil"/>
-                                            <constraint firstItem="7bA-lj-n7j" firstAttribute="leading" secondItem="rCW-aw-lIz" secondAttribute="leading" constant="20" id="5f3-nj-F4y"/>
+                                            <constraint firstItem="7bA-lj-n7j" firstAttribute="leading" secondItem="rCW-aw-lIz" secondAttribute="leading" constant="30" id="5f3-nj-F4y"/>
                                             <constraint firstAttribute="trailing" secondItem="dYA-2z-3Vg" secondAttribute="trailing" constant="20" id="9YZ-ZE-BFl"/>
-                                            <constraint firstItem="7bA-lj-n7j" firstAttribute="top" secondItem="rCW-aw-lIz" secondAttribute="top" constant="20" id="Wkv-If-uJ6"/>
-                                            <constraint firstAttribute="height" constant="250" id="oBA-A0-krc"/>
+                                            <constraint firstItem="7bA-lj-n7j" firstAttribute="top" secondItem="rCW-aw-lIz" secondAttribute="top" constant="30" id="Wkv-If-uJ6"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7bA-lj-n7j" secondAttribute="trailing" constant="30" id="w5Y-Cu-lZ0"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="rCW-aw-lIz" firstAttribute="top" secondItem="2LU-ln-caQ" secondAttribute="bottom" id="32T-EM-oX6"/>
                                     <constraint firstItem="2LU-ln-caQ" firstAttribute="top" secondItem="dxi-Wo-PyJ" secondAttribute="top" id="8dU-UB-x7Q"/>
                                     <constraint firstItem="rCW-aw-lIz" firstAttribute="leading" secondItem="dxi-Wo-PyJ" secondAttribute="leading" id="EPS-op-rjj"/>
                                     <constraint firstItem="2LU-ln-caQ" firstAttribute="leading" secondItem="dxi-Wo-PyJ" secondAttribute="leading" id="IxZ-pT-NxO"/>
@@ -128,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5WG-aO-clD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-102" y="403"/>
+            <point key="canvasLocation" x="-102.5" y="402.5"/>
         </scene>
         <!--Central View Controller-->
         <scene sceneID="NLd-7g-QNW">
@@ -949,6 +1019,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="home-bg" width="375" height="375"/>
         <image name="icon-back-grey" width="17" height="10"/>
         <image name="icon-back-white" width="17" height="10"/>
         <image name="icon-confirm" width="17" height="14"/>

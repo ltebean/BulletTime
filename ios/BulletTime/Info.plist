@@ -11,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>Friizit</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -41,9 +41,18 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>to save video to your album</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>to connect to other devices</string>
+	<key>NSCameraUsageDescription</key>
+	<string>to take photo</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>to save video to your album</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>lineto-circular-black.ttf</string>
+		<string>lineto-circular-book.ttf</string>
 		<string>lineto-circular-bold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
@@ -58,14 +67,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>to connect to other devices</string>
-	<key>NSCameraUsageDescription</key>
-	<string>to take photo</string>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>to save video to your album</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>to save video to your album</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

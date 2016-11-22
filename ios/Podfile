@@ -12,6 +12,7 @@ pod 'LTSwiftDate'
 pod 'AsyncSwift'
 pod 'Fabric'
 pod 'Crashlytics'
+pod 'TextAttributes'
 end
 
 post_install do |installer|

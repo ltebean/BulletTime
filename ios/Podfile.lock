@@ -14,6 +14,7 @@ PODS:
     - Realm (= 2.0.2)
   - SVProgressHUD (2.0.3)
   - SwiftyJSON (3.1.1)
+  - TextAttributes (1.0)
 
 DEPENDENCIES:
   - AsyncSwift
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - RealmSwift
   - SVProgressHUD
   - SwiftyJSON
+  - TextAttributes
 
 SPEC CHECKSUMS:
   AsyncSwift: 6ba6ed9ecb51344458063f7c86fe447ab824e313
@@ -36,7 +38,8 @@ SPEC CHECKSUMS:
   RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+  TextAttributes: 45b2713a1d174c377d320b51129c304eac381638
 
-PODFILE CHECKSUM: 9fae21719b4fba71f30a92fc4eae5d1ec6ba39aa
+PODFILE CHECKSUM: 647e8f927ccd439fa73e83392da3219a5b2dc67b
 
 COCOAPODS: 1.1.0.rc.2

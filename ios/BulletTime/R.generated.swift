@@ -22,12 +22,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.file` struct is generated, and contains static references to 2 files.
+  /// This `R.file` struct is generated, and contains static references to 3 files.
   struct file {
     /// Resource file `lineto-circular-black.ttf`.
     static let linetoCircularBlackTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "lineto-circular-black", pathExtension: "ttf")
     /// Resource file `lineto-circular-bold.ttf`.
     static let linetoCircularBoldTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "lineto-circular-bold", pathExtension: "ttf")
+    /// Resource file `lineto-circular-book.ttf`.
+    static let linetoCircularBookTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "lineto-circular-book", pathExtension: "ttf")
     
     /// `bundle.url(forResource: "lineto-circular-black", withExtension: "ttf")`
     static func linetoCircularBlackTtf(_: Void = ()) -> Foundation.URL? {
@@ -41,15 +43,23 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
     
+    /// `bundle.url(forResource: "lineto-circular-book", withExtension: "ttf")`
+    static func linetoCircularBookTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.linetoCircularBookTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.font` struct is generated, and contains static references to 2 fonts.
+  /// This `R.font` struct is generated, and contains static references to 3 fonts.
   struct font: Rswift.Validatable {
     /// Font `Circular-Black`.
     static let circularBlack = Rswift.FontResource(fontName: "Circular-Black")
     /// Font `Circular-Bold`.
     static let circularBold = Rswift.FontResource(fontName: "Circular-Bold")
+    /// Font `Circular-Book`.
+    static let circularBook = Rswift.FontResource(fontName: "Circular-Book")
     
     /// `UIFont(name: "Circular-Black", size: ...)`
     static func circularBlack(size: CGFloat) -> UIKit.UIFont? {
@@ -61,18 +71,26 @@ struct R: Rswift.Validatable {
       return UIKit.UIFont(resource: circularBold, size: size)
     }
     
+    /// `UIFont(name: "Circular-Book", size: ...)`
+    static func circularBook(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: circularBook, size: size)
+    }
+    
     static func validate() throws {
       if R.font.circularBlack(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'Circular-Black' could not be loaded, is 'lineto-circular-black.ttf' added to the UIAppFonts array in this targets Info.plist?") }
       if R.font.circularBold(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'Circular-Bold' could not be loaded, is 'lineto-circular-bold.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.circularBook(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'Circular-Book' could not be loaded, is 'lineto-circular-book.ttf' added to the UIAppFonts array in this targets Info.plist?") }
     }
     
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 15 images.
+  /// This `R.image` struct is generated, and contains static references to 16 images.
   struct image {
     /// Image `button-save-as-video`.
     static let buttonSaveAsVideo = Rswift.ImageResource(bundle: R.hostingBundle, name: "button-save-as-video")
+    /// Image `home-bg`.
+    static let homeBg = Rswift.ImageResource(bundle: R.hostingBundle, name: "home-bg")
     /// Image `icon-back-grey`.
     static let iconBackGrey = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon-back-grey")
     /// Image `icon-back-white`.
@@ -105,6 +123,11 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "button-save-as-video", bundle: ..., traitCollection: ...)`
     static func buttonSaveAsVideo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.buttonSaveAsVideo, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "home-bg", bundle: ..., traitCollection: ...)`
+    static func homeBg(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.homeBg, compatibleWith: traitCollection)
     }
     
     /// `UIImage(named: "icon-back-grey", bundle: ..., traitCollection: ...)`
@@ -422,6 +445,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "icon-confirm") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon-confirm' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIKit.UIImage(named: "icon-back-grey") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon-back-grey' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIKit.UIImage(named: "icon-share-bold") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon-share-bold' is used in storyboard 'Shoot', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "home-bg") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'home-bg' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIKit.UIImage(named: "icon-back-white") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon-back-white' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if _R.storyboard.shoot().central() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'central' could not be loaded from storyboard 'Shoot' as 'CentralViewController'.") }
         if _R.storyboard.shoot().display() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'display' could not be loaded from storyboard 'Shoot' as 'DisplayViewController'.") }

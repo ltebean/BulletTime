@@ -15,6 +15,7 @@
 		B388967E1D90E81800BD05DC /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B388967D1D90E81800BD05DC /* UIViewController.swift */; };
 		B38EE6A61D5DA66200D20053 /* LTCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38EE6A51D5DA66200D20053 /* LTCircleView.swift */; };
 		B38EE6A81D61572300D20053 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38EE6A71D61572300D20053 /* BubbleView.swift */; };
+		B39473481DE3E12000F895BB /* lineto-circular-book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B39473471DE3E12000F895BB /* lineto-circular-book.ttf */; };
 		B3B0DC601DB0E1340011BEDF /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3B0DC5F1DB0E1340011BEDF /* Guest.swift */; };
 		B3BB82761D61D08800D85F13 /* lineto-circular-black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3BB82741D61D08800D85F13 /* lineto-circular-black.ttf */; };
 		B3BB82771D61D08800D85F13 /* lineto-circular-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3BB82751D61D08800D85F13 /* lineto-circular-bold.ttf */; };
@@ -72,6 +73,7 @@
 		B388967D1D90E81800BD05DC /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		B38EE6A51D5DA66200D20053 /* LTCircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTCircleView.swift; sourceTree = "<group>"; };
 		B38EE6A71D61572300D20053 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
+		B39473471DE3E12000F895BB /* lineto-circular-book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lineto-circular-book.ttf"; sourceTree = "<group>"; };
 		B3B0DC5F1DB0E1340011BEDF /* Guest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		B3BB82741D61D08800D85F13 /* lineto-circular-black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lineto-circular-black.ttf"; sourceTree = "<group>"; };
 		B3BB82751D61D08800D85F13 /* lineto-circular-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "lineto-circular-bold.ttf"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				B3BB82741D61D08800D85F13 /* lineto-circular-black.ttf */,
 				B3BB82751D61D08800D85F13 /* lineto-circular-bold.ttf */,
+				B39473471DE3E12000F895BB /* lineto-circular-book.ttf */,
 			);
 			name = Font;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				FAF15A4C1D4B7EEE005C7AF2 /* Assets.xcassets in Resources */,
 				B3E6E7091D64437000D9BB60 /* Me.storyboard in Resources */,
 				FAF15A4A1D4B7EEE005C7AF2 /* Shoot.storyboard in Resources */,
+				B39473481DE3E12000F895BB /* lineto-circular-book.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,12 +666,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = LUAG5Z5ST3;
 				INFOPLIST_FILE = BulletTime/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.ltebean.bullettime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "21826248-a64e-4518-a3a2-d44e300eb1bf";
+				PROVISIONING_PROFILE_SPECIFIER = "bullet-dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "BulletTime/BulletTime-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};

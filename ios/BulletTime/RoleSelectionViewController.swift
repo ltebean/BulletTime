@@ -43,7 +43,23 @@ class RoleSelectionViewController: HomeChildViewController {
         super.viewWillDisappear(animated)
         removeTab()
     }
+    
+    @IBAction func appButtonPressed(_ sender: AnyObject) {
+        
+    }
 
+    @IBAction func instagramTagButtonPressed(_ sender: AnyObject) {
+        let url = URL(string: "instagram://tag?name=Friizit")!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
+        } else {
+            let alertController = UIAlertController(title: "Instagram not installed", message: nil, preferredStyle: .alert)
+            let no = UIAlertAction(title: "ok", style: .cancel) { action in }
+            alertController.addAction(no)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func buttonHostPressed(_ sender: AnyObject) {
         hideHomeTab()
         push(R.storyboard.shoot.discoveries()!)

@@ -10,11 +10,8 @@ import UIKit
 
 extension UIFont {
     
-    static func defaultFont(size: CGFloat) -> UIFont {
-        return UIFont(name: UIFont.defaultFontName(), size: size)!
+    static func regular(size: CGFloat) -> UIFont {
+        return UIFont(name: "Circular-Book", size: size)!
     }
     
-    static func defaultFontName() -> String {
-        return "Raleway-Regular"
-    }
 }
