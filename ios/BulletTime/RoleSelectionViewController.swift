@@ -72,7 +72,7 @@ class RoleSelectionViewController: HomeChildViewController {
     }
     
     @IBAction func turnOnBluetoothButtonPressed(_ sender: AnyObject) {
-        let url = URL(string: "prefs:root=Bluetooth")!
+        let url = URL(string: UIApplicationOpenSettingsURLString)!
         UIApplication.shared.openURL(url)
     }
     

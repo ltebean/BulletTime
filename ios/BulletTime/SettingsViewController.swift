@@ -38,7 +38,7 @@ class SettingsViewController: UITableViewController {
     
     
     func shareApp() {
-        
+        Share.shareURL(URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=1178860612&mt=8")!, inViewController: self)
     }
     
     func rateApp() {

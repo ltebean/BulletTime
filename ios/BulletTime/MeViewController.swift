@@ -71,7 +71,7 @@ class MeViewController: HomeChildViewController {
 
     @IBAction func buttonAboutPressed(_ sender: AnyObject) {
         let vc = R.storyboard.me.settings()!
-        vc.modalTransitionStyle = .flipHorizontal
+        vc.modalPresentationStyle = .custom
         present(vc, animated: true, completion: nil)
     }
 }
