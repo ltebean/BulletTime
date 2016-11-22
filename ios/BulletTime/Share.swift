@@ -77,7 +77,7 @@ class Share: NSObject {
 //        
 //    }
 
-    fileprivate static func shareURL(_ url: URL, inViewController vc: UIViewController) {
+    static func shareURL(_ url: URL, inViewController vc: UIViewController) {
         let activityVC = UIActivityViewController(activityItems:[url], applicationActivities: nil)
         vc.present(activityVC, animated: true, completion: nil)
     }
@@ -103,6 +103,5 @@ class Share: NSObject {
             let activityVC = UIActivityViewController(activityItems:[url!], applicationActivities: nil)
             vc.present(activityVC, animated: true, completion: nil)
         })
-
     }
 }

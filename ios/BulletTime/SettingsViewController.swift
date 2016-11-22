@@ -42,10 +42,18 @@ class SettingsViewController: UITableViewController {
     }
     
     func rateApp() {
-        
+        guard let url = URL(string:"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1178860612&onlyLatestVersion=true&type=Purple+Software") else {
+            return
+        }
+        UIApplication.shared.openURL(url);
     }
     
     func sendFeedback() {
-        
+        guard let url = URL(string:"mailto:yucong1118@gmail.com") else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
+        }
     }
 }

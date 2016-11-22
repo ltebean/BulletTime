@@ -30,7 +30,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxi-Wo-PyJ">
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LU-ln-caQ">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2LU-ln-caQ" userLabel="tutorial">
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-bg" translatesAutoresizingMaskIntoConstraints="NO" id="6IF-eR-mha"/>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UWh-C5-NpO">
@@ -122,7 +122,7 @@
                                             <constraint firstItem="dYA-2z-3Vg" firstAttribute="leading" secondItem="rCW-aw-lIz" secondAttribute="leading" constant="30" id="0rk-vf-z5z"/>
                                             <constraint firstItem="dYA-2z-3Vg" firstAttribute="top" secondItem="7bA-lj-n7j" secondAttribute="bottom" constant="2" id="50S-jP-kil"/>
                                             <constraint firstItem="7bA-lj-n7j" firstAttribute="leading" secondItem="rCW-aw-lIz" secondAttribute="leading" constant="30" id="5f3-nj-F4y"/>
-                                            <constraint firstAttribute="trailing" secondItem="dYA-2z-3Vg" secondAttribute="trailing" constant="20" id="9YZ-ZE-BFl"/>
+                                            <constraint firstAttribute="trailing" secondItem="dYA-2z-3Vg" secondAttribute="trailing" constant="30" id="9YZ-ZE-BFl"/>
                                             <constraint firstItem="7bA-lj-n7j" firstAttribute="top" secondItem="rCW-aw-lIz" secondAttribute="top" constant="30" id="Wkv-If-uJ6"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7bA-lj-n7j" secondAttribute="trailing" constant="30" id="w5Y-Cu-lZ0"/>
                                         </constraints>
@@ -177,16 +177,57 @@
                                     <constraint firstAttribute="bottom" secondItem="sKo-SR-rey" secondAttribute="bottom" id="mbP-A7-fZg"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTZ-JG-laB">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to connect each other" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ete-nA-RGa">
+                                        <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="18"/>
+                                        <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on Bluetooth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ltF-WJ-8PS">
+                                        <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="30"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CO2-2W-fgq" customClass="DesignableButton" customModule="BulletTime" customModuleProvider="target">
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="115" id="F7v-f1-cRR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="30"/>
+                                        <state key="normal" title="Turn on">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="turnOnBluetoothButtonPressed:" destination="sen-Tm-IzU" eventType="touchUpInside" id="jq2-kI-8jA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ltF-WJ-8PS" secondAttribute="trailing" constant="30" id="1DL-E4-jOh"/>
+                                    <constraint firstItem="ltF-WJ-8PS" firstAttribute="leading" secondItem="gTZ-JG-laB" secondAttribute="leading" constant="30" id="7Er-i5-LHQ"/>
+                                    <constraint firstItem="CO2-2W-fgq" firstAttribute="leading" secondItem="gTZ-JG-laB" secondAttribute="leading" id="9cb-LJ-Zj1"/>
+                                    <constraint firstItem="Ete-nA-RGa" firstAttribute="top" secondItem="ltF-WJ-8PS" secondAttribute="bottom" constant="2" id="Cf0-m0-dJx"/>
+                                    <constraint firstAttribute="trailing" secondItem="CO2-2W-fgq" secondAttribute="trailing" id="fY1-MJ-EWk"/>
+                                    <constraint firstAttribute="bottom" secondItem="CO2-2W-fgq" secondAttribute="bottom" id="oCA-OT-BQR"/>
+                                    <constraint firstItem="ltF-WJ-8PS" firstAttribute="top" secondItem="gTZ-JG-laB" secondAttribute="top" constant="30" id="v43-mm-YY0"/>
+                                    <constraint firstItem="Ete-nA-RGa" firstAttribute="leading" secondItem="ltF-WJ-8PS" secondAttribute="leading" id="ySF-eU-yyb"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gTZ-JG-laB" secondAttribute="trailing" id="1ql-71-jSu"/>
                             <constraint firstAttribute="trailing" secondItem="dxi-Wo-PyJ" secondAttribute="trailing" id="41I-np-0w1"/>
+                            <constraint firstItem="gTZ-JG-laB" firstAttribute="top" secondItem="2LU-ln-caQ" secondAttribute="bottom" id="Axd-A5-dcq"/>
                             <constraint firstAttribute="bottom" secondItem="dxi-Wo-PyJ" secondAttribute="bottom" id="FFP-VV-jkw"/>
                             <constraint firstItem="3S8-MK-mwo" firstAttribute="top" secondItem="Uez-9z-73t" secondAttribute="bottom" id="IVZ-2Z-ViT"/>
                             <constraint firstItem="dxi-Wo-PyJ" firstAttribute="leading" secondItem="iA6-5u-WLp" secondAttribute="leading" id="V57-Q9-coC"/>
                             <constraint firstItem="dxi-Wo-PyJ" firstAttribute="top" secondItem="iA6-5u-WLp" secondAttribute="top" id="bpy-FM-gjL"/>
                             <constraint firstAttribute="trailing" secondItem="Uez-9z-73t" secondAttribute="trailing" id="izd-Sm-abx"/>
+                            <constraint firstItem="gTZ-JG-laB" firstAttribute="leading" secondItem="iA6-5u-WLp" secondAttribute="leading" id="j8J-mD-l1z"/>
                             <constraint firstItem="Uez-9z-73t" firstAttribute="leading" secondItem="iA6-5u-WLp" secondAttribute="leading" id="jYc-8G-NWI"/>
+                            <constraint firstItem="3S8-MK-mwo" firstAttribute="top" secondItem="gTZ-JG-laB" secondAttribute="bottom" id="kIK-a2-xRG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FJy-cC-Wv6"/>
@@ -194,6 +235,7 @@
                         <outlet property="buttonGuest" destination="aPX-zo-wUQ" id="WRw-1Z-iAc"/>
                         <outlet property="buttonHost" destination="sKo-SR-rey" id="mEf-UN-t87"/>
                         <outlet property="mainView" destination="dxi-Wo-PyJ" id="HYV-fx-zpI"/>
+                        <outlet property="turnOnView" destination="gTZ-JG-laB" id="7NR-bV-7R4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5WG-aO-clD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1004,7 +1046,7 @@
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="diN-Vo-rGf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="diN-Vo-rGf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
