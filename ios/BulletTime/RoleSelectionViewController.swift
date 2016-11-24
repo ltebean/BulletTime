@@ -15,6 +15,7 @@ class RoleSelectionViewController: HomeChildViewController {
     @IBOutlet weak var buttonGuest: DesignableButton!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var turnOnView: UIView!
+    @IBOutlet weak var buttonContainer: UIView!
     
     var bluetoothManager: CBPeripheralManager!
 
@@ -26,9 +27,9 @@ class RoleSelectionViewController: HomeChildViewController {
         transitionDelegate = ViewTransitionDelegate(navigationController: navigationController!)
         navigationController?.delegate = transitionDelegate
         
+        allowNext(allow: false)
         let options = [CBCentralManagerOptionShowPowerAlertKey: 0]
         bluetoothManager = CBPeripheralManager(delegate: self, queue: nil, options: options)
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,9 +72,18 @@ class RoleSelectionViewController: HomeChildViewController {
         push(R.storyboard.shoot.broadcast()!)
     }
     
-    @IBAction func turnOnBluetoothButtonPressed(_ sender: AnyObject) {
-        let url = URL(string: UIApplicationOpenSettingsURLString)!
-        UIApplication.shared.openURL(url)
+    func allowNext(allow: Bool) {
+        if allow {
+            turnOnView.isHidden = true
+            buttonContainer.alpha = 1
+            buttonHost.isEnabled = true
+            buttonGuest.isEnabled = true
+        } else {
+            turnOnView.isHidden = false
+            buttonContainer.alpha = 0.5
+            buttonHost.isEnabled = false
+            buttonGuest.isEnabled = false
+        }
     }
     
     func hideHomeTab() {
@@ -100,11 +110,12 @@ extension RoleSelectionViewController: CBPeripheralManagerDelegate {
         switch peripheral.state {
         case .poweredOn:
             statusMessage = "Bluetooth Status: Turned On"
-            turnOnView.isHidden = true
-            
+            allowNext(allow: true)
+
         case .poweredOff:
             statusMessage = "Bluetooth Status: Turned Off"
-            
+            allowNext(allow: false)
+
         case .resetting:
             statusMessage = "Bluetooth Status: Resetting"
             
@@ -113,7 +124,8 @@ extension RoleSelectionViewController: CBPeripheralManagerDelegate {
             
         case .unsupported:
             statusMessage = "Bluetooth Status: Not Supported"
-            
+            allowNext(allow: false)
+
         default:
             statusMessage = "Bluetooth Status: Unknown"
         }

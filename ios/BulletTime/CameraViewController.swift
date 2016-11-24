@@ -13,7 +13,6 @@ import Async
 class CameraViewController: UIViewController {
     
     @IBOutlet weak var previewView: UIView!
-    @IBOutlet weak var recLabel: UILabel!
     
     let sessionQueue: DispatchQueue = DispatchQueue(label: "session queue", attributes: [])
     let session = AVCaptureSession()
@@ -31,7 +30,6 @@ class CameraViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        recLabel.isHidden = true
 
         previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
 
@@ -119,7 +117,6 @@ class CameraViewController: UIViewController {
 
     
     func startRecording() {
-//        recLabel.hidden = false
         let url = URL(fileURLWithPath: videoPath)
         FileManager.sharedInstance.removeFileAtPath(videoPath)
         movieFileOutput.startRecording(toOutputFileURL: url, recordingDelegate: self)
@@ -127,7 +124,6 @@ class CameraViewController: UIViewController {
     }
     
     func stopRecording() {
-//        recLabel.hidden = true
         movieFileOutput.stopRecording()
     }
     

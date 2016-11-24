@@ -85,7 +85,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.image` struct is generated, and contains static references to 17 images.
+  /// This `R.image` struct is generated, and contains static references to 16 images.
   struct image {
     /// Image `button-save-as-video`.
     static let buttonSaveAsVideo = Rswift.ImageResource(bundle: R.hostingBundle, name: "button-save-as-video")
@@ -117,10 +117,8 @@ struct R: Rswift.Validatable {
     static let iconShare = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon-share")
     /// Image `icon-star`.
     static let iconStar = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon-star")
-    /// Image `test1`.
-    static let test1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "test1")
-    /// Image `test2`.
-    static let test2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "test2")
+    /// Image `image-target`.
+    static let imageTarget = Rswift.ImageResource(bundle: R.hostingBundle, name: "image-target")
     
     /// `UIImage(named: "button-save-as-video", bundle: ..., traitCollection: ...)`
     static func buttonSaveAsVideo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -197,14 +195,9 @@ struct R: Rswift.Validatable {
       return UIKit.UIImage(resource: R.image.iconStar, compatibleWith: traitCollection)
     }
     
-    /// `UIImage(named: "test1", bundle: ..., traitCollection: ...)`
-    static func test1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.test1, compatibleWith: traitCollection)
-    }
-    
-    /// `UIImage(named: "test2", bundle: ..., traitCollection: ...)`
-    static func test2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.test2, compatibleWith: traitCollection)
+    /// `UIImage(named: "image-target", bundle: ..., traitCollection: ...)`
+    static func imageTarget(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.imageTarget, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}
@@ -452,6 +445,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "icon-confirm") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon-confirm' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIKit.UIImage(named: "icon-back-grey") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon-back-grey' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIKit.UIImage(named: "icon-share-bold") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon-share-bold' is used in storyboard 'Shoot', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "image-target") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'image-target' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIKit.UIImage(named: "home-bg") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'home-bg' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if UIKit.UIImage(named: "icon-back-white") == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon-back-white' is used in storyboard 'Shoot', but couldn't be loaded.") }
         if _R.storyboard.shoot().central() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'central' could not be loaded from storyboard 'Shoot' as 'CentralViewController'.") }
