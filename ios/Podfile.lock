@@ -1,6 +1,5 @@
 PODS:
   - AsyncSwift (2.0.0)
-  - BluetoothKit (0.3.0)
   - Crashlytics (3.8.2):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.9)
@@ -8,6 +7,7 @@ PODS:
   - R.swift (3.1.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
+  - ReachabilitySwift (3)
   - Realm (2.0.2):
     - Realm/Headers (= 2.0.2)
   - Realm/Headers (2.0.2)
@@ -19,39 +19,30 @@ PODS:
 
 DEPENDENCIES:
   - AsyncSwift
-  - BluetoothKit (from `git@github.com:rhummelmose/BluetoothKit.git`)
   - Crashlytics
   - Fabric
   - LTSwiftDate
   - R.swift
+  - ReachabilitySwift (~> 3)
   - RealmSwift
   - SVProgressHUD
   - SwiftyJSON
   - TextAttributes
 
-EXTERNAL SOURCES:
-  BluetoothKit:
-    :git: git@github.com:rhummelmose/BluetoothKit.git
-
-CHECKOUT OPTIONS:
-  BluetoothKit:
-    :commit: 7e1f092da526b421917c31425c6e87f33ed6145f
-    :git: git@github.com:rhummelmose/BluetoothKit.git
-
 SPEC CHECKSUMS:
   AsyncSwift: 6ba6ed9ecb51344458063f7c86fe447ab824e313
-  BluetoothKit: 23c4e2ef6a0beeda7e50647b0eb3496f40d90ad2
   Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
   Fabric: bc5bec42cef4bcf1ee3ce0e218fc518e4b44dfbb
   LTSwiftDate: 7b5c5abedaf48ad5f8bb75b4d7cbc0c565ac576a
   R.swift: 14400e5784224d1e4e59a8fc5549198c7e8fe360
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
   RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
   TextAttributes: 45b2713a1d174c377d320b51129c304eac381638
 
-PODFILE CHECKSUM: f2d1fb554aa15a3c9de6960f7512d1cbe6cdd0e7
+PODFILE CHECKSUM: 70c291ab7a380b698877613a250bb97b6ee6e678
 
 COCOAPODS: 1.1.0.rc.2

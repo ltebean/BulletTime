@@ -13,7 +13,7 @@ pod 'AsyncSwift'
 pod 'Fabric'
 pod 'Crashlytics'
 pod 'TextAttributes'
-pod 'BluetoothKit', :git => 'git@github.com:rhummelmose/BluetoothKit.git'
+pod 'ReachabilitySwift', '~> 3'
 end
 
 post_install do |installer|
