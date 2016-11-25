@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="sFF-mi-98s">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="sFF-mi-98s">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="lineto-circular-bold.ttf">
-            <string>Circular-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Home View Controller-->
         <scene sceneID="uTm-3r-ozI">
@@ -24,50 +21,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFw-is-PYe">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <segue destination="EdJ-ap-wak" kind="embed" identifier="me" id="fQD-wH-5Qd"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sdz-kx-baj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <connections>
                                     <segue destination="yz4-tm-wjb" kind="embed" identifier="shoot" id="w8c-Gk-E71"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yMN-vq-92R">
+                                <rect key="frame" x="295" y="0.0" width="80" height="80"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdZ-R9-FpO">
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="24"/>
-                                        <state key="normal" title="Me">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MdZ-R9-FpO">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20224955673758868" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Tfy-aM-dyv"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="tab-album">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="buttonMePressed:" destination="sFF-mi-98s" eventType="touchUpInside" id="MDr-L1-uCK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jmj-pr-lhO">
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Circular-Bold" family="Circular" pointSize="24"/>
-                                        <state key="normal" title="Shoot">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="buttonShootPressed:" destination="sFF-mi-98s" eventType="touchUpInside" id="DGt-7y-A3B"/>
+                                            <action selector="tabButtonPressed:" destination="sFF-mi-98s" eventType="touchUpInside" id="PtN-Qj-YcF"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="jmj-pr-lhO" firstAttribute="leading" secondItem="yMN-vq-92R" secondAttribute="leading" id="3JS-cx-n8w"/>
-                                    <constraint firstAttribute="bottom" secondItem="jmj-pr-lhO" secondAttribute="bottom" id="5lt-Jw-d8L"/>
-                                    <constraint firstAttribute="width" constant="160" id="ERm-Ax-0Xo"/>
-                                    <constraint firstItem="jmj-pr-lhO" firstAttribute="top" secondItem="yMN-vq-92R" secondAttribute="top" id="Glf-oA-x3d"/>
-                                    <constraint firstItem="MdZ-R9-FpO" firstAttribute="width" secondItem="jmj-pr-lhO" secondAttribute="width" id="Gru-Pc-4k0"/>
                                     <constraint firstAttribute="bottom" secondItem="MdZ-R9-FpO" secondAttribute="bottom" id="O9I-do-nm9"/>
                                     <constraint firstAttribute="height" constant="80" id="YRy-Mz-q9t"/>
                                     <constraint firstAttribute="trailing" secondItem="MdZ-R9-FpO" secondAttribute="trailing" id="byC-wa-304"/>
                                     <constraint firstItem="MdZ-R9-FpO" firstAttribute="top" secondItem="yMN-vq-92R" secondAttribute="top" id="o3o-B5-2lm"/>
-                                    <constraint firstItem="MdZ-R9-FpO" firstAttribute="leading" secondItem="jmj-pr-lhO" secondAttribute="trailing" id="tIR-VV-A67"/>
+                                    <constraint firstItem="MdZ-R9-FpO" firstAttribute="leading" secondItem="yMN-vq-92R" secondAttribute="leading" id="qhR-88-RQu"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -86,11 +75,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="buttonMe" destination="MdZ-R9-FpO" id="W58-BM-7Me"/>
-                        <outlet property="buttonShoot" destination="jmj-pr-lhO" id="ate-Rj-HqK"/>
                         <outlet property="meView" destination="xFw-is-PYe" id="diK-3Y-sBH"/>
                         <outlet property="roleView" destination="Sdz-kx-baj" id="MoK-6f-JaK"/>
                         <outlet property="tab" destination="yMN-vq-92R" id="sWJ-DO-yfb"/>
+                        <outlet property="tabButton" destination="MdZ-R9-FpO" id="lqe-XF-aTJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNZ-0s-D2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -114,6 +102,9 @@
             <point key="canvasLocation" x="474.5" y="590"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tab-album" width="80" height="80"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

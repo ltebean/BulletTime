@@ -36,16 +36,13 @@ class HomeViewController: UIViewController {
     let animationDuration = 0.35
 
     @IBOutlet weak var tab: UIView!
-    
-    @IBOutlet weak var tabBackgroundLeft: NSLayoutConstraint!
-    @IBOutlet weak var buttonShoot: UIButton!
-    @IBOutlet weak var buttonMe: UIButton!
-    
+    @IBOutlet weak var tabButton: UIButton!
     @IBOutlet weak var meView: UIView!
     @IBOutlet weak var roleView: UIView!
     
     var roleVC: RoleSelectionViewController!
     var meVC: MeViewController!
+    var isRoleTab = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +50,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        tabButton.backgroundColor = UIColor.black.withAlphaComponent(0.1)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,35 +63,46 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @IBAction func tabButtonPressed(_ sender: Any) {
+        if isRoleTab {
+            goToAlbum()
+        } else {
+            goToRole()
+        }
+        isRoleTab = !isRoleTab
+    }
     
-    @IBAction func buttonShootPressed(_ sender: AnyObject) {
+    func goToRole() {
         roleVC.refresh()
         roleView.alpha = 0
         UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseOut], animations: {
             self.meView.alpha = 0
-            self.buttonMe.backgroundColor = UIColor.black.withAlphaComponent(0.15)
-
+            self.tabButton.alpha = 0
         }, completion: { finished in
+            self.tabButton.setImage(R.image.tabAlbum()!, for: .normal)
+
             UIView.animate(withDuration: self.animationDuration, delay: 0, options: [.curveEaseOut], animations: {
-                self.buttonShoot.backgroundColor = UIColor.black
                 self.roleView.alpha = 1
+                self.tabButton.alpha = 1
             }, completion: { finished in
                 self.view.sendSubview(toBack: self.meView)
             })
         })
     }
 
-    @IBAction func buttonMePressed(_ sender: AnyObject) {
+    func goToAlbum() {
         meVC.refresh()
         meView.alpha = 0
         UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveEaseOut], animations: {
             self.roleView.alpha = 0
-            self.buttonShoot.backgroundColor = UIColor.black.withAlphaComponent(0.15)
-
+            self.tabButton.alpha = 0
         }, completion: { finished in
+            self.tabButton.setImage(R.image.tabShoot()!, for: .normal)
+
             UIView.animate(withDuration: self.animationDuration, delay: 0, options: [.curveEaseOut], animations: {
-                self.buttonMe.backgroundColor = UIColor.black
                 self.meView.alpha = 1
+                self.tabButton.alpha = 1
+
             }, completion: { finished in
                 self.view.sendSubview(toBack: self.roleView)
             })

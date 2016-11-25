@@ -9,6 +9,7 @@
 import UIKit
 import CoreBluetooth
 import ReachabilitySwift
+import Async
 
 class RoleSelectionViewController: HomeChildViewController {
     
@@ -102,18 +103,19 @@ class RoleSelectionViewController: HomeChildViewController {
     }
     
     func reachabilityChanged(note: NSNotification) {
-        
         let reachability = note.object as! Reachability
-        
-        if reachability.isReachable {
-            if reachability.isReachableViaWiFi {
-                allowNext(allow: true)
+        Async.main {
+            if reachability.isReachable {
+                if reachability.isReachableViaWiFi {
+                    self.allowNext(allow: true)
+                } else {
+                    self.allowNext(allow: false)
+                }
             } else {
-                allowNext(allow: false)
+                self.allowNext(allow: false)
             }
-        } else {
-            allowNext(allow: false)
         }
+        
     }
     
 }

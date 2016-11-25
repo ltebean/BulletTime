@@ -52,6 +52,9 @@ class PickerViewController: UIViewController {
         super.viewWillAppear(animated)
         host.resetImageReceived()
         imageView.image = images[currentIndex]
+        Async.main(after: 2, {
+            self.showNextButton()
+        })
     }
     
     func tapped(_ gesture: UITapGestureRecognizer) {
