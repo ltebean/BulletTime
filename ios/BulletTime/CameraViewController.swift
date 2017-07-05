@@ -26,7 +26,7 @@ class CameraViewController: UIViewController {
     let videoPath = FileManager.sharedInstance.absolutePath("temp.mp4")
     
     var completion: ((_ url: URL, _ error: NSError?) -> ())?
-    var endTime: Float64 = 0
+    var startTime: Float64 = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,7 +120,7 @@ class CameraViewController: UIViewController {
         let url = URL(fileURLWithPath: videoPath)
         FileManager.sharedInstance.removeFileAtPath(videoPath)
         movieFileOutput.startRecording(toOutputFileURL: url, recordingDelegate: self)
-//        endTime = CFAbsoluteTimeGetCurrent()
+        startTime = CFAbsoluteTimeGetCurrent()
     }
     
     func stopRecording() {
@@ -133,7 +133,7 @@ class CameraViewController: UIViewController {
 extension CameraViewController: AVCaptureFileOutputRecordingDelegate {
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!) {
         
-        endTime = CFAbsoluteTimeGetCurrent()
+        // endTime = CFAbsoluteTimeGetCurrent()
 
         if error == nil {
             completion?(outputFileURL, nil)

@@ -19,7 +19,7 @@ class RoleSelectionViewController: HomeChildViewController {
     @IBOutlet weak var turnOnView: UIView!
     @IBOutlet weak var buttonContainer: UIView!
     
-//    var bluetoothManager: CBPeripheralManager!
+    var bluetoothManager: CBPeripheralManager!
     let reachability = Reachability()!
 
     var transitionDelegate: ViewTransitionDelegate!
@@ -30,9 +30,9 @@ class RoleSelectionViewController: HomeChildViewController {
         transitionDelegate = ViewTransitionDelegate(navigationController: navigationController!)
         navigationController?.delegate = transitionDelegate
         
-        allowNext(allow: true)
-//        let options = [CBCentralManagerOptionShowPowerAlertKey: 0]
-//        bluetoothManager = CBPeripheralManager(delegate: self, queue: nil, options: options)
+        allowNext(allow: false)
+        let options = [CBCentralManagerOptionShowPowerAlertKey: 0]
+        bluetoothManager = CBPeripheralManager(delegate: self, queue: nil, options: options)
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.reachabilityChanged),name: ReachabilityChangedNotification,object: reachability)
         do {
@@ -128,35 +128,35 @@ extension RoleSelectionViewController: AnimatableViewController {
 
 }
 
-//extension RoleSelectionViewController: CBPeripheralManagerDelegate {
-//    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-//        
-//        var statusMessage = ""
-//        
-//        switch peripheral.state {
-//        case .poweredOn:
-//            statusMessage = "Bluetooth Status: Turned On"
-//            allowNext(allow: true)
-//
-//        case .poweredOff:
-//            statusMessage = "Bluetooth Status: Turned Off"
-//            allowNext(allow: false)
-//
-//        case .resetting:
-//            statusMessage = "Bluetooth Status: Resetting"
-//            
-//        case .unauthorized:
-//            statusMessage = "Bluetooth Status: Not Authorized"
-//            
-//        case .unsupported:
-//            statusMessage = "Bluetooth Status: Not Supported"
-//            allowNext(allow: false)
-//
-//        default:
-//            statusMessage = "Bluetooth Status: Unknown"
-//        }
-//        print(statusMessage)
-//    }
-//    
-//}
+extension RoleSelectionViewController: CBPeripheralManagerDelegate {
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        
+        var statusMessage = ""
+        
+        switch peripheral.state {
+        case .poweredOn:
+            statusMessage = "Bluetooth Status: Turned On"
+            allowNext(allow: true)
+
+        case .poweredOff:
+            statusMessage = "Bluetooth Status: Turned Off"
+            allowNext(allow: false)
+
+        case .resetting:
+            statusMessage = "Bluetooth Status: Resetting"
+            
+        case .unauthorized:
+            statusMessage = "Bluetooth Status: Not Authorized"
+            
+        case .unsupported:
+            statusMessage = "Bluetooth Status: Not Supported"
+            allowNext(allow: false)
+
+        default:
+            statusMessage = "Bluetooth Status: Unknown"
+        }
+        print(statusMessage)
+    }
+    
+}
 
