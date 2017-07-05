@@ -33,7 +33,7 @@ class Host: NSObject {
     func setup() {
         serviceBrowser = MCNearbyServiceBrowser(peer: central, serviceType: "bullettime")
         serviceBrowser.delegate = self
-        session = MCSession(peer: central, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.required)
+        session = MCSession(peer: central, securityIdentity: nil, encryptionPreference: MCEncryptionPreference.optional)
         session.delegate = sessionDelegate
         sessionDelegate.dataReceived = { [weak self] data, peer in
             let command = data.command
@@ -148,6 +148,7 @@ class Host: NSObject {
 }
 
 extension Host: MCNearbyServiceBrowserDelegate {
+    
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         if let _ = allPeers.index(of: peerID) {

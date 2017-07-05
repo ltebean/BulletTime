@@ -30,7 +30,7 @@ class RoleSelectionViewController: HomeChildViewController {
         transitionDelegate = ViewTransitionDelegate(navigationController: navigationController!)
         navigationController?.delegate = transitionDelegate
         
-        allowNext(allow: false)
+        allowNext(allow: true)
 //        let options = [CBCentralManagerOptionShowPowerAlertKey: 0]
 //        bluetoothManager = CBPeripheralManager(delegate: self, queue: nil, options: options)
         
@@ -103,18 +103,18 @@ class RoleSelectionViewController: HomeChildViewController {
     }
     
     func reachabilityChanged(note: NSNotification) {
-        let reachability = note.object as! Reachability
-        Async.main {
-            if reachability.isReachable {
-                if reachability.isReachableViaWiFi {
-                    self.allowNext(allow: true)
-                } else {
-                    self.allowNext(allow: false)
-                }
-            } else {
-                self.allowNext(allow: false)
-            }
-        }
+//        let reachability = note.object as! Reachability
+//        Async.main {
+//            if reachability.isReachable {
+//                if reachability.isReachableViaWiFi {
+//                    self.allowNext(allow: true)
+//                } else {
+//                    self.allowNext(allow: false)
+//                }
+//            } else {
+//                self.allowNext(allow: false)
+//            }
+//        }
         
     }
     
