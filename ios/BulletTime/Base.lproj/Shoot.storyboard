@@ -43,7 +43,7 @@
                                                 <rect key="frame" x="30" y="100" width="315" height="245"/>
                                                 <attributedString key="attributedText">
                                                     <fragment>
-                                                        <string key="content">This is a camera app to help you freeze a moment as 3D video. Call your friends to install Friizit on their devices, let everybody stand around and aim at the target, and choose one person as the host, once the host clicks the shoot button, every device will take a picture simultaneously, these pictures will then be merged as a 3D video. Finally, you can share the frozen moment to instagram, and Don't forget to tag #Friizit.</string>
+                                                        <string key="content">This is a camera app to help you freeze a moment as 3D video. Call your friends to install Friizit on their devices, turn on bluetooth and choose one person as the host to make all the devices connected, then, let everybody stand around and aim at the target, once the host clicks the shoot button, every device will take a picture simultaneously, these pictures will then be merged as a 3D video. Finally, you can share the frozen moment to instagram, and Don't forget to tag #Friizit.</string>
                                                         <attributes>
                                                             <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <font key="NSFont" size="18" name="Circular-Book"/>
@@ -183,8 +183,8 @@
                                         <fontDescription key="fontDescription" name="Circular-Black" family="Circular" pointSize="30"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-wifi" translatesAutoresizingMaskIntoConstraints="NO" id="3Pe-o8-6Xr">
-                                        <rect key="frame" x="292" y="38" width="30" height="22.5"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-blue-tooth" translatesAutoresizingMaskIntoConstraints="NO" id="3Pe-o8-6Xr">
+                                        <rect key="frame" x="282" y="38" width="30" height="22.5"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="3Pe-o8-6Xr" secondAttribute="height" multiplier="4:3" id="YoT-gh-GjV"/>
@@ -195,7 +195,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="ltF-WJ-8PS" firstAttribute="leading" secondItem="gTZ-JG-laB" secondAttribute="leading" constant="30" id="7Er-i5-LHQ"/>
-                                    <constraint firstItem="3Pe-o8-6Xr" firstAttribute="leading" secondItem="ltF-WJ-8PS" secondAttribute="trailing" constant="10" id="7qk-WQ-da0"/>
+                                    <constraint firstItem="3Pe-o8-6Xr" firstAttribute="leading" secondItem="ltF-WJ-8PS" secondAttribute="trailing" id="7qk-WQ-da0"/>
                                     <constraint firstItem="Ete-nA-RGa" firstAttribute="top" secondItem="ltF-WJ-8PS" secondAttribute="bottom" constant="2" id="Cf0-m0-dJx"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3Pe-o8-6Xr" secondAttribute="trailing" constant="30" id="hpg-Im-Lmw"/>
                                     <constraint firstItem="3Pe-o8-6Xr" firstAttribute="centerY" secondItem="ltF-WJ-8PS" secondAttribute="centerY" id="lhD-Fp-XDc"/>
@@ -1074,7 +1074,7 @@
                     <toolbarItems/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="diN-Vo-rGf">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="diN-Vo-rGf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1092,9 +1092,9 @@
         <image name="home-bg" width="375" height="375"/>
         <image name="icon-back-grey" width="17" height="10"/>
         <image name="icon-back-white" width="17" height="10"/>
+        <image name="icon-blue-tooth" width="21" height="36"/>
         <image name="icon-confirm" width="17" height="14"/>
         <image name="icon-share-bold" width="24" height="29"/>
-        <image name="icon-wifi" width="40" height="30"/>
         <image name="image-target" width="375" height="375"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
